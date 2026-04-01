@@ -377,18 +377,16 @@
           </tbody>
         </table>
         <div style="margin-top:10px;padding:10px 12px;background:var(--light);border-radius:8px;font-size:12px;">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-            <strong style="color:var(--text);font-size:12px;">담당 세무사 COMMENT</strong>
-            <span class="edit-hint" style="display:none;font-size:11px;color:#1a3a5c;">✏️ 클릭하여 편집</span>
-          </div>
-          <div class="comment-text" style="color:var(--muted);min-height:20px;padding:2px;">특이사항 없음</div>
+          <strong style="color:var(--text);font-size:12px;">담당 세무사 COMMENT</strong>
+          <div id="comment1" style="color:#6b7280;margin-top:4px;padding:4px;min-height:20px;">특이사항 없음</div>
         </div>
       </div>
       <div class="card">
         <div class="card-title">손금산입 및 익금불산입 (세무상 비용의 증가)</div>
         <div style="font-size:13px;color:var(--muted);padding:1rem 0;">해당사항 없음</div>
-        <div style="margin-top:auto;padding:10px 12px;background:var(--light);border-radius:8px;font-size:12px;color:var(--muted);">
-          <strong style="color:var(--text);">담당 세무사 COMMENT</strong><br>특이사항 없음
+        <div style="margin-top:auto;padding:10px 12px;background:var(--light);border-radius:8px;font-size:12px;">
+          <strong style="color:var(--text);font-size:12px;">담당 세무사 COMMENT</strong>
+          <div id="comment2" style="color:#6b7280;margin-top:4px;padding:4px;min-height:20px;">특이사항 없음</div>
         </div>
       </div>
     </div>
@@ -607,197 +605,182 @@ new Chart(document.getElementById('plChart'), {
 });
 </script>
 
-  <!-- ===== 관리자 UI (항상 포함, admin 파라미터로만 활성화) ===== -->
-  <div id="adminBanner" style="display:none;position:fixed;top:0;left:0;right:0;background:#1a3a5c;color:white;font-size:12px;padding:8px 20px;align-items:center;justify-content:space-between;z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,0.2);">
-    <span>✏️ <strong>관리자 편집 모드</strong> · 코멘트 영역을 클릭하여 수정하세요</span>
-    <span id="deployStatus" style="opacity:0.6;font-size:11px;">수정 후 우측 하단 버튼 클릭</span>
-  </div>
-  <div id="adminSpacer" style="display:none;height:34px;"></div>
+<div id="ab" style="display:none;position:fixed;top:0;left:0;right:0;background:#1a3a5c;color:white;font-size:12px;padding:8px 20px;flex-direction:row;justify-content:space-between;align-items:center;z-index:1000;">
+  <span><b>관리자 편집 모드</b> - 아래 코멘트 영역을 클릭하여 수정하세요</span>
+  <span id="ds" style="opacity:0.6;font-size:11px;">수정 후 우측 하단 배포 버튼 클릭</span>
+</div>
+<div id="as" style="display:none;height:34px;"></div>
 
-  <div id="adminButtons" style="display:none;position:fixed;bottom:28px;right:28px;z-index:999;flex-direction:column;align-items:flex-end;gap:8px;">
-    <div id="deployMsg" style="display:none;font-size:12px;padding:10px 16px;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.15);max-width:300px;text-align:right;"></div>
-    <button id="deployBtn" onclick="deployToGitHub()" style="background:#1a3a5c;color:white;border:none;padding:13px 22px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;box-shadow:0 4px 16px rgba(26,58,92,0.3);">
-      🚀 저장 · GitHub 자동 배포
-    </button>
-    <button onclick="showTokenModal()" style="background:white;color:#718096;border:1px solid #e2e8f0;padding:7px 16px;border-radius:8px;font-size:11px;cursor:pointer;font-family:inherit;">
-      🔑 토큰 설정
-    </button>
-  </div>
+<div id="adm" style="display:none;position:fixed;bottom:28px;right:28px;z-index:999;flex-direction:column;align-items:flex-end;gap:8px;">
+  <div id="dm" style="display:none;font-size:12px;padding:10px 16px;border-radius:8px;color:white;max-width:300px;text-align:right;"></div>
+  <button id="dbtn" style="background:#1a3a5c;color:white;border:none;padding:13px 22px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;box-shadow:0 4px 16px rgba(26,58,92,0.3);">저장 / GitHub 자동 배포</button>
+  <button id="tbtn" style="background:white;color:#718096;border:1px solid #e2e8f0;padding:7px 16px;border-radius:8px;font-size:11px;cursor:pointer;font-family:inherit;">토큰 설정</button>
+</div>
 
-  <div id="tokenModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:2000;align-items:center;justify-content:center;">
-    <div style="background:white;border-radius:14px;padding:2rem;width:440px;max-width:90vw;box-shadow:0 8px 32px rgba(0,0,0,0.2);">
-      <div style="font-size:15px;font-weight:600;color:#1a3a5c;margin-bottom:8px;">🔑 GitHub 토큰 설정</div>
-      <div style="font-size:13px;color:#718096;margin-bottom:16px;">토큰은 브라우저에만 저장되며 외부로 전송되지 않습니다.</div>
-      <input id="tokenInput" type="password" placeholder="ghp_로 시작하는 토큰 입력"
-        style="width:100%;padding:10px 14px;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;font-family:monospace;margin-bottom:12px;outline:none;box-sizing:border-box;">
-      <div style="display:flex;gap:8px;justify-content:flex-end;">
-        <button onclick="document.getElementById('tokenModal').style.display='none'" style="padding:9px 18px;border:1px solid #e2e8f0;border-radius:8px;background:white;font-size:13px;cursor:pointer;font-family:inherit;">취소</button>
-        <button onclick="saveToken()" style="padding:9px 18px;border:none;border-radius:8px;background:#1a3a5c;color:white;font-size:13px;cursor:pointer;font-family:inherit;">저장 후 배포</button>
-      </div>
+<div id="tm" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:2000;align-items:center;justify-content:center;">
+  <div style="background:white;border-radius:14px;padding:2rem;width:440px;max-width:90vw;">
+    <div style="font-size:15px;font-weight:600;color:#1a3a5c;margin-bottom:8px;">GitHub 토큰 설정</div>
+    <div style="font-size:13px;color:#718096;margin-bottom:16px;">토큰은 이 브라우저에만 저장됩니다.</div>
+    <input id="ti" type="password" placeholder="ghp_로 시작하는 토큰"
+      style="width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;font-family:monospace;margin-bottom:12px;outline:none;box-sizing:border-box;">
+    <div style="display:flex;gap:8px;justify-content:flex-end;">
+      <button id="tc" style="padding:9px 18px;border:1px solid #e2e8f0;border-radius:8px;background:white;font-size:13px;cursor:pointer;font-family:inherit;">취소</button>
+      <button id="ts" style="padding:9px 18px;border:none;border-radius:8px;background:#1a3a5c;color:white;font-size:13px;cursor:pointer;font-family:inherit;">저장후배포</button>
     </div>
   </div>
+</div>
 
 <script>
-(function() {
-  const OWNER  = 'whiontax';
-  const REPO   = 'tax-reports';
-  const PATH   = '%EB%8C%80%EC%9B%85%ED%94%84%EB%9D%BC%EC%9E%90/2025.html';
-  const BRANCH = 'main';
-  const TKEY   = 'whion_gh_token';
-  const ADMIN_PW = 'whion2025';
+var GH_OWNER = 'whiontax';
+var GH_REPO  = 'tax-reports';
+var GH_PATH  = '%EB%8C%80%EC%9B%85%ED%94%84%EB%9D%BC%EC%9E%90/2025.html';
+var GH_BRANCH = 'main';
+var TK = 'whion_gh_token';
+var PW = 'whion2025';
 
-  // ── 페이지 로드 시 admin 여부 판단 ──
-  window.addEventListener('DOMContentLoaded', function() {
-    var p = new URLSearchParams(window.location.search);
-    if (p.get('admin') !== ADMIN_PW) return; // 고객 모드: 아무것도 안 함
+function isAdmin() {
+  return new URLSearchParams(window.location.search).get('admin') === PW;
+}
 
-    // 관리자 모드 활성화
-    var banner  = document.getElementById('adminBanner');
-    var spacer  = document.getElementById('adminSpacer');
-    var buttons = document.getElementById('adminButtons');
-    banner.style.display  = 'flex';
-    spacer.style.display  = 'block';
-    buttons.style.display = 'flex';
+function showAdminUI() {
+  var ab  = document.getElementById('ab');
+  var as_ = document.getElementById('as');
+  var adm = document.getElementById('adm');
+  ab.style.display  = 'flex';
+  as_.style.display = 'block';
+  adm.style.display = 'flex';
 
-    // 코멘트 편집 가능하게
-    document.querySelectorAll('.comment-text').forEach(function(el) {
-      el.contentEditable = 'true';
-      el.style.cursor = 'text';
-      el.style.padding = '6px';
-      el.style.borderRadius = '4px';
-      el.style.transition = 'background 0.15s';
-      el.addEventListener('focus', function() {
-        this.style.background = '#ffffff';
-        this.style.outline = '1.5px solid #1a3a5c';
-      });
-      el.addEventListener('blur', function() {
-        this.style.background = '';
-        this.style.outline = '';
-      });
+  ['comment1','comment2'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.contentEditable = 'true';
+    el.style.cursor = 'text';
+    el.style.borderRadius = '4px';
+    el.style.transition = 'background 0.15s';
+    el.addEventListener('focus', function() {
+      this.style.background = '#fff';
+      this.style.outline = '1.5px solid #1a3a5c';
     });
-
-    // 편집 힌트 표시
-    document.querySelectorAll('.edit-hint').forEach(function(el) {
-      el.style.display = '';
+    el.addEventListener('blur', function() {
+      this.style.background = '';
+      this.style.outline = '';
     });
   });
+}
 
-  // ── 토큰 모달 ──
-  window.showTokenModal = function() {
-    var modal = document.getElementById('tokenModal');
-    modal.style.display = 'flex';
-    var saved = localStorage.getItem(TKEY);
-    if (saved) document.getElementById('tokenInput').value = saved;
-  };
+function showMsg(txt, col) {
+  var el = document.getElementById('dm');
+  el.textContent = txt;
+  el.style.background = col;
+  el.style.display = 'block';
+  setTimeout(function() { el.style.display = 'none'; }, 5000);
+}
 
-  window.saveToken = function() {
-    var t = document.getElementById('tokenInput').value.trim();
-    if (!t.startsWith('ghp_')) { alert('ghp_ 로 시작하는 토큰을 입력하세요.'); return; }
-    localStorage.setItem(TKEY, t);
-    document.getElementById('tokenModal').style.display = 'none';
-    window.deployToGitHub();
-  };
+function openTokenModal() {
+  var tm = document.getElementById('tm');
+  tm.style.display = 'flex';
+  var saved = localStorage.getItem(TK);
+  if (saved) document.getElementById('ti').value = saved;
+}
 
-  // ── 상태 메시지 ──
-  function showMsg(text, color) {
-    var el = document.getElementById('deployMsg');
-    el.textContent = text;
-    el.style.background = color;
-    el.style.color = 'white';
-    el.style.display = 'block';
-    setTimeout(function() { el.style.display = 'none'; }, 5000);
+function closeTokenModal() {
+  document.getElementById('tm').style.display = 'none';
+}
+
+function saveToken() {
+  var t = document.getElementById('ti').value.trim();
+  if (!t.startsWith('ghp_')) {
+    alert('ghp_ 로 시작하는 토큰을 입력하세요.');
+    return;
   }
+  localStorage.setItem(TK, t);
+  closeTokenModal();
+  deploy();
+}
 
-  // ── 배포용 HTML 생성 (고객 읽기전용) ──
-  function buildClientHTML() {
-    var clone = document.documentElement.cloneNode(true);
+function buildClientHTML() {
+  var clone = document.documentElement.cloneNode(true);
 
-    // 관리자 UI 4개 제거
-    ['adminBanner','adminSpacer','adminButtons','tokenModal'].forEach(function(id) {
-      var el = clone.querySelector('#' + id);
-      if (el) el.remove();
-    });
+  // 관리자 UI 요소 제거
+  ['ab','as','adm','tm'].forEach(function(id) {
+    var el = clone.getElementById(id);
+    if (el) el.remove();
+  });
 
-    // contenteditable 및 편집 스타일 제거
-    clone.querySelectorAll('[contenteditable]').forEach(function(el) {
-      el.removeAttribute('contenteditable');
-      el.style.cursor = '';
-      el.style.background = '';
-      el.style.outline = '';
-    });
+  // script 태그 제거
+  var scripts = clone.querySelectorAll('script');
+  scripts.forEach(function(s) { s.remove(); });
 
-    // 편집 힌트 제거
-    clone.querySelectorAll('.edit-hint').forEach(function(el) {
-      el.remove();
-    });
+  // contenteditable 제거
+  var editables = clone.querySelectorAll('[contenteditable]');
+  editables.forEach(function(el) {
+    el.removeAttribute('contenteditable');
+    el.style.cursor = '';
+    el.style.background = '';
+    el.style.outline = '';
+  });
 
-    // script 제거
-    clone.querySelectorAll('script').forEach(function(el) { el.remove(); });
+  return '<!DOCTYPE html>\n' + clone.outerHTML;
+}
 
-    return '<!DOCTYPE html>
-' + clone.outerHTML;
-  }
+async function deploy() {
+  var token = localStorage.getItem(TK);
+  if (!token) { openTokenModal(); return; }
 
-  // ── GitHub 배포 ──
-  window.deployToGitHub = async function() {
-    var token = localStorage.getItem(TKEY);
-    if (!token) { window.showTokenModal(); return; }
+  var btn = document.getElementById('dbtn');
+  btn.textContent = '배포 중...';
+  btn.disabled = true;
+  document.getElementById('ds').textContent = '배포 중...';
 
-    var btn = document.getElementById('deployBtn');
-    btn.textContent = '⏳ 배포 중...';
-    btn.disabled = true;
-    document.getElementById('deployStatus').textContent = '배포 중...';
+  var url = 'https://api.github.com/repos/' + GH_OWNER + '/' + GH_REPO + '/contents/' + GH_PATH;
+  var headers = { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' };
 
-    var apiURL = 'https://api.github.com/repos/' + OWNER + '/' + REPO + '/contents/' + PATH;
-
-    try {
-      var getRes = await fetch(apiURL, {
-        headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' }
-      });
-
-      if (getRes.status === 401) {
-        localStorage.removeItem(TKEY);
-        showMsg('❌ 토큰 오류. 재설정해주세요.', '#e53e3e');
-        btn.textContent = '🚀 저장 · GitHub 자동 배포'; btn.disabled = false;
-        return;
-      }
-
-      var fileData = await getRes.json();
-      var clientHTML = buildClientHTML();
-      var encoded = btoa(unescape(encodeURIComponent(clientHTML)));
-
-      var putRes = await fetch(apiURL, {
-        method: 'PUT',
-        headers: {
-          'Authorization': 'token ' + token,
-          'Accept': 'application/vnd.github.v3+json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          message: '세무사 코멘트 업데이트',
-          content: encoded,
-          sha: fileData.sha,
-          branch: BRANCH
-        })
-      });
-
-      if (putRes.ok) {
-        showMsg('✅ 배포 완료! 고객 링크에 곧 반영됩니다. (30초~1분)', '#1D9E75');
-        document.getElementById('deployStatus').textContent = '✅ 배포 완료';
-      } else {
-        var err = await putRes.json();
-        throw new Error(err.message || '업로드 실패');
-      }
-    } catch(e) {
-      showMsg('❌ 오류: ' + e.message, '#e53e3e');
+  try {
+    var r1 = await fetch(url, { headers: headers });
+    if (r1.status === 401) {
+      localStorage.removeItem(TK);
+      showMsg('토큰 오류. 재설정하세요.', '#e53e3e');
+      btn.textContent = '저장 / GitHub 자동 배포';
+      btn.disabled = false;
+      return;
     }
+    var data = await r1.json();
+    var sha = data.sha;
 
-    btn.textContent = '🚀 저장 · GitHub 자동 배포';
-    btn.disabled = false;
-  };
+    var cleanHTML = buildClientHTML();
+    var encoded = btoa(unescape(encodeURIComponent(cleanHTML)));
 
-})();
+    var r2 = await fetch(url, {
+      method: 'PUT',
+      headers: Object.assign({ 'Content-Type': 'application/json' }, headers),
+      body: JSON.stringify({ message: '코멘트 업데이트', content: encoded, sha: sha, branch: GH_BRANCH })
+    });
+
+    if (r2.ok) {
+      showMsg('배포 완료! 고객 링크에 반영됩니다. (30초~1분)', '#1D9E75');
+      document.getElementById('ds').textContent = '배포 완료';
+    } else {
+      var e = await r2.json();
+      throw new Error(e.message || '업로드 실패');
+    }
+  } catch(e) {
+    showMsg('오류: ' + e.message, '#e53e3e');
+  }
+
+  btn.textContent = '저장 / GitHub 자동 배포';
+  btn.disabled = false;
+}
+
+// 이벤트 바인딩
+document.getElementById('dbtn').addEventListener('click', deploy);
+document.getElementById('tbtn').addEventListener('click', openTokenModal);
+document.getElementById('tc').addEventListener('click', closeTokenModal);
+document.getElementById('ts').addEventListener('click', saveToken);
+
+// 페이지 로드시 admin 확인
+if (isAdmin()) {
+  showAdminUI();
+}
 </script>
-
 </body>
 </html>
