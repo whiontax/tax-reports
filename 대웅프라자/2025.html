@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
+<html lang="ko"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>법인세 및 결산 분석 보고서 | (주)대웅프라자</title>
@@ -162,7 +161,7 @@
   <div class="cover">
     <div class="cover-firm">
       <div class="firm-circle">휘온</div>
-      <div class="firm-name">휘온세무회계 · WHION TAX & REALTY</div>
+      <div class="firm-name">휘온세무회계 · WHION TAX &amp; REALTY</div>
     </div>
     <div class="cover-badge">CONFIDENTIAL · 2025 귀속</div>
     <h1>법인세 및 결산 분석 보고서</h1>
@@ -223,7 +222,7 @@
         <span><span class="leg-dot" style="background:#c8973a"></span>부채</span>
         <span><span class="leg-dot" style="background:#1D9E75"></span>자본</span>
       </div>
-      <div class="chart-wrap"><canvas id="bsChart"></canvas></div>
+      <div class="chart-wrap"><canvas id="bsChart" width="426" height="200" style="display: block; box-sizing: border-box; height: 200px; width: 426px;"></canvas></div>
     </div>
     <div class="card">
       <div class="card-title">손익계산서 비교</div>
@@ -232,7 +231,7 @@
         <span><span class="leg-dot" style="background:#1D9E75"></span>영업이익</span>
         <span><span class="leg-dot" style="background:#c8973a"></span>세전이익</span>
       </div>
-      <div class="chart-wrap"><canvas id="plChart"></canvas></div>
+      <div class="chart-wrap"><canvas id="plChart" width="426" height="200" style="display: block; box-sizing: border-box; height: 200px; width: 426px;"></canvas></div>
     </div>
   </div>
 
@@ -379,13 +378,9 @@
         <div class="comment-block" style="margin-top:10px;padding:10px 12px;background:var(--light);border-radius:8px;font-size:12px;">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
             <strong style="color:var(--text);font-size:12px;">담당 세무사 COMMENT</strong>
-            <span class="edit-hint" style="font-size:11px;color:#1a3a5c;opacity:0.7;">✏️ 클릭하여 편집</span>
+            
           </div>
-          <div class="comment-text" contenteditable="true"
-            style="outline:none;min-height:36px;color:var(--muted);cursor:text;padding:6px;border-radius:4px;transition:background 0.15s;"
-            onfocus="this.style.background='#fff';this.style.outline='1.5px solid #1a3a5c';this.closest('.comment-block').querySelector('.edit-hint').style.display='none'"
-            onblur="this.style.background='';this.style.outline='none';this.closest('.comment-block').querySelector('.edit-hint').style.display=''"
-          >특이사항 없음</div>
+          <div class="comment-text" style="min-height: 36px; color: var(--muted); padding: 6px; border-radius: 4px; transition: background 0.15s;">깃허브 배포 테스트</div>
         </div>
       </div>
       <div class="card">
@@ -543,7 +538,7 @@
         <div class="card-title">금융기관 대출시 유의사항</div>
         <div class="check-item"><div class="chk fail">✗</div><span>① 3년내 매출 감소액이 20% 미만일 것 <span style="color:var(--red);font-size:11px;">(당기 △25.4%)</span></span></div>
         <div class="check-item"><div class="chk ok">✓</div><span>② 결손기업이 아니고, 자본잠식이 없을 것</span></div>
-        <div class="check-item"><div class="chk ok">✓</div><span>③ 부채비율 400% 이하 & 차입금의존도 60% 이하</span></div>
+        <div class="check-item"><div class="chk ok">✓</div><span>③ 부채비율 400% 이하 &amp; 차입금의존도 60% 이하</span></div>
         <div class="check-item"><div class="chk na">—</div><span>④ 세금 체납액이 없고, 대출금 연체가 없을 것</span></div>
         <div class="check-item"><div class="chk na">—</div><span>⑤ 1년내 대표자 변동사실이 없을 것</span></div>
         <div class="check-item"><div class="chk na">—</div><span>⑥ 신용등급 5등급 이상일 것 (700점 이상)</span></div>
@@ -613,19 +608,15 @@ new Chart(document.getElementById('plChart'), {
 
   <!-- 관리자 편집 배너 -->
   <!-- 관리자 편집 배너 -->
-  <div id="editBanner" style="position:fixed;top:0;left:0;right:0;background:#1a3a5c;color:white;font-size:12px;padding:7px 20px;display:flex;justify-content:space-between;align-items:center;z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,0.2);">
-    <span>✏️ <strong>관리자 편집 모드</strong> &nbsp;·&nbsp; 코멘트 영역을 클릭하여 수정하세요</span>
-    <span id="bannerStatus" style="opacity:0.6;font-size:11px;">수정 완료 후 우측 하단 버튼 클릭</span>
-  </div>
-  <div style="height:33px;"></div>
+  
+  
 
   <!-- 토큰 설정 모달 -->
-  <div id="tokenModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:2000;align-items:center;justify-content:center;">
+  <div id="tokenModal" style="display: none; position: fixed; inset: 0px; background: rgba(0, 0, 0, 0.5); z-index: 2000; align-items: center; justify-content: center;">
     <div style="background:white;border-radius:14px;padding:2rem;width:480px;max-width:90vw;box-shadow:0 8px 32px rgba(0,0,0,0.2);">
       <div style="font-size:16px;font-weight:600;color:#1a3a5c;margin-bottom:8px;">🔑 GitHub 토큰 설정</div>
       <div style="font-size:13px;color:#718096;margin-bottom:16px;">토큰은 이 브라우저에만 저장되며 외부로 전송되지 않습니다.</div>
-      <input id="tokenInput" type="password" placeholder="ghp_로 시작하는 토큰 입력"
-        style="width:100%;padding:10px 14px;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;font-family:monospace;margin-bottom:12px;outline:none;">
+      <input id="tokenInput" type="password" placeholder="ghp_로 시작하는 토큰 입력" style="width:100%;padding:10px 14px;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;font-family:monospace;margin-bottom:12px;outline:none;">
       <div style="display:flex;gap:8px;justify-content:flex-end;">
         <button onclick="closeTokenModal()" style="padding:9px 18px;border:1px solid #e2e8f0;border-radius:8px;background:white;font-size:13px;cursor:pointer;font-family:inherit;">취소</button>
         <button onclick="saveToken()" style="padding:9px 18px;border:none;border-radius:8px;background:#1a3a5c;color:white;font-size:13px;cursor:pointer;font-family:inherit;">저장 후 배포</button>
@@ -634,15 +625,7 @@ new Chart(document.getElementById('plChart'), {
   </div>
 
   <!-- 저장 버튼 -->
-  <div style="position:fixed;bottom:28px;right:28px;z-index:999;display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
-    <div id="statusMsg" style="display:none;font-size:12px;padding:10px 16px;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.15);"></div>
-    <button onclick="deployToGitHub()" style="background:#1a3a5c;color:white;border:none;padding:13px 22px;border-radius:10px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;box-shadow:0 4px 16px rgba(26,58,92,0.35);">
-      🚀 저장 · GitHub 자동 배포
-    </button>
-    <button onclick="showTokenModal()" style="background:white;color:#718096;border:1px solid #e2e8f0;padding:7px 16px;border-radius:8px;font-size:11px;cursor:pointer;font-family:inherit;">
-      🔑 토큰 설정
-    </button>
-  </div>
+  
 
 <script>
   const GITHUB_OWNER = 'whiontax';
@@ -766,5 +749,6 @@ new Chart(document.getElementById('plChart'), {
   }
 </script>
 
-</body>
-</html>
+
+
+</body></html>
