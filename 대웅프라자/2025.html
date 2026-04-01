@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko"><head>
+<html lang="ko">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>법인세 및 결산 분석 보고서 | (주)대웅프라자</title>
@@ -161,7 +162,7 @@
   <div class="cover">
     <div class="cover-firm">
       <div class="firm-circle">휘온</div>
-      <div class="firm-name">휘온세무회계 · WHION TAX &amp; REALTY</div>
+      <div class="firm-name">휘온세무회계 · WHION TAX & REALTY</div>
     </div>
     <div class="cover-badge">CONFIDENTIAL · 2025 귀속</div>
     <h1>법인세 및 결산 분석 보고서</h1>
@@ -222,7 +223,7 @@
         <span><span class="leg-dot" style="background:#c8973a"></span>부채</span>
         <span><span class="leg-dot" style="background:#1D9E75"></span>자본</span>
       </div>
-      <div class="chart-wrap"><canvas id="bsChart" width="426" height="200" style="display: block; box-sizing: border-box; height: 200px; width: 426px;"></canvas></div>
+      <div class="chart-wrap"><canvas id="bsChart"></canvas></div>
     </div>
     <div class="card">
       <div class="card-title">손익계산서 비교</div>
@@ -231,7 +232,7 @@
         <span><span class="leg-dot" style="background:#1D9E75"></span>영업이익</span>
         <span><span class="leg-dot" style="background:#c8973a"></span>세전이익</span>
       </div>
-      <div class="chart-wrap"><canvas id="plChart" width="426" height="200" style="display: block; box-sizing: border-box; height: 200px; width: 426px;"></canvas></div>
+      <div class="chart-wrap"><canvas id="plChart"></canvas></div>
     </div>
   </div>
 
@@ -378,9 +379,13 @@
         <div class="comment-block" style="margin-top:10px;padding:10px 12px;background:var(--light);border-radius:8px;font-size:12px;">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
             <strong style="color:var(--text);font-size:12px;">담당 세무사 COMMENT</strong>
-            
+            <span class="edit-hint" style="font-size:11px;color:#1a3a5c;opacity:0.7;">✏️ 클릭하여 편집</span>
           </div>
-          <div class="comment-text" style="min-height: 36px; color: var(--muted); padding: 6px; border-radius: 4px; transition: background 0.15s;">깃허브 배포 테스트</div>
+          <div class="comment-text" contenteditable="true"
+            style="outline:none;min-height:36px;color:var(--muted);cursor:text;padding:6px;border-radius:4px;transition:background 0.15s;"
+            onfocus="this.style.background='#fff';this.style.outline='1.5px solid #1a3a5c';this.closest('.comment-block').querySelector('.edit-hint').style.display='none'"
+            onblur="this.style.background='';this.style.outline='none';this.closest('.comment-block').querySelector('.edit-hint').style.display=''"
+          >특이사항 없음</div>
         </div>
       </div>
       <div class="card">
@@ -538,7 +543,7 @@
         <div class="card-title">금융기관 대출시 유의사항</div>
         <div class="check-item"><div class="chk fail">✗</div><span>① 3년내 매출 감소액이 20% 미만일 것 <span style="color:var(--red);font-size:11px;">(당기 △25.4%)</span></span></div>
         <div class="check-item"><div class="chk ok">✓</div><span>② 결손기업이 아니고, 자본잠식이 없을 것</span></div>
-        <div class="check-item"><div class="chk ok">✓</div><span>③ 부채비율 400% 이하 &amp; 차입금의존도 60% 이하</span></div>
+        <div class="check-item"><div class="chk ok">✓</div><span>③ 부채비율 400% 이하 & 차입금의존도 60% 이하</span></div>
         <div class="check-item"><div class="chk na">—</div><span>④ 세금 체납액이 없고, 대출금 연체가 없을 것</span></div>
         <div class="check-item"><div class="chk na">—</div><span>⑤ 1년내 대표자 변동사실이 없을 것</span></div>
         <div class="check-item"><div class="chk na">—</div><span>⑥ 신용등급 5등급 이상일 것 (700점 이상)</span></div>
@@ -606,17 +611,20 @@ new Chart(document.getElementById('plChart'), {
 });
 </script>
 
-  <!-- 관리자 편집 배너 -->
-  <!-- 관리자 편집 배너 -->
-  
-  
+  <!-- 관리자 편집 배너 (admin 모드에서만 표시) -->
+  <div id="editBanner" style="display:none;position:fixed;top:0;left:0;right:0;background:#1a3a5c;color:white;font-size:12px;padding:7px 20px;align-items:center;justify-content:space-between;z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,0.2);">
+    <span>✏️ <strong>관리자 편집 모드</strong> &nbsp;·&nbsp; 코멘트 영역을 클릭하여 수정하세요</span>
+    <span id="bannerStatus" style="opacity:0.6;font-size:11px;">수정 완료 후 우측 하단 버튼 클릭</span>
+  </div>
+  <div id="editSpacer" style="display:none;height:33px;"></div>
 
   <!-- 토큰 설정 모달 -->
-  <div id="tokenModal" style="display: none; position: fixed; inset: 0px; background: rgba(0, 0, 0, 0.5); z-index: 2000; align-items: center; justify-content: center;">
+  <div id="tokenModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:2000;align-items:center;justify-content:center;">
     <div style="background:white;border-radius:14px;padding:2rem;width:480px;max-width:90vw;box-shadow:0 8px 32px rgba(0,0,0,0.2);">
       <div style="font-size:16px;font-weight:600;color:#1a3a5c;margin-bottom:8px;">🔑 GitHub 토큰 설정</div>
       <div style="font-size:13px;color:#718096;margin-bottom:16px;">토큰은 이 브라우저에만 저장되며 외부로 전송되지 않습니다.</div>
-      <input id="tokenInput" type="password" placeholder="ghp_로 시작하는 토큰 입력" style="width:100%;padding:10px 14px;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;font-family:monospace;margin-bottom:12px;outline:none;">
+      <input id="tokenInput" type="password" placeholder="ghp_로 시작하는 토큰 입력"
+        style="width:100%;padding:10px 14px;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;font-family:monospace;margin-bottom:12px;outline:none;">
       <div style="display:flex;gap:8px;justify-content:flex-end;">
         <button onclick="closeTokenModal()" style="padding:9px 18px;border:1px solid #e2e8f0;border-radius:8px;background:white;font-size:13px;cursor:pointer;font-family:inherit;">취소</button>
         <button onclick="saveToken()" style="padding:9px 18px;border:none;border-radius:8px;background:#1a3a5c;color:white;font-size:13px;cursor:pointer;font-family:inherit;">저장 후 배포</button>
@@ -624,15 +632,50 @@ new Chart(document.getElementById('plChart'), {
     </div>
   </div>
 
-  <!-- 저장 버튼 -->
-  
+  <!-- 저장 버튼 (admin 모드에서만 표시) -->
+  <div id="adminButtons" style="display:none;position:fixed;bottom:28px;right:28px;z-index:999;flex-direction:column;align-items:flex-end;gap:8px;">
+    <div id="statusMsg" style="display:none;font-size:12px;padding:10px 16px;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.15);"></div>
+    <button onclick="deployToGitHub()" style="background:#1a3a5c;color:white;border:none;padding:13px 22px;border-radius:10px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;box-shadow:0 4px 16px rgba(26,58,92,0.35);">
+      🚀 저장 · GitHub 자동 배포
+    </button>
+    <button onclick="showTokenModal()" style="background:white;color:#718096;border:1px solid #e2e8f0;padding:7px 16px;border-radius:8px;font-size:11px;cursor:pointer;font-family:inherit;">
+      🔑 토큰 설정
+    </button>
+  </div>
 
 <script>
-  const GITHUB_OWNER = 'whiontax';
-  const GITHUB_REPO  = 'tax-reports';
-  const GITHUB_PATH  = '%EB%8C%80%EC%9B%85%ED%94%84%EB%9D%BC%EC%9E%90/2025.html';
+  const GITHUB_OWNER  = 'whiontax';
+  const GITHUB_REPO   = 'tax-reports';
+  const GITHUB_PATH   = '%EB%8C%80%EC%9B%85%ED%94%84%EB%9D%BC%EC%9E%90/2025.html';
   const GITHUB_BRANCH = 'main';
-  const TOKEN_KEY = 'whion_gh_token';
+  const TOKEN_KEY     = 'whion_gh_token';
+  const ADMIN_PASSWORD = 'whion2025';
+
+  // URL 파라미터 확인 → admin 모드 활성화
+  function checkAdminMode() {
+    const params = new URLSearchParams(window.location.search);
+    const isAdmin = params.get('admin') === ADMIN_PASSWORD;
+
+    if (isAdmin) {
+      // 편집 배너 표시
+      const banner = document.getElementById('editBanner');
+      banner.style.display = 'flex';
+      document.getElementById('editSpacer').style.display = 'block';
+
+      // 저장 버튼 표시
+      const btns = document.getElementById('adminButtons');
+      btns.style.display = 'flex';
+
+      // 코멘트 영역 편집 가능하게 활성화
+      document.querySelectorAll('.comment-text').forEach(el => {
+        el.setAttribute('contenteditable', 'true');
+        el.style.cursor = 'text';
+      });
+      document.querySelectorAll('.edit-hint').forEach(el => {
+        el.style.display = '';
+      });
+    }
+  }
 
   function showMsg(text, color) {
     const el = document.getElementById('statusMsg');
@@ -667,8 +710,14 @@ new Chart(document.getElementById('plChart'), {
 
   function buildCleanHTML() {
     const clone = document.documentElement.cloneNode(true);
-    clone.querySelectorAll('[style*="position:fixed"]').forEach(el => el.remove());
-    clone.querySelectorAll('[style*="height:33px"]').forEach(el => el.remove());
+
+    // 관리자 UI 전체 제거
+    ['editBanner','editSpacer','tokenModal','adminButtons'].forEach(id => {
+      const el = clone.querySelector('#' + id);
+      if (el) el.remove();
+    });
+
+    // contenteditable 정리
     clone.querySelectorAll('[contenteditable]').forEach(el => {
       el.removeAttribute('contenteditable');
       el.removeAttribute('onfocus');
@@ -677,46 +726,49 @@ new Chart(document.getElementById('plChart'), {
       el.style.background = '';
       el.style.outline = '';
     });
-    clone.querySelectorAll('.edit-hint').forEach(el => el.remove());
-    return '<!DOCTYPE html>\n' + clone.outerHTML;
+
+    // 편집 힌트 숨김 상태로 저장
+    clone.querySelectorAll('.edit-hint').forEach(el => {
+      el.style.display = 'none';
+    });
+
+    return '<!DOCTYPE html>
+' + clone.outerHTML;
   }
 
   async function deployToGitHub() {
     const token = localStorage.getItem(TOKEN_KEY);
-    if (!token) {
-      showTokenModal();
-      return;
-    }
+    if (!token) { showTokenModal(); return; }
 
-    document.querySelector('[onclick="deployToGitHub()"]').textContent = '⏳ 배포 중...';
+    const btn = document.querySelector('[onclick="deployToGitHub()"]');
+    btn.textContent = '⏳ 배포 중...';
+    btn.disabled = true;
     document.getElementById('bannerStatus').textContent = '배포 중...';
 
     const apiURL = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_PATH}`;
 
     try {
-      // 현재 파일 SHA 조회 (업데이트에 필요)
+      // SHA 조회
       const getRes = await fetch(apiURL, {
         headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' }
       });
 
-      if (!getRes.ok) {
-        if (getRes.status === 401) {
-          localStorage.removeItem(TOKEN_KEY);
-          showMsg('❌ 토큰이 유효하지 않습니다. 다시 설정해주세요.', '#e53e3e');
-          document.querySelector('[onclick="deployToGitHub()"]').textContent = '🚀 저장 · GitHub 자동 배포';
-          return;
-        }
-        throw new Error('파일 조회 실패: ' + getRes.status);
+      if (getRes.status === 401) {
+        localStorage.removeItem(TOKEN_KEY);
+        showMsg('❌ 토큰이 유효하지 않습니다. 다시 설정해주세요.', '#e53e3e');
+        btn.textContent = '🚀 저장 · GitHub 자동 배포';
+        btn.disabled = false;
+        return;
       }
 
       const fileData = await getRes.json();
       const sha = fileData.sha;
 
-      // 깨끗한 HTML 생성 후 base64 인코딩
+      // 깨끗한 HTML 생성 + base64 인코딩
       const cleanHTML = buildCleanHTML();
       const encoded = btoa(unescape(encodeURIComponent(cleanHTML)));
 
-      // 파일 업데이트
+      // 업로드
       const putRes = await fetch(apiURL, {
         method: 'PUT',
         headers: {
@@ -733,22 +785,25 @@ new Chart(document.getElementById('plChart'), {
       });
 
       if (putRes.ok) {
-        showMsg('✅ 배포 완료! 고객 링크에 반영됩니다. (30초~1분 소요)', '#1D9E75');
+        showMsg('✅ 배포 완료! 고객 링크에 곧 반영됩니다. (30초~1분)', '#1D9E75');
         document.getElementById('bannerStatus').textContent = '✅ 배포 완료';
       } else {
         const err = await putRes.json();
         throw new Error(err.message || '업로드 실패');
       }
 
-    } catch (e) {
+    } catch(e) {
       showMsg('❌ 오류: ' + e.message, '#e53e3e');
       console.error(e);
     }
 
-    document.querySelector('[onclick="deployToGitHub()"]').textContent = '🚀 저장 · GitHub 자동 배포';
+    btn.textContent = '🚀 저장 · GitHub 자동 배포';
+    btn.disabled = false;
   }
+
+  // 페이지 로드 시 admin 모드 확인
+  window.addEventListener('DOMContentLoaded', checkAdminMode);
 </script>
 
-
-
-</body></html>
+</body>
+</html>
