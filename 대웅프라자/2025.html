@@ -605,15 +605,16 @@ new Chart(document.getElementById('plChart'), {
 });
 </script>
 
+<!-- ADMIN UI START -->
 <div id="ab" style="display:none;position:fixed;top:0;left:0;right:0;background:#1a3a5c;color:white;font-size:12px;padding:8px 20px;flex-direction:row;justify-content:space-between;align-items:center;z-index:1000;">
-  <span><b>관리자 편집 모드</b> - 아래 코멘트 영역을 클릭하여 수정하세요</span>
+  <span><b>관리자 편집 모드</b> - 코멘트 영역을 클릭하여 수정하세요</span>
   <span id="ds" style="opacity:0.6;font-size:11px;">수정 후 우측 하단 배포 버튼 클릭</span>
 </div>
 <div id="as" style="display:none;height:34px;"></div>
 
 <div id="adm" style="display:none;position:fixed;bottom:28px;right:28px;z-index:999;flex-direction:column;align-items:flex-end;gap:8px;">
   <div id="dm" style="display:none;font-size:12px;padding:10px 16px;border-radius:8px;color:white;max-width:300px;text-align:right;"></div>
-  <button id="dbtn" style="background:#1a3a5c;color:white;border:none;padding:13px 22px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;box-shadow:0 4px 16px rgba(26,58,92,0.3);">저장 / GitHub 자동 배포</button>
+  <button id="dbtn" style="background:#1a3a5c;color:white;border:none;padding:13px 22px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;box-shadow:0 4px 16px rgba(26,58,92,0.3);">GitHub 배포</button>
   <button id="tbtn" style="background:white;color:#718096;border:1px solid #e2e8f0;padding:7px 16px;border-radius:8px;font-size:11px;cursor:pointer;font-family:inherit;">토큰 설정</button>
 </div>
 
@@ -629,8 +630,8 @@ new Chart(document.getElementById('plChart'), {
     </div>
   </div>
 </div>
+<!-- ADMIN UI END -->
 
-<script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -645,56 +646,63 @@ document.addEventListener('DOMContentLoaded', function() {
   var adminMode = (params.get('admin') === PW);
 
   if (!adminMode) {
-    // 고객 모드: 관리자 UI 숨기고 끝
-    var ids = ['ab','as','adm','tm'];
-    ids.forEach(function(id) {
-      var el = document.getElementById(id);
-      if (el) el.style.display = 'none';
-    });
     return;
   }
 
-  // 관리자 모드 활성화
-  document.getElementById('ab').style.display = 'flex';
-  document.getElementById('as').style.display = 'block';
-  document.getElementById('adm').style.display = 'flex';
+  // --- 관리자 모드 활성화 ---
+  var abEl = document.getElementById('ab');
+  var asEl = document.getElementById('as');
+  var admEl = document.getElementById('adm');
+  if (abEl) abEl.style.display = 'flex';
+  if (asEl) asEl.style.display = 'block';
+  if (admEl) admEl.style.display = 'flex';
 
   // 코멘트 편집 활성화
-  ['comment1', 'comment2'].forEach(function(id) {
-    var el = document.getElementById(id);
-    if (!el) return;
-    el.contentEditable = 'true';
-    el.style.cursor = 'text';
-    el.style.borderRadius = '4px';
-    el.addEventListener('focus', function() {
+  var commentIds = ['comment1', 'comment2'];
+  for (var i = 0; i < commentIds.length; i++) {
+    var cel = document.getElementById(commentIds[i]);
+    if (!cel) continue;
+    cel.contentEditable = 'true';
+    cel.style.cursor = 'text';
+    cel.style.borderRadius = '4px';
+    cel.addEventListener('focus', function() {
       this.style.background = '#fff';
       this.style.outline = '1.5px solid #1a3a5c';
     });
-    el.addEventListener('blur', function() {
+    cel.addEventListener('blur', function() {
       this.style.background = '';
       this.style.outline = '';
     });
-  });
+  }
 
   // 버튼 이벤트
-  document.getElementById('dbtn').addEventListener('click', deploy);
-  document.getElementById('tbtn').addEventListener('click', openTokenModal);
-  document.getElementById('tc').addEventListener('click', closeTokenModal);
-  document.getElementById('ts').addEventListener('click', saveToken);
+  var dbtn = document.getElementById('dbtn');
+  var tbtn = document.getElementById('tbtn');
+  var tcBtn = document.getElementById('tc');
+  var tsBtn = document.getElementById('ts');
+  if (dbtn) dbtn.addEventListener('click', deploy);
+  if (tbtn) tbtn.addEventListener('click', openTokenModal);
+  if (tcBtn) tcBtn.addEventListener('click', closeTokenModal);
+  if (tsBtn) tsBtn.addEventListener('click', saveToken);
 
   function openTokenModal() {
-    document.getElementById('tm').style.display = 'flex';
+    var tmEl = document.getElementById('tm');
+    if (tmEl) tmEl.style.display = 'flex';
     var saved = localStorage.getItem(TK);
-    if (saved) document.getElementById('ti').value = saved;
+    var tiEl = document.getElementById('ti');
+    if (saved && tiEl) tiEl.value = saved;
   }
 
   function closeTokenModal() {
-    document.getElementById('tm').style.display = 'none';
+    var tmEl = document.getElementById('tm');
+    if (tmEl) tmEl.style.display = 'none';
   }
 
   function saveToken() {
-    var t = document.getElementById('ti').value.trim();
-    if (!t.startsWith('ghp_')) {
+    var tiEl = document.getElementById('ti');
+    if (!tiEl) return;
+    var t = tiEl.value.trim();
+    if (t.indexOf('ghp_') !== 0) {
       alert('ghp_ 로 시작하는 토큰을 입력하세요.');
       return;
     }
@@ -705,6 +713,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function showMsg(txt, col) {
     var el = document.getElementById('dm');
+    if (!el) return;
     el.textContent = txt;
     el.style.background = col;
     el.style.display = 'block';
@@ -714,22 +723,21 @@ document.addEventListener('DOMContentLoaded', function() {
   function buildClientHTML() {
     var clone = document.documentElement.cloneNode(true);
 
-    // 관리자 UI 제거
-    ['ab','as','adm','tm'].forEach(function(id) {
-      var el = clone.getElementById(id);
-      if (el) el.remove();
-    });
+    // 관리자 UI 요소만 제거 (script는 유지)
+    var adminIds = ['ab', 'as', 'adm', 'tm'];
+    for (var j = 0; j < adminIds.length; j++) {
+      var ael = clone.querySelector('#' + adminIds[j]);
+      if (ael) ael.parentNode.removeChild(ael);
+    }
 
-    // script 제거
-    clone.querySelectorAll('script').forEach(function(s) { s.remove(); });
-
-    // contenteditable 제거
-    clone.querySelectorAll('[contenteditable]').forEach(function(el) {
-      el.removeAttribute('contenteditable');
-      el.style.cursor = '';
-      el.style.background = '';
-      el.style.outline = '';
-    });
+    // contenteditable 속성 제거
+    var editables = clone.querySelectorAll('[contenteditable]');
+    for (var k = 0; k < editables.length; k++) {
+      editables[k].removeAttribute('contenteditable');
+      editables[k].style.cursor = '';
+      editables[k].style.background = '';
+      editables[k].style.outline = '';
+    }
 
     return '<!DOCTYPE html>\n' + clone.outerHTML;
   }
@@ -739,31 +747,33 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!token) { openTokenModal(); return; }
 
     var btn = document.getElementById('dbtn');
-    btn.textContent = '배포 중...';
-    btn.disabled = true;
-    document.getElementById('ds').textContent = '배포 중...';
+    var dsEl = document.getElementById('ds');
+    if (btn) {
+      btn.textContent = '배포 중...';
+      btn.disabled = true;
+    }
+    if (dsEl) dsEl.textContent = '배포 중...';
 
-    var url = 'https://api.github.com/repos/' + GH_OWNER + '/' + GH_REPO + '/contents/' + GH_PATH;
+    var apiUrl = 'https://api.github.com/repos/' + GH_OWNER + '/' + GH_REPO + '/contents/' + GH_PATH;
     var hdrs = { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' };
 
     try {
-      var r1 = await fetch(url, { headers: hdrs });
+      var r1 = await fetch(apiUrl, { headers: hdrs });
       if (r1.status === 401) {
         localStorage.removeItem(TK);
-        showMsg('토큰 오류. 재설정하세요.', '#e53e3e');
-        btn.textContent = '저장 / GitHub 자동 배포';
-        btn.disabled = false;
+        showMsg('토큰 인증 오류. 다시 설정하세요.', '#e53e3e');
+        if (btn) { btn.textContent = 'GitHub 배포'; btn.disabled = false; }
         return;
       }
       var data = await r1.json();
       var cleanHTML = buildClientHTML();
       var encoded = btoa(unescape(encodeURIComponent(cleanHTML)));
 
-      var r2 = await fetch(url, {
+      var r2 = await fetch(apiUrl, {
         method: 'PUT',
-        headers: Object.assign({'Content-Type': 'application/json'}, hdrs),
+        headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          message: '코멘트 업데이트',
+          message: 'update report',
           content: encoded,
           sha: data.sha,
           branch: GH_BRANCH
@@ -771,21 +781,20 @@ document.addEventListener('DOMContentLoaded', function() {
       });
 
       if (r2.ok) {
-        showMsg('배포 완료! 30초~1분 후 반영됩니다.', '#1D9E75');
-        document.getElementById('ds').textContent = '배포 완료';
+        showMsg('배포 완료! 1분 내 반영됩니다.', '#1D9E75');
+        if (dsEl) dsEl.textContent = '배포 완료';
       } else {
         var err = await r2.json();
-        throw new Error(err.message || '업로드 실패');
+        throw new Error(err.message || 'upload failed');
       }
     } catch(e) {
       showMsg('오류: ' + e.message, '#e53e3e');
     }
 
-    btn.textContent = '저장 / GitHub 자동 배포';
-    btn.disabled = false;
+    if (btn) { btn.textContent = 'GitHub 배포'; btn.disabled = false; }
   }
 
-}); // DOMContentLoaded 끝
+});
 </script>
 </body>
 </html>
