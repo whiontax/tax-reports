@@ -376,8 +376,16 @@
             </tr>
           </tbody>
         </table>
-        <div style="margin-top:10px;padding:10px 12px;background:var(--light);border-radius:8px;font-size:12px;color:var(--muted);">
-          <strong style="color:var(--text);">담당 세무사 COMMENT</strong><br>특이사항 없음
+        <div class="comment-block" style="margin-top:10px;padding:10px 12px;background:var(--light);border-radius:8px;font-size:12px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+            <strong style="color:var(--text);font-size:12px;">담당 세무사 COMMENT</strong>
+            <span class="edit-hint" style="font-size:11px;color:#1a3a5c;opacity:0.7;">✏️ 클릭하여 편집</span>
+          </div>
+          <div class="comment-text" contenteditable="true"
+            style="outline:none;min-height:36px;color:var(--muted);cursor:text;padding:6px;border-radius:4px;transition:background 0.15s;"
+            onfocus="this.style.background='#fff';this.style.outline='1.5px solid #1a3a5c';this.closest('.comment-block').querySelector('.edit-hint').style.display='none'"
+            onblur="this.style.background='';this.style.outline='none';this.closest('.comment-block').querySelector('.edit-hint').style.display=''"
+          >특이사항 없음</div>
         </div>
       </div>
       <div class="card">
@@ -602,5 +610,69 @@ new Chart(document.getElementById('plChart'), {
   options: chartOpts()
 });
 </script>
+
+  <!-- 관리자 편집 배너 -->
+  <div id="editBanner" style="position:fixed;top:0;left:0;right:0;background:#1a3a5c;color:white;font-size:12px;padding:7px 20px;display:flex;justify-content:space-between;align-items:center;z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,0.2);">
+    <span>✏️ <strong>관리자 편집 모드</strong> &nbsp;·&nbsp; 코멘트 영역을 클릭하여 수정하세요</span>
+    <span style="opacity:0.5;font-size:11px;">수정 완료 후 우측 하단 버튼 클릭</span>
+  </div>
+  <div style="height:33px;"></div>
+
+  <!-- 저장 버튼 -->
+  <div style="position:fixed;bottom:28px;right:28px;z-index:999;display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
+    <div id="copyMsg" style="display:none;background:#1D9E75;color:white;font-size:12px;padding:8px 16px;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.15);">
+      ✅ HTML 복사 완료! GitHub에 붙여넣기 후 업로드하세요.
+    </div>
+    <button onclick="saveReport()" style="background:#1a3a5c;color:white;border:none;padding:13px 22px;border-radius:10px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;box-shadow:0 4px 16px rgba(26,58,92,0.35);display:flex;align-items:center;gap:8px;">
+      📋 수정 완료 · HTML 복사
+    </button>
+    <div style="font-size:11px;color:#aaa;">복사 → GitHub Raw 편집에 붙여넣기</div>
+  </div>
+
+<script>
+function saveReport() {
+  const clone = document.documentElement.cloneNode(true);
+
+  // 편집 UI 제거
+  ['editBanner','copyMsg'].forEach(id => {
+    const el = clone.querySelector('#' + id);
+    if (el) el.parentElement.remove ? el.remove() : null;
+  });
+  clone.querySelectorAll('[style*="position:fixed"]').forEach(el => el.remove());
+  clone.querySelectorAll('[style*="height:33px"]').forEach(el => el.remove());
+
+  // contenteditable 정리
+  clone.querySelectorAll('[contenteditable]').forEach(el => {
+    el.removeAttribute('contenteditable');
+    el.removeAttribute('onfocus');
+    el.removeAttribute('onblur');
+    el.style.cursor = '';
+    el.style.background = '';
+    el.style.outline = '';
+  });
+
+  // 편집 힌트 제거
+  clone.querySelectorAll('.edit-hint').forEach(el => el.remove());
+
+  const finalHTML = '<!DOCTYPE html>\n' + clone.outerHTML;
+
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(finalHTML).then(() => {
+      const msg = document.getElementById('copyMsg');
+      msg.style.display = 'block';
+      setTimeout(() => msg.style.display = 'none', 4000);
+    });
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = finalHTML;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    alert('복사 완료! GitHub에 붙여넣기 하세요.');
+  }
+}
+</script>
+
 </body>
 </html>
