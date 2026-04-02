@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="client-name" content="(주)한결기획">
+<meta name="client-reg" content="384-88-03131">
+<meta name="client-ceo" content="유정훈">
+<meta name="report-year" content="2025">
+<title>법인세 보고서 - (주)한결기획 (2025)</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a3a5c;
+    --navy-dark: #0f2540;
+    --navy-light: #2a5080;
+    --gold: #c8973a;
+    --gold-light: #e8b855;
+    --gold-pale: #fdf3e3;
+    --bg: #f4f6f9;
+    --card: #ffffff;
+    --text: #1e2a3a;
+    --text-light: #5a6a7e;
+    --border: #dce3ed;
+    --green: #1e8a4c;
+    --red: #c0392b;
+    --blue-badge: #2563eb;
+    --orange-badge: #d97706;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ========== 관리자 UI ========== */
+  #ab { display: none; position: fixed; top: 0; left: 0; right: 0; background: #c8973a; color: white; text-align: center; padding: 8px; font-size: 13px; font-weight: 600; z-index: 9999; }
+  #as { display: none; height: 36px; }
+  #adm { display: none; }
+  #tm { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); background: white; border-radius: 12px; padding: 32px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); z-index: 10000; width: 400px; }
+
+  /* ========== 커버 ========== */
+  .cover {
+    background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 50%, var(--navy-light) 100%);
+    color: white;
+    padding: 60px 40px 50px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: rgba(200,151,58,0.12);
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(200,151,58,0.08);
+  }
+  .cover-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+  .cover-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  .cover-title {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: -1.5px;
+    margin-bottom: 8px;
+    line-height: 1.15;
+  }
+  .cover-subtitle {
+    font-size: 16px;
+    opacity: 0.7;
+    margin-bottom: 36px;
+  }
+  .cover-divider {
+    width: 60px;
+    height: 3px;
+    background: var(--gold);
+    margin-bottom: 32px;
+    border-radius: 2px;
+  }
+  .cover-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 40px;
+    max-width: 700px;
+  }
+  .cover-item { display: flex; flex-direction: column; gap: 2px; }
+  .cover-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.55; font-weight: 500; }
+  .cover-value { font-size: 14px; font-weight: 600; }
+  .cover-footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 13px;
+    opacity: 0.75;
+  }
+  .cover-footer strong { color: var(--gold-light); font-weight: 700; }
+
+  /* ========== 본문 ========== */
+  .main { max-width: 960px; margin: 0 auto; padding: 32px 20px 60px; }
+
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 40px 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 20px;
+    background: var(--gold);
+    border-radius: 2px;
+  }
+
+  /* ========== KPI ========== */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 8px;
+  }
+  .kpi-card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 12px rgba(26,58,92,0.07);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .kpi-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+  }
+  .kpi-label { font-size: 11px; color: var(--text-light); font-weight: 500; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .kpi-value { font-size: 22px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+  .kpi-delta {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 20px;
+    display: inline-block;
+  }
+  .kpi-delta.up { background: #e6f4ee; color: var(--green); }
+  .kpi-delta.down { background: #fdecea; color: var(--red); }
+  .kpi-delta.neu { background: #f0f4f8; color: var(--text-light); }
+
+  /* ========== 카드 ========== */
+  .card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(26,58,92,0.07);
+    border: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+  .card-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-title .icon {
+    width: 28px; height: 28px;
+    background: var(--gold-pale);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+
+  /* ========== 테이블 ========== */
+  .tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .tbl th {
+    background: var(--bg);
+    color: var(--text-light);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .tbl td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #f0f4f8;
+    vertical-align: middle;
+  }
+  .tbl tr:last-child td { border-bottom: none; }
+  .tbl tr:hover td { background: #fafbfc; }
+  .tbl .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .tbl .total td { font-weight: 700; background: var(--bg); color: var(--navy); }
+  .tbl .indent { padding-left: 28px; color: var(--text-light); }
+  .tbl .indent2 { padding-left: 44px; color: var(--text-light); font-size: 12px; }
+  .tbl .highlight td { background: var(--gold-pale); font-weight: 600; color: var(--navy); }
+
+  /* ========== 뱃지 ========== */
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+  }
+  .badge-red { background: #fdecea; color: var(--red); border: 1px solid #f5c6c2; }
+  .badge-blue { background: #eff6ff; color: var(--blue-badge); border: 1px solid #bfdbfe; }
+  .badge-green { background: #e6f4ee; color: var(--green); border: 1px solid #bbf7d0; }
+  .badge-gold { background: var(--gold-pale); color: #92650a; border: 1px solid #f9d98c; }
+
+  /* ========== 2열 레이아웃 ========== */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  /* ========== 납부세액 ========== */
+  .tax-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 16px; }
+  .tax-card {
+    background: var(--navy);
+    color: white;
+    border-radius: 12px;
+    padding: 22px;
+    text-align: center;
+  }
+  .tax-card-label { font-size: 12px; opacity: 0.7; margin-bottom: 8px; }
+  .tax-card-value { font-size: 26px; font-weight: 700; color: var(--gold-light); }
+  .tax-card-note { font-size: 11px; opacity: 0.55; margin-top: 6px; }
+
+  /* ========== 산출근거 스텝 ========== */
+  .calc-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .calc-step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    border-radius: 8px;
+  }
+  .calc-step:nth-child(odd) { background: var(--bg); }
+  .calc-step-num {
+    width: 24px; height: 24px;
+    background: var(--navy);
+    color: white;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .calc-step-label { flex: 1; font-size: 13px; color: var(--text-light); }
+  .calc-step-op { font-size: 16px; color: var(--gold); font-weight: 700; width: 20px; text-align: center; }
+  .calc-step-value { font-size: 14px; font-weight: 700; color: var(--navy); font-variant-numeric: tabular-nums; }
+  .calc-step.result { background: var(--navy); border-radius: 8px; margin-top: 4px; }
+  .calc-step.result .calc-step-label { color: rgba(255,255,255,0.7); }
+  .calc-step.result .calc-step-value { color: var(--gold-light); font-size: 18px; }
+  .calc-step.result .calc-step-num { background: var(--gold); }
+
+  /* ========== 배당가능이익 ========== */
+  .dividend-box {
+    background: #fdecea;
+    border: 1.5px solid #f5c6c2;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }
+  .dividend-box.possible {
+    background: #e6f4ee;
+    border-color: #bbf7d0;
+  }
+  .dividend-header { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
+  .dividend-formula { font-size: 12px; color: var(--text-light); background: white; border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; line-height: 1.8; }
+  .dividend-result { font-size: 16px; font-weight: 700; color: var(--red); }
+  .dividend-box.possible .dividend-result { color: var(--green); }
+
+  /* ========== 재무비율 ========== */
+  .ratio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .ratio-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+  .ratio-label { font-size: 11px; color: var(--text-light); margin-bottom: 8px; }
+  .ratio-value { font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .ratio-status { font-size: 11px; font-weight: 600; }
+  .ratio-status.ok { color: var(--green); }
+  .ratio-status.warn { color: #d97706; }
+  .ratio-status.bad { color: var(--red); }
+
+  /* ========== 차트 ========== */
+  .chart-wrap { position: relative; height: 260px; }
+
+  /* ========== 코멘트 박스 ========== */
+  .comment-box {
+    background: #fffbf2;
+    border: 1.5px solid #f9d98c;
+    border-radius: 10px;
+    padding: 16px 18px;
+    font-size: 13px;
+    color: #6b4a00;
+    min-height: 80px;
+    margin-top: 12px;
+    line-height: 1.8;
+  }
+  .comment-box[contenteditable="true"] {
+    outline: 2px solid var(--gold);
+    cursor: text;
+  }
+  .comment-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--gold); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+
+  /* ========== 바 차트 ========== */
+  .bar-item { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .bar-name { font-size: 12px; width: 180px; flex-shrink: 0; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .bar-track { flex: 1; height: 10px; background: var(--bg); border-radius: 5px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 5px; background: var(--navy); transition: width 0.8s ease; }
+  .bar-val { font-size: 12px; color: var(--text-light); width: 100px; text-align: right; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+
+  /* ========== 판관비 ========== */
+  .expense-item { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .exp-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--navy); flex-shrink: 0; }
+  .exp-name { font-size: 13px; flex: 1; }
+  .exp-bar-wrap { width: 140px; height: 6px; background: var(--bg); border-radius: 3px; }
+  .exp-bar { height: 100%; border-radius: 3px; background: var(--gold); }
+  .exp-val { font-size: 12px; color: var(--text-light); width: 90px; text-align: right; font-variant-numeric: tabular-nums; }
+  .exp-pct { font-size: 11px; color: var(--text-light); width: 40px; text-align: right; }
+
+  /* ========== 일정 카드 ========== */
+  .schedule-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .sched-card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .sched-date {
+    background: var(--navy);
+    color: white;
+    border-radius: 8px;
+    padding: 8px 12px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .sched-date .month { font-size: 10px; opacity: 0.7; }
+  .sched-date .day { font-size: 20px; font-weight: 700; }
+  .sched-info .title { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .sched-info .desc { font-size: 12px; color: var(--text-light); }
+
+  /* ========== 외부감사/대출 ========== */
+  .judge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .judge-item { display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .judge-item:last-child { border-bottom: none; }
+  .judge-icon { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; margin-top: 1px; }
+  .judge-icon.ok { background: #e6f4ee; }
+  .judge-icon.fail { background: #fdecea; }
+  .judge-text .name { font-size: 13px; font-weight: 600; color: var(--text); }
+  .judge-text .detail { font-size: 11px; color: var(--text-light); }
+
+  /* ========== 푸터 ========== */
+  .footer {
+    background: var(--navy-dark);
+    color: white;
+    padding: 32px 40px;
+    text-align: center;
+    margin-top: 40px;
+  }
+  .footer-logo { font-family: 'Noto Sans KR', sans-serif; font-size: 18px; font-weight: 800; letter-spacing: -0.5px; color: var(--gold-light); margin-bottom: 8px; }
+  .footer-contact { font-size: 13px; opacity: 0.65; line-height: 2; }
+  .footer-note { font-size: 11px; opacity: 0.4; margin-top: 16px; }
+
+  /* ========== 이월공제 테이블 ========== */
+  .carry-note {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: var(--blue-badge);
+    margin-top: 10px;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+
+  /* ========== 납부세액 총계 배너 ========== */
+  .tax-total-banner {
+    background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 14px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .tax-total-banner::before {
+    content:'';position:absolute;right:-30px;top:-30px;
+    width:160px;height:160px;border-radius:50%;
+    background:rgba(200,151,58,0.12);
+  }
+  .tax-total-label { font-size:12px;font-weight:600;letter-spacing:1.5px;color:rgba(255,255,255,0.6);margin-bottom:10px;text-transform:uppercase; }
+  .tax-total-amount { font-size:48px;font-weight:900;color:var(--gold-light);letter-spacing:-2px;margin-bottom:6px; }
+  .tax-total-sub { font-size:13px;color:rgba(255,255,255,0.55); }
+
+  /* ========== 세액공제 강조 배너 ========== */
+  .credit-banner {
+    background: linear-gradient(135deg, #1a4a7a 0%, #1e5a94 100%);
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .credit-banner-icon {
+    width: 48px;height: 48px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:22px;font-weight:900;color:white;
+    flex-shrink:0;
+  }
+  .credit-banner-body { flex:1; }
+  .credit-banner-name { font-size:16px;font-weight:700;color:white;margin-bottom:4px; }
+  .credit-banner-law { font-size:12px;color:rgba(255,255,255,0.6); }
+  .credit-banner-amount { text-align:right;flex-shrink:0; }
+  .credit-banner-amt-label { font-size:10px;font-weight:600;letter-spacing:1px;color:rgba(255,255,255,0.5);margin-bottom:4px; }
+  .credit-banner-amt-value { font-size:22px;font-weight:900;color:var(--gold-light); }
+
+  /* ========== badge-gold ========== */
+  .badge-gold { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+
+  @media (max-width: 640px) {
+    .kpi-grid { grid-template-columns: 1fr 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+    .tax-cards { grid-template-columns: 1fr; }
+    .ratio-grid { grid-template-columns: 1fr 1fr; }
+    .schedule-grid { grid-template-columns: 1fr; }
+    .judge-grid { grid-template-columns: 1fr; }
+    .cover-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 관리자 배너 -->
+<div id="ab">🔐 관리자 모드 활성화 — 코멘트 영역을 클릭하여 편집하세요</div>
+<div id="as"></div>
+
+<!-- ====== COVER ====== -->
+<div class="cover">
+  <div class="cover-inner">
+    <div class="cover-badge">TAX REPORT · 2025 사업연도</div>
+    <div class="cover-title">법인세 세무 보고서</div>
+    <div class="cover-subtitle">(주)한결기획 · 2025.01.01 ~ 2025.12.31</div>
+    <div class="cover-divider"></div>
+    <div class="cover-grid">
+      <div class="cover-item">
+        <span class="cover-label">법인명</span>
+        <span class="cover-value">(주)한결기획</span>
+      </div>
+      <div class="cover-item">
+        <span class="cover-label">사업자등록번호</span>
+        <span class="cover-value">384-88-03131</span>
+      </div>
+      <div class="cover-item">
+        <span class="cover-label">대표이사</span>
+        <span class="cover-value">유정훈</span>
+      </div>
+      <div class="cover-item">
+        <span class="cover-label">업태 / 종목</span>
+        <span class="cover-value">전문·과학기술서비스업 / 광고대행업</span>
+      </div>
+      <div class="cover-item">
+        <span class="cover-label">사업연도</span>
+        <span class="cover-value">2025.01.01 ~ 2025.12.31</span>
+      </div>
+      <div class="cover-item">
+        <span class="cover-label">법인유형 / 기수</span>
+        <span class="cover-value">주식회사 / 제2기</span>
+      </div>
+      <div class="cover-item">
+        <span class="cover-label">자본금</span>
+        <span class="cover-value">10,000,000원</span>
+      </div>
+      <div class="cover-item">
+        <span class="cover-label">담당 세무사</span>
+        <span class="cover-value">권유진 대표세무사</span>
+      </div>
+    </div>
+    <div class="cover-footer">
+      <span>휘온세무회계 (WHION TAX &amp; REALTY)</span>
+    </div>
+  </div>
+</div>
+
+<!-- ====== MAIN ====== -->
+<div class="main">
+
+  <!-- ① KPI -->
+  <div class="section-title">핵심 경영지표</div>
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">매출액</div>
+      <div class="kpi-value">14.4억</div>
+      <span class="kpi-delta up">▲ 61.0% vs 전기</span>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">영업이익</div>
+      <div class="kpi-value">717만</div>
+      <span class="kpi-delta up">▲ 흑자전환</span>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">당기순이익</div>
+      <div class="kpi-value">1,978만</div>
+      <span class="kpi-delta up">▲ 흑자전환</span>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">자산총계</div>
+      <div class="kpi-value">7,668만</div>
+      <span class="kpi-delta up">▲ 219.6% vs 전기</span>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">부채총계</div>
+      <div class="kpi-value">10,482만</div>
+      <span class="kpi-delta down">▲ 45.8% vs 전기</span>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">자본총계</div>
+      <div class="kpi-value">△2,815만</div>
+      <span class="kpi-delta up">▲ 자본잠식 축소</span>
+    </div>
+  </div>
+
+  <!-- ② 차트 -->
+  <div class="section-title">재무현황 비교 (당기 vs 전기)</div>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title"><span class="icon">📊</span>손익계산서 주요 항목</div>
+      <div class="chart-wrap">
+        <canvas id="plChart"></canvas>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon">📋</span>재무상태표 주요 항목</div>
+      <div class="chart-wrap">
+        <canvas id="bsChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- ③ 재무상태표 / 손익계산서 요약 -->
+  <div class="section-title">재무제표 요약</div>
+  <div class="two-col">
+    <!-- 재무상태표 -->
+    <div class="card">
+      <div class="card-title"><span class="icon">🏦</span>재무상태표</div>
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>과목</th>
+            <th class="num">당기 (원)</th>
+            <th class="num">전기 (원)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="total"><td>【자산】</td><td></td><td></td></tr>
+          <tr><td class="indent">유동자산</td><td class="num">46,575,437</td><td class="num">23,886,967</td></tr>
+          <tr><td class="indent2">보통예금</td><td class="num">38,062,298</td><td class="num">17,444,755</td></tr>
+          <tr><td class="indent2">선급금</td><td class="num">8,513,139</td><td class="num">6,442,212</td></tr>
+          <tr><td class="indent">비유동자산</td><td class="num">30,100,000</td><td class="num">100,000</td></tr>
+          <tr><td class="indent2">임차보증금</td><td class="num">30,100,000</td><td class="num">100,000</td></tr>
+          <tr class="highlight"><td>자산총계</td><td class="num">76,675,437</td><td class="num">23,986,967</td></tr>
+          <tr class="total"><td>【부채】</td><td></td><td></td></tr>
+          <tr><td class="indent">유동부채</td><td class="num">104,821,095</td><td class="num">71,912,271</td></tr>
+          <tr><td class="indent2">미지급금</td><td class="num">52,497,713</td><td class="num">32,411,309</td></tr>
+          <tr><td class="indent2">가수금</td><td class="num">47,340,492</td><td class="num">36,837,462</td></tr>
+          <tr><td class="indent2">예수금</td><td class="num">4,982,890</td><td class="num">2,388,500</td></tr>
+          <tr class="highlight"><td>부채총계</td><td class="num">104,821,095</td><td class="num">71,912,271</td></tr>
+          <tr class="total"><td>【자본】</td><td></td><td></td></tr>
+          <tr><td class="indent">자본금</td><td class="num">10,000,000</td><td class="num">10,000,000</td></tr>
+          <tr><td class="indent">결손금</td><td class="num" style="color:var(--red)">△38,145,658</td><td class="num" style="color:var(--red)">△57,925,304</td></tr>
+          <tr class="highlight"><td>자본총계</td><td class="num" style="color:var(--red)">△28,145,658</td><td class="num" style="color:var(--red)">△47,925,304</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- 손익계산서 -->
+    <div class="card">
+      <div class="card-title"><span class="icon">💹</span>손익계산서</div>
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>과목</th>
+            <th class="num">당기 (원)</th>
+            <th class="num">전기 (원)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight"><td>Ⅰ. 매출액</td><td class="num">1,439,386,276</td><td class="num">894,016,233</td></tr>
+          <tr><td class="indent">용역매출</td><td class="num">1,439,386,276</td><td class="num">894,016,233</td></tr>
+          <tr><td>Ⅱ. 매출원가</td><td class="num">0</td><td class="num">0</td></tr>
+          <tr class="highlight"><td>Ⅲ. 매출총이익</td><td class="num">1,439,386,276</td><td class="num">894,016,233</td></tr>
+          <tr><td>Ⅳ. 판매비와관리비</td><td class="num">1,432,217,627</td><td class="num">951,968,853</td></tr>
+          <tr><td class="indent2">외주용역비</td><td class="num">472,678,991</td><td class="num">515,079,768</td></tr>
+          <tr><td class="indent2">사업소득(인적용역)</td><td class="num">616,736,885</td><td class="num">265,220,896</td></tr>
+          <tr><td class="indent2">지급수수료</td><td class="num">33,284,178</td><td class="num">21,343,883</td></tr>
+          <tr><td class="indent2">임직원급여</td><td class="num">197,687,635</td><td class="num">84,924,897</td></tr>
+          <tr><td class="indent2">기타판관비</td><td class="num">111,829,938</td><td class="num">65,399,409</td></tr>
+          <tr class="highlight"><td>Ⅴ. 영업이익</td><td class="num" style="color:var(--green)">7,168,649</td><td class="num" style="color:var(--red)">△57,952,620</td></tr>
+          <tr><td>Ⅵ. 영업외수익</td><td class="num">12,625,977</td><td class="num">85,560</td></tr>
+          <tr><td class="indent2">정부보조금수익</td><td class="num">12,600,000</td><td class="num">0</td></tr>
+          <tr><td>Ⅶ. 영업외비용</td><td class="num">14,980</td><td class="num">58,244</td></tr>
+          <tr class="highlight"><td>Ⅷ. 법인세차감전이익</td><td class="num" style="color:var(--green)">19,779,646</td><td class="num" style="color:var(--red)">△57,925,304</td></tr>
+          <tr><td>Ⅸ. 법인세등</td><td class="num">0</td><td class="num">0</td></tr>
+          <tr class="highlight"><td style="font-weight:800">Ⅹ. 당기순이익</td><td class="num" style="color:var(--green);font-weight:800">19,779,646</td><td class="num" style="color:var(--red);font-weight:800">△57,925,304</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ④ 법인세 납부 -->
+  <div class="section-title">법인세 납부 일정 및 세액</div>
+
+  <!-- 납부일정 -->
+  <div class="schedule-grid" style="margin-bottom:16px;">
+    <div class="sched-card">
+      <div class="sched-date">
+        <div class="month">2026년 3월</div>
+        <div class="day">31</div>
+      </div>
+      <div class="sched-info">
+        <div class="title">법인세 신고 및 납부 기한</div>
+        <div class="desc">사업연도 종료일(2025.12.31)로부터 3개월 이내</div>
+      </div>
+    </div>
+    <div class="sched-card">
+      <div class="sched-date" style="background:var(--gold)">
+        <div class="month">2026년 4월</div>
+        <div class="day">30</div>
+      </div>
+      <div class="sched-info">
+        <div class="title">법인지방소득세 신고 및 납부 기한</div>
+        <div class="desc">법인세 신고일로부터 1개월 이내 (지자체 신고)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 납부세액 카드 — 강조 -->
+  <div class="tax-total-banner">
+    <div class="tax-total-label">2025 귀속 법인세 총 납부세액</div>
+    <div class="tax-total-amount">0원</div>
+    <div class="tax-total-sub">이월결손금 19,781,020원 공제 → 과세표준 0원</div>
+  </div>
+  <div class="tax-cards">
+    <div class="tax-card">
+      <div class="tax-card-label">법인세 (국세)</div>
+      <div class="tax-card-value">0원</div>
+      <div class="tax-card-note">~ 2026.03.31 이내 납부</div>
+    </div>
+    <div class="tax-card">
+      <div class="tax-card-label">법인지방소득세</div>
+      <div class="tax-card-value">0원</div>
+      <div class="tax-card-note">~ 2026.04.30 이내 납부</div>
+    </div>
+  </div>
+  <p style="font-size:12px;color:var(--text-light);margin-bottom:24px;">※ 농어촌특별세 해당 없음 (산출세액 0원)</p>
+
+  <!-- 배당가능이익 -->
+  <div class="dividend-box">
+    <div class="dividend-header">📐 배당가능이익 판단 (상법 제462조)</div>
+    <div class="dividend-formula">
+      <strong>배당가능이익</strong> = (자본총계 − 자본금 − 자본잉여금 − 이익준비금 − 기타포괄손익누계액) ÷ 1.1<br>
+      = (△28,145,658 − 10,000,000 − 0 − 0 − 0) ÷ 1.1<br>
+      = △38,145,658 ÷ 1.1<br>
+      = <strong>△34,677,871원</strong>
+    </div>
+    <div class="dividend-result">❌ 배당 불가능 — 배당가능이익 음수 (결손금 상태)</div>
+  </div>
+
+  <!-- 법인세 산출근거 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🧮</span>법인세 산출근거 계산</div>
+    <div class="calc-steps">
+      <div class="calc-step">
+        <div class="calc-step-num">1</div>
+        <div class="calc-step-label">결산서상 당기순이익</div>
+        <div class="calc-step-op"></div>
+        <div class="calc-step-value">19,779,646원</div>
+      </div>
+      <div class="calc-step">
+        <div class="calc-step-num">2</div>
+        <div class="calc-step-label">익금산입 (잡손실 세무조정)</div>
+        <div class="calc-step-op">＋</div>
+        <div class="calc-step-value">1,374원</div>
+      </div>
+      <div class="calc-step">
+        <div class="calc-step-num">3</div>
+        <div class="calc-step-label">손금산입</div>
+        <div class="calc-step-op">－</div>
+        <div class="calc-step-value">0원</div>
+      </div>
+      <div class="calc-step">
+        <div class="calc-step-num">4</div>
+        <div class="calc-step-label">각 사업연도 소득금액</div>
+        <div class="calc-step-op"></div>
+        <div class="calc-step-value">19,781,020원</div>
+      </div>
+      <div class="calc-step">
+        <div class="calc-step-num">5</div>
+        <div class="calc-step-label">이월결손금 공제 (2024년도 발생)</div>
+        <div class="calc-step-op">－</div>
+        <div class="calc-step-value">19,781,020원</div>
+      </div>
+      <div class="calc-step">
+        <div class="calc-step-num">6</div>
+        <div class="calc-step-label">과세표준</div>
+        <div class="calc-step-op"></div>
+        <div class="calc-step-value">0원</div>
+      </div>
+      <div class="calc-step">
+        <div class="calc-step-num">7</div>
+        <div class="calc-step-label">세율 (과세표준 2억 이하 9%)</div>
+        <div class="calc-step-op">×</div>
+        <div class="calc-step-value">9% → 0원</div>
+      </div>
+      <div class="calc-step">
+        <div class="calc-step-num">8</div>
+        <div class="calc-step-label">산출세액</div>
+        <div class="calc-step-op"></div>
+        <div class="calc-step-value">0원</div>
+      </div>
+      <div class="calc-step">
+        <div class="calc-step-num">9</div>
+        <div class="calc-step-label">공제감면 (통합고용세액공제 이월)</div>
+        <div class="calc-step-op">－</div>
+        <div class="calc-step-value">0원 (차기 이월)</div>
+      </div>
+      <div class="calc-step result">
+        <div class="calc-step-num">✓</div>
+        <div class="calc-step-label">최종 납부세액</div>
+        <div class="calc-step-op"></div>
+        <div class="calc-step-value">0원</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑤ 세액공제·감면 -->
+  <div class="section-title">적용받은 세액공제 · 감면</div>
+
+  <!-- 세액공제 강조 배너 -->
+  <div class="credit-banner">
+    <div class="credit-banner-icon">✓</div>
+    <div class="credit-banner-body">
+      <div class="credit-banner-name">통합고용세액공제 적용</div>
+      <div class="credit-banner-law">조세특례제한법 제29조의8 · 직전연도 대비 상시근로자 증가 (3.4명)</div>
+    </div>
+    <div class="credit-banner-amount">
+      <div class="credit-banner-amt-label">누적 이월잔액</div>
+      <div class="credit-banner-amt-value">95,700,000원</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span>세액공제 이월 상세 내역</div>
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>사업연도</th>
+          <th class="num">전기이월액</th>
+          <th class="num">당기발생액</th>
+          <th class="num">당기공제액</th>
+          <th class="num">차기이월잔액</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2024년 (1차년도)</td>
+          <td class="num">—</td>
+          <td class="num">23,200,000</td>
+          <td class="num">0</td>
+          <td class="num" style="color:var(--blue-badge);font-weight:700">23,200,000</td>
+        </tr>
+        <tr>
+          <td>2025년 (2차년도)</td>
+          <td class="num">23,200,000</td>
+          <td class="num">72,500,000</td>
+          <td class="num">0</td>
+          <td class="num" style="color:var(--blue-badge);font-weight:700">95,700,000</td>
+        </tr>
+        <tr class="highlight">
+          <td><strong>합계</strong></td>
+          <td class="num">23,200,000</td>
+          <td class="num"><strong>72,500,000</strong></td>
+          <td class="num">0</td>
+          <td class="num" style="color:var(--blue-badge);font-weight:800;font-size:15px;">95,700,000</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:10px;font-size:12px;color:var(--text-light);line-height:1.8;">
+      <strong>공제 산출내역:</strong><br>
+      · 1차년도(2024): 청년등 1.6명 증가 → 23,200,000원<br>
+      · 2차년도(2025): 청년등 3.4명 증가 × 1,450만원 = 49,300,000원 + 이월지원 23,200,000원 = <strong>72,500,000원</strong>
+    </div>
+    <div class="carry-note">
+      ℹ️ <span>차기이월잔액 <strong>95,700,000원</strong>은 향후 과세연도 과세표준 발생 시 우선 공제 가능합니다. 법인세 발생 시 즉시 활용 가능한 자산입니다.</span>
+    </div>
+  </div>
+
+  <!-- ⑥ 세무조정 -->
+  <div class="section-title">세무조정사항 집계표</div>
+  <div class="card">
+    <div class="card-title"><span class="icon">⚖️</span>익금산입 및 손금불산입</div>
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>과목</th>
+          <th class="num">금액 (원)</th>
+          <th>소득처분</th>
+          <th>조정 내용</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>잡손실</td>
+          <td class="num">1,374</td>
+          <td><span class="badge badge-red">기타사외유출</span></td>
+          <td style="font-size:12px;color:var(--text-light)">잡손실 중 손금불산입 상당액 기타사외유출 처분</td>
+        </tr>
+        <tr class="total">
+          <td>합 계</td>
+          <td class="num">1,374</td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:16px;">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th colspan="4">손금산입 및 익금불산입</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="4" style="color:var(--text-light);font-size:13px;text-align:center;padding:16px;">해당 없음 (0원)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="comment-label" style="margin-top:20px;">
+      <span>📝</span> 세무사 COMMENT
+    </div>
+    <div class="comment-box" id="comment1" contenteditable="false">
+      당기 세무조정은 잡손실 1,374원의 기타사외유출 처분으로, 실질적인 세무조정 영향은 미미합니다. 이월결손금 19,781,020원을 전액 공제하여 과세표준이 0원이 되었으며, 법인세 납부세액은 없습니다. 통합고용세액공제 이월잔액 95,700,000원은 향후 과세연도 과세표준 발생 시 적극 활용 바랍니다.
+    </div>
+  </div>
+
+  <!-- ⑦ 재무비율 -->
+  <div class="section-title">재무비율 분석</div>
+  <div class="card">
+    <div class="card-title" style="margin-bottom:20px;"><span class="icon">📐</span>안정성 · 수익성 · 성장성</div>
+    <div style="margin-bottom:8px;font-size:12px;font-weight:700;color:var(--navy);letter-spacing:0.5px;">안정성 지표</div>
+    <div class="ratio-grid" style="margin-bottom:20px;">
+      <div class="ratio-card">
+        <div class="ratio-label">부채비율</div>
+        <div class="ratio-value" style="color:var(--red)">—</div>
+        <div class="ratio-status bad">자본잠식 (자본음수)</div>
+      </div>
+      <div class="ratio-card">
+        <div class="ratio-label">유동비율</div>
+        <div class="ratio-value" style="color:var(--orange-badge)">44.4%</div>
+        <div class="ratio-status warn">위험 (기준 100% 미만)</div>
+      </div>
+      <div class="ratio-card">
+        <div class="ratio-label">자기자본비율</div>
+        <div class="ratio-value" style="color:var(--red)">—</div>
+        <div class="ratio-status bad">자본잠식 상태</div>
+      </div>
+    </div>
+    <div style="margin-bottom:8px;font-size:12px;font-weight:700;color:var(--navy);letter-spacing:0.5px;">수익성 지표</div>
+    <div class="ratio-grid" style="margin-bottom:20px;">
+      <div class="ratio-card">
+        <div class="ratio-label">매출총이익률</div>
+        <div class="ratio-value">100%</div>
+        <div class="ratio-status ok">우수 (순용역업 특성)</div>
+      </div>
+      <div class="ratio-card">
+        <div class="ratio-label">영업이익률</div>
+        <div class="ratio-value">0.5%</div>
+        <div class="ratio-status warn">주의 (흑자전환 성공)</div>
+      </div>
+      <div class="ratio-card">
+        <div class="ratio-label">당기순이익률</div>
+        <div class="ratio-value">1.4%</div>
+        <div class="ratio-status ok">흑자전환 달성</div>
+      </div>
+    </div>
+    <div style="margin-bottom:8px;font-size:12px;font-weight:700;color:var(--navy);letter-spacing:0.5px;">성장성 지표</div>
+    <div class="ratio-grid">
+      <div class="ratio-card">
+        <div class="ratio-label">매출성장률</div>
+        <div class="ratio-value" style="color:var(--green)">+61.0%</div>
+        <div class="ratio-status ok">고성장 지속</div>
+      </div>
+      <div class="ratio-card">
+        <div class="ratio-label">영업이익 성장</div>
+        <div class="ratio-value" style="color:var(--green)">흑전</div>
+        <div class="ratio-status ok">전기 적자 → 흑자</div>
+      </div>
+      <div class="ratio-card">
+        <div class="ratio-label">자산성장률</div>
+        <div class="ratio-value" style="color:var(--green)">+219.7%</div>
+        <div class="ratio-status ok">급성장 중</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑧ 매출처 상위 10 -->
+  <div class="section-title">매출처 상위 10 (공급가액 기준)</div>
+  <div class="card">
+    <div class="card-title"><span class="icon">📤</span>2025년 매출처 현황</div>
+    <div id="salesBars"></div>
+    <div style="margin-top:12px;font-size:12px;color:var(--text-light);">총 매출 1,439,386,276원 기준</div>
+  </div>
+
+  <!-- ⑨ 매입처 상위 10 -->
+  <div class="section-title">매입처 상위 10 (공급가액 기준)</div>
+  <div class="card">
+    <div class="card-title"><span class="icon">📥</span>2025년 매입처 현황</div>
+    <div id="purchaseBars"></div>
+    <div style="margin-top:12px;font-size:12px;color:var(--text-light);">총 매입 577,449,666원 기준</div>
+  </div>
+
+  <!-- ⑩ 주요 판관비 -->
+  <div class="section-title">주요 판매비 및 관리비 분석</div>
+  <div class="card">
+    <div class="card-title"><span class="icon">💰</span>판관비 항목별 내역</div>
+    <div id="expenseBars"></div>
+    <div class="comment-label" style="margin-top:20px;">
+      <span>📝</span> 세무사 COMMENT
+    </div>
+    <div class="comment-box" id="comment2" contenteditable="false">
+      외주용역비 및 인적용역비(사업소득)가 판관비의 76.1%를 차지하며, 이는 광고대행업의 특성상 자연스러운 구조입니다. 판관비율 99.5%로 영업이익률이 낮은 만큼, 향후 수익성 개선을 위해 외주비용 관리 및 매출단가 협상이 필요합니다.
+    </div>
+  </div>
+
+  <!-- ⑫ 금융기관 대출 / 외부감사 -->
+  <div class="section-title">금융기관 대출요건 / 외부감사 기준 판단</div>
+  <div class="two-col">
+
+    <!-- 금융기관 대출시 유의사항 -->
+    <div class="card">
+      <div class="card-title"><span class="icon">🏛️</span>금융기관 대출시 유의사항</div>
+      <table class="tbl">
+        <colgroup><col style="width:30px"><col></colgroup>
+        <tbody>
+          <tr>
+            <td style="text-align:center;"><span class="badge badge-red" style="padding:2px 6px;">✗</span></td>
+            <td style="font-size:13px;">① 3년내 매출 감소액이 20% 미만일 것<br><small style="color:var(--text-light);">당기 매출 +61.0% 증가 → <span style="color:var(--green);font-weight:600;">해당 없음</span></small></td>
+          </tr>
+          <tr>
+            <td style="text-align:center;"><span class="badge badge-red" style="padding:2px 6px;">✗</span></td>
+            <td style="font-size:13px;">② 결손기업이 아니고, 자본잠식이 없을 것<br><small style="color:var(--text-light);">자본잠식 상태 (자본총계 △28,145,658원) → <span style="color:var(--red);font-weight:600;">주의 필요</span></small></td>
+          </tr>
+          <tr>
+            <td style="text-align:center;"><span class="badge badge-gold" style="padding:2px 6px;">—</span></td>
+            <td style="font-size:13px;">③ 부채비율 400% 이하 &amp; 차입금의존도 60% 이하<br><small style="color:var(--text-light);">자본잠식으로 부채비율 산정 불가 / 차입금의존도 45.2%</small></td>
+          </tr>
+          <tr>
+            <td style="text-align:center;"><span class="badge badge-gold" style="padding:2px 6px;">—</span></td>
+            <td style="font-size:13px;">④ 세금 체납액이 없고, 대출금 연체가 없을 것<br><small style="color:var(--text-light);">별도 확인 필요</small></td>
+          </tr>
+          <tr>
+            <td style="text-align:center;"><span class="badge badge-gold" style="padding:2px 6px;">—</span></td>
+            <td style="font-size:13px;">⑤ 1년내 대표자 변동사실이 없을 것<br><small style="color:var(--text-light);">별도 확인 필요</small></td>
+          </tr>
+          <tr>
+            <td style="text-align:center;"><span class="badge badge-gold" style="padding:2px 6px;">—</span></td>
+            <td style="font-size:13px;">⑥ 신용등급 5등급 이상일 것 (700점 이상)<br><small style="color:var(--text-light);">별도 확인 필요</small></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 외부감사 기준 -->
+    <div class="card">
+      <div class="card-title"><span class="icon">🔍</span>외부감사 기준 판단</div>
+      <table class="tbl">
+        <colgroup><col style="width:30px"><col></colgroup>
+        <tbody>
+          <tr>
+            <td style="text-align:center;"><span class="badge badge-green" style="padding:2px 6px;">✗</span></td>
+            <td style="font-size:13px;">자산총계 120억원 이상<br><small style="color:var(--text-light);">당사 7,668만원</small></td>
+          </tr>
+          <tr>
+            <td style="text-align:center;"><span class="badge badge-green" style="padding:2px 6px;">✗</span></td>
+            <td style="font-size:13px;">부채총계 70억원 이상<br><small style="color:var(--text-light);">당사 1.05억원</small></td>
+          </tr>
+          <tr>
+            <td style="text-align:center;"><span class="badge badge-green" style="padding:2px 6px;">✗</span></td>
+            <td style="font-size:13px;">매출액 100억원 이상<br><small style="color:var(--text-light);">당사 14.4억원</small></td>
+          </tr>
+          <tr>
+            <td style="text-align:center;"><span class="badge badge-green" style="padding:2px 6px;">✗</span></td>
+            <td style="font-size:13px;">종업원 100명 이상<br><small style="color:var(--text-light);">당사 5명 (통합고용세액공제 기준)</small></td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top:16px;padding:14px 16px;background:var(--bg);border-radius:10px;display:flex;align-items:center;justify-content:space-between;">
+        <span style="font-size:13px;font-weight:600;color:var(--text);">외부감사 대상 여부</span>
+        <span class="badge badge-green" style="font-size:13px;padding:5px 16px;font-weight:800;">제외</span>
+      </div>
+    </div>
+
+  </div>
+
+</div><!-- /main -->
+
+<!-- ====== FOOTER ====== -->
+<div class="footer">
+  <div class="footer-logo">휘온세무회계 (WHION TAX &amp; REALTY)</div>
+  <div class="footer-contact">
+    담당세무사: 권유진 대표세무사 &nbsp;|&nbsp; TEL: 02-6959-0169 &nbsp;|&nbsp; FAX: 0507-804-8790<br>
+    서울 강남 테헤란로13길 8-5 (블루-b) 901호
+  </div>
+</div>
+
+<!-- 관리자 모달 -->
+<div id="tm">
+  <div style="font-size:16px;font-weight:700;color:var(--navy);margin-bottom:16px;">🔐 관리자 인증</div>
+  <input type="password" id="tk" placeholder="관리자 토큰 입력" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;font-size:14px;margin-bottom:12px;">
+  <button onclick="checkToken()" style="width:100%;background:var(--navy);color:white;border:none;padding:10px;border-radius:8px;font-size:14px;cursor:pointer;">확인</button>
+</div>
+
+<script>
+// ====== 관리자 모드 ======
+(function(){
+  const p = new URLSearchParams(window.location.search);
+  if(p.get('admin') === 'whion2025'){
+    document.getElementById('ab').style.display='block';
+    document.getElementById('as').style.display='block';
+    document.getElementById('comment1').contentEditable='true';
+    document.getElementById('comment2').contentEditable='true';
+  }
+})();
+function checkToken(){
+  const v=document.getElementById('tk').value;
+  if(v==='whion2025'){
+    document.getElementById('tm').style.display='none';
+    document.getElementById('ab').style.display='block';
+    document.getElementById('comment1').contentEditable='true';
+    document.getElementById('comment2').contentEditable='true';
+  }
+}
+
+// ====== 숫자 포맷 ======
+function fmt(n){
+  if(n>=100000000) return (n/100000000).toFixed(1)+'억';
+  if(n>=10000000) return (n/10000000).toFixed(1)+'천만';
+  if(n>=1000000) return (n/1000000).toFixed(0)+'백만';
+  return n.toLocaleString('ko-KR');
+}
+function fmtFull(n){ return n.toLocaleString('ko-KR')+'원'; }
+
+// ====== 손익 차트 ======
+const plCtx = document.getElementById('plChart').getContext('2d');
+new Chart(plCtx, {
+  type: 'bar',
+  data: {
+    labels: ['매출액', '판관비', '영업이익', '당기순이익'],
+    datasets: [
+      { label: '당기(2025)', data: [1439386276, 1432217627, 7168649, 19779646],
+        backgroundColor: '#1a3a5c', borderRadius: 5 },
+      { label: '전기(2024)', data: [894016233, 951968853, -57952620, -57925304],
+        backgroundColor: '#c8973a', borderRadius: 5 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'top', labels: { font: { size: 11 } } } },
+    scales: {
+      y: { ticks: { callback: v => fmt(Math.abs(v)), font: { size: 10 } }, grid: { color: '#eee' } },
+      x: { ticks: { font: { size: 10 } } }
+    }
+  }
+});
+
+// ====== 재무상태표 차트 ======
+const bsCtx = document.getElementById('bsChart').getContext('2d');
+new Chart(bsCtx, {
+  type: 'bar',
+  data: {
+    labels: ['자산총계', '부채총계'],
+    datasets: [
+      { label: '당기(2025)', data: [76675437, 104821095],
+        backgroundColor: '#1a3a5c', borderRadius: 5 },
+      { label: '전기(2024)', data: [23986967, 71912271],
+        backgroundColor: '#c8973a', borderRadius: 5 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'top', labels: { font: { size: 11 } } } },
+    scales: {
+      y: { ticks: { callback: v => fmt(v), font: { size: 10 } }, grid: { color: '#eee' } },
+      x: { ticks: { font: { size: 10 } } }
+    }
+  }
+});
+
+// ====== 매출처 바 ======
+const salesData = [
+  ['주식회사 프로그레스미디어', 1079534768],
+  ['주식회사 조인스엠', 163491351],
+  ['주식회사 위아더스', 121902661],
+  ['주식회사 이을웍스', 14620000],
+  ['주식회사 더라온컴퍼니', 11500000],
+  ['(주)디로펫(DROPET)', 10000000],
+  ['세무법인 나은', 6909091],
+  ['밸류어블 디 앤 에스', 6208636],
+  ['우리동물메디컬센터', 2740000],
+  ['(주)이롭코퍼레이션', 1963371]
+];
+const maxS = salesData[0][1];
+const salesDiv = document.getElementById('salesBars');
+salesData.forEach(([name, val]) => {
+  const pct = (val/maxS*100).toFixed(1);
+  const share = (val/1439386276*100).toFixed(1);
+  salesDiv.innerHTML += `<div class="bar-item">
+    <div class="bar-name" title="${name}">${name}</div>
+    <div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:#1a3a5c"></div></div>
+    <div class="bar-val">${fmtFull(val)}<br><small style="color:#aaa">${share}%</small></div>
+  </div>`;
+});
+
+// ====== 매입처 바 ======
+const purchaseData = [
+  ['주식회사 프로그레스미디어', 161197046],
+  ['주식회사 조인스엠', 76177309],
+  ['주식회사 위아더스', 43521637],
+  ['페이지', 39612316],
+  ['주식회사공감기획', 38273131],
+  ['주식회사 제이씨위드', 24000000],
+  ['구글코리아 유한회사', 23584079],
+  ['프린터하이(잉크충전서비스)', 16094299],
+  ['가평 빠지', 13656384],
+  ['더드림포차식당', 10883500]
+];
+const maxP = purchaseData[0][1];
+const purchaseDiv = document.getElementById('purchaseBars');
+purchaseData.forEach(([name, val]) => {
+  const pct = (val/maxP*100).toFixed(1);
+  const share = (val/577449666*100).toFixed(1);
+  purchaseDiv.innerHTML += `<div class="bar-item">
+    <div class="bar-name" title="${name}">${name}</div>
+    <div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:#c8973a"></div></div>
+    <div class="bar-val">${fmtFull(val)}<br><small style="color:#aaa">${share}%</small></div>
+  </div>`;
+});
+
+// ====== 판관비 ======
+const expenses = [
+  ['사업소득(인적용역)', 616736885, '#1a3a5c'],
+  ['외주용역비', 472678991, '#2a5080'],
+  ['임직원급여', 197687635, '#3a6090'],
+  ['지급수수료', 33284178, '#c8973a'],
+  ['지급임차료', 24000000, '#d8a74a'],
+  ['복리후생비', 15378989, '#e8b75a'],
+  ['광고선전비', 15020033, '#4a7090'],
+  ['소모품비', 7444743, '#5a8098'],
+  ['건물관리비', 6689131, '#6a90a0'],
+  ['세금과공과', 6871400, '#7aa0b0'],
+  ['여비교통비', 13156086, '#8ab0c0'],
+  ['퇴직급여', 9512007, '#9ac0d0'],
+  ['보험료', 8365019, '#aad0e0'],
+];
+const maxE = expenses[0][1];
+const totalPG = 1432217627;
+const expDiv = document.getElementById('expenseBars');
+expenses.forEach(([name, val, color]) => {
+  const pct = (val/maxE*100).toFixed(1);
+  const share = (val/totalPG*100).toFixed(1);
+  expDiv.innerHTML += `<div class="expense-item">
+    <div class="exp-dot" style="background:${color}"></div>
+    <div class="exp-name">${name}</div>
+    <div class="exp-bar-wrap"><div class="exp-bar" style="width:${pct}%;background:${color}"></div></div>
+    <div class="exp-val">${fmtFull(val)}</div>
+    <div class="exp-pct">${share}%</div>
+  </div>`;
+});
+</script>
+</body>
+</html>
