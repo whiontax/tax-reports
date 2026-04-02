@@ -8,359 +8,241 @@
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
 
   :root {
-    --navy: #1a3a5c;
-    --navy-dark: #0d2540;
-    --gold: #c8973a;
-    --gold-light: #f5c842;
-    --bg: #f4f6f9;
-    --card: #ffffff;
-    --border: #e2e8f0;
-    --text: #1a202c;
-    --muted: #718096;
-    --green: #1D9E75;
-    --red: #e53e3e;
+    --navy: #1a3a5c; --navy-dark: #0d2540; --gold: #c8973a;
+    --bg: #f4f6f9; --card: #fff; --border: #e2e8f0;
+    --text: #1a202c; --muted: #718096; --green: #1D9E75; --red: #e53e3e;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Noto Sans KR', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-  }
+  body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
 
   /* 헤더 */
-  .header {
-    background: var(--navy-dark);
-    padding: 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
-  }
-  .header-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 60px;
-  }
+  .header { background: var(--navy-dark); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,.2); }
+  .header-inner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 60px; }
   .logo { display: flex; align-items: center; gap: 12px; }
-  .logo-circle {
-    width: 36px; height: 36px;
-    border-radius: 50%;
-    background: var(--gold);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 13px; font-weight: 700; color: white;
-  }
-  .logo-text { font-size: 15px; font-weight: 500; color: white; }
-  .logo-sub { font-size: 11px; color: rgba(255,255,255,0.5); }
-  .header-right { font-size: 12px; color: rgba(255,255,255,0.4); }
+  .logo-circle { width: 36px; height: 36px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #fff; }
+  .logo-text { font-size: 15px; font-weight: 500; color: #fff; }
+  .logo-sub  { font-size: 11px; color: rgba(255,255,255,.5); }
+  .header-right { font-size: 12px; color: rgba(255,255,255,.4); }
 
   /* 히어로 */
-  .hero {
-    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
-    padding: 3rem 2rem 2.5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    left: 50%; top: 50%;
-    transform: translate(-50%, -50%);
-    width: 600px; height: 600px;
-    border-radius: 50%;
-    background: rgba(200,151,58,0.06);
-    pointer-events: none;
-  }
-  .hero h1 { font-size: 22px; font-weight: 500; color: white; margin-bottom: 8px; }
-  .hero p { font-size: 13px; color: rgba(255,255,255,0.5); }
+  .hero { background: linear-gradient(135deg, var(--navy), var(--navy-dark)); padding: 3rem 2rem 2.5rem; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content:''; position: absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:600px; height:600px; border-radius:50%; background:rgba(200,151,58,.06); pointer-events:none; }
+  .hero h1 { font-size: 22px; font-weight: 500; color: #fff; margin-bottom: 8px; }
+  .hero p  { font-size: 13px; color: rgba(255,255,255,.5); }
 
-  /* 검색/필터 */
-  .toolbar {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 1.5rem 2rem 0;
-    display: flex;
-    gap: 12px;
-    align-items: center;
-  }
+  /* 툴바 */
+  .toolbar { max-width: 1100px; margin: 0 auto; padding: 1.5rem 2rem 0; display: flex; gap: 12px; align-items: center; }
   .search-wrap { position: relative; flex: 1; }
-  .search-wrap input {
-    width: 100%;
-    padding: 10px 16px 10px 40px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    font-size: 13px;
-    background: white;
-    outline: none;
-    font-family: inherit;
-    transition: border 0.2s;
-  }
+  .search-wrap input { width: 100%; padding: 10px 16px 10px 40px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; background: #fff; outline: none; font-family: inherit; transition: border .2s; }
   .search-wrap input:focus { border-color: var(--navy); }
-  .search-icon {
-    position: absolute;
-    left: 14px; top: 50%;
-    transform: translateY(-50%);
-    color: var(--muted);
-    font-size: 14px;
-  }
-  .filter-btn {
-    padding: 10px 16px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    background: white;
-    font-size: 12px;
-    color: var(--muted);
-    cursor: pointer;
-    font-family: inherit;
-    transition: all 0.2s;
-    white-space: nowrap;
-  }
-  .filter-btn.active { background: var(--navy); color: white; border-color: var(--navy); }
+  .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 14px; }
+  .filter-btn { padding: 10px 16px; border: 1px solid var(--border); border-radius: 8px; background: #fff; font-size: 12px; color: var(--muted); cursor: pointer; font-family: inherit; transition: all .2s; white-space: nowrap; }
+  .filter-btn.active { background: var(--navy); color: #fff; border-color: var(--navy); }
 
   /* 메인 */
   .main { max-width: 1100px; margin: 0 auto; padding: 1.5rem 2rem 4rem; }
 
-  /* 요약 수치 */
-  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 2rem; }
-  .stat-card {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1rem 1.25rem;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .stat-icon {
-    width: 40px; height: 40px;
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
-    flex-shrink: 0;
-  }
-  .stat-icon.blue { background: #ebf4ff; }
-  .stat-icon.gold { background: #fef9ec; }
+  /* 통계 */
+  .stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 2rem; }
+  .stat-card { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.25rem; display: flex; align-items: center; gap: 12px; }
+  .stat-icon { width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .stat-icon.blue  { background: #ebf4ff; }
+  .stat-icon.gold  { background: #fef9ec; }
   .stat-icon.green { background: #e6f7f1; }
   .stat-label { font-size: 11px; color: var(--muted); margin-bottom: 3px; }
   .stat-value { font-size: 20px; font-weight: 700; color: var(--navy); }
 
-  /* 고객사 카드 */
-  .section-label {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--muted);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
-  .client-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
-  .client-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-    transition: box-shadow 0.2s, transform 0.2s;
-  }
-  .client-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); transform: translateY(-2px); }
-  .card-header {
-    padding: 1rem 1.25rem;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    border-bottom: 1px solid var(--border);
-  }
-  .client-avatar {
-    width: 42px; height: 42px;
-    border-radius: 10px;
-    background: var(--navy);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px; font-weight: 700; color: white;
-    flex-shrink: 0;
-  }
-  .client-name { font-size: 15px; font-weight: 600; color: var(--text); }
-  .client-reg { font-size: 11px; color: var(--muted); margin-top: 2px; }
-  .card-body { padding: 1rem 1.25rem; }
-
-  /* 연도별 보고서 목록 */
-  .year-list { display: flex; flex-direction: column; gap: 8px; }
-  .year-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 8px 12px;
-    background: var(--bg);
-    border-radius: 8px;
-    text-decoration: none;
-    transition: background 0.15s;
-    border: 1px solid transparent;
-  }
+  /* 카드 그리드 */
+  .section-label { font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1rem; }
+  .client-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px,1fr)); gap: 16px; }
+  .client-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: box-shadow .2s, transform .2s; }
+  .client-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.08); transform: translateY(-2px); }
+  .card-header { padding: 1rem 1.25rem; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--border); }
+  .client-avatar { width: 42px; height: 42px; border-radius: 10px; background: var(--navy); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: #fff; flex-shrink: 0; }
+  .client-name { font-size: 15px; font-weight: 600; }
+  .client-reg  { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .card-body   { padding: 1rem 1.25rem; }
+  .year-list   { display: flex; flex-direction: column; gap: 8px; }
+  .year-item   { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: var(--bg); border-radius: 8px; text-decoration: none; transition: background .15s; border: 1px solid transparent; }
   .year-item:hover { background: #ebf4ff; border-color: #bee3f8; }
-  .year-left { display: flex; align-items: center; gap: 10px; }
-  .year-badge {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--navy);
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 2px 8px;
-    min-width: 44px;
-    text-align: center;
-  }
-  .year-desc { font-size: 12px; color: var(--muted); }
-  .year-right { display: flex; align-items: center; gap: 8px; }
-  .status-dot { width: 6px; height: 6px; border-radius: 50%; }
+  .year-left   { display: flex; align-items: center; gap: 10px; }
+  .year-badge  { font-size: 12px; font-weight: 700; color: var(--navy); background: #fff; border: 1px solid var(--border); border-radius: 6px; padding: 2px 8px; min-width: 44px; text-align: center; }
+  .year-desc   { font-size: 12px; color: var(--muted); }
+  .year-right  { display: flex; align-items: center; gap: 8px; }
+  .status-dot  { width: 6px; height: 6px; border-radius: 50%; }
   .status-dot.live { background: var(--green); }
-  .status-dot.draft { background: #ed8936; }
-  .link-icon { font-size: 12px; color: var(--muted); }
-
-  /* 빈 상태 */
-  .empty-year {
-    font-size: 12px;
-    color: var(--muted);
-    padding: 8px 0;
-    text-align: center;
-  }
-
-  /* 추가 버튼 */
-  .add-year {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-top: 8px;
-    padding: 7px 12px;
-    border: 1px dashed var(--border);
-    border-radius: 8px;
-    font-size: 12px;
-    color: var(--muted);
-    cursor: default;
-    background: transparent;
-  }
-
-  /* 숨김 처리 */
+  .link-icon   { font-size: 12px; color: var(--muted); }
   .client-card.hidden { display: none; }
 
-  /* 푸터 */
-  .footer {
-    background: var(--navy-dark);
-    padding: 1.5rem 2rem;
-    text-align: center;
-    color: rgba(255,255,255,0.4);
-    font-size: 12px;
-  }
+  /* 추가 버튼 */
+  .add-year { display: flex; align-items: center; gap: 6px; margin-top: 8px; padding: 7px 12px; border: 1px dashed var(--border); border-radius: 8px; font-size: 12px; color: var(--muted); cursor: pointer; background: transparent; transition: all .2s; font-family: inherit; width: 100%; }
+  .add-year:hover { border-color: var(--navy); color: var(--navy); background: #f0f5fb; }
 
-  @media (max-width: 600px) {
-    .stats { grid-template-columns: 1fr 1fr; }
-    .client-grid { grid-template-columns: 1fr; }
-    .toolbar { flex-wrap: wrap; }
+  /* ADD 카드 */
+  #addCard { border: 2px dashed var(--border) !important; background: transparent !important; box-shadow: none !important; cursor: pointer; }
+  #addCard:hover { border-color: var(--navy) !important; background: #f0f5fb !important; }
+  #addCard.dov   { border-color: var(--navy) !important; background: #eef3fa !important; transform: scale(1.025) !important; }
+
+  /* 모달 */
+  .overlay { display: none; position: fixed; inset: 0; background: rgba(13,37,64,.6); backdrop-filter: blur(4px); z-index: 500; align-items: center; justify-content: center; }
+  .overlay.open { display: flex; }
+  .modal { background: #fff; border-radius: 16px; width: 92%; max-width: 500px; box-shadow: 0 24px 60px rgba(0,0,0,.25); overflow: hidden; animation: mIn .22s ease; max-height: 92vh; overflow-y: auto; }
+  @keyframes mIn { from { transform:translateY(16px) scale(.97); opacity:0 } to { transform:none; opacity:1 } }
+
+  .mhd { background: var(--navy-dark); padding: 18px 22px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 1; }
+  .mhd-title { font-size: 15px; font-weight: 700; color: #fff; }
+  .mhd-close { background: rgba(255,255,255,.1); border: none; cursor: pointer; color: rgba(255,255,255,.7); font-size: 18px; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .mhd-close:hover { background: rgba(255,255,255,.22); color: #fff; }
+  .mbody { padding: 22px; }
+
+  .ml  { display: block; font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: .5px; margin-bottom: 6px; }
+  .mf  { margin-bottom: 14px; }
+  .mr  { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+  .mi  { width: 100%; padding: 10px 13px; border: 1.5px solid var(--border); border-radius: 9px; font-size: 13px; font-family: inherit; color: var(--text); transition: border-color .2s; background: #fff; }
+  .mi:focus { outline: none; border-color: var(--navy); }
+  .mi.tok-ok  { border-color: var(--green); background: #f0fcf7; }
+  .mi.tok-err { border-color: var(--red);   background: #fff0f0; }
+
+  .tok-row { display: flex; gap: 8px; }
+  .tok-row .mi { flex: 1; }
+  .bxs { padding: 10px 13px; border: none; border-radius: 9px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: inherit; white-space: nowrap; }
+  .bnavy { background: var(--navy); color: #fff; }
+  .bnavy:hover { opacity:.84; }
+  .bsave { background: #f0f4f8; color: var(--muted); border: 1px solid var(--border); }
+  .bsave:hover { background: #e4eaf2; }
+  .tok-msg { font-size: 11px; margin-top: 5px; min-height: 16px; }
+
+  /* 드롭존 */
+  .dz { border: 2px dashed var(--border); border-radius: 12px; padding: 28px 20px; text-align: center; cursor: pointer; transition: all .2s; background: var(--bg); }
+  .dz.dov  { border-color: var(--navy); background: #eef3fa; transform: scale(1.01); }
+  .dz.done { border-color: var(--green); background: #f0fcf7; }
+  .dz input { display: none; }
+  .dz-ic { font-size: 34px; margin-bottom: 8px; line-height: 1; }
+  .dz-mn { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+  .dz-sb { font-size: 12px; color: var(--muted); }
+
+  /* file pill */
+  .fpill { display: none; align-items: center; gap: 10px; margin-top: 10px; background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; }
+  .fpill.on { display: flex; }
+  .fp-nm { flex:1; font-size:13px; font-weight:600; color:var(--navy); word-break:break-all; }
+  .fp-sz { font-size:11px; color:var(--muted); }
+  .fp-rm { background:none; border:none; cursor:pointer; font-size:16px; color:var(--muted); }
+  .fp-rm:hover { color:var(--red); }
+
+  /* 경로 미리보기 */
+  .pbox { display:none; background:#f0f4f8; border-radius:8px; padding:10px 13px; margin-top:10px; }
+  .pbox.on { display:block; }
+  .pk { font-size:10px; font-weight:700; letter-spacing:1px; color:var(--muted); margin-bottom:3px; }
+  .pv { font-size:12px; color:var(--navy); font-family:monospace; word-break:break-all; }
+
+  /* 진행바 */
+  .pgw { display:none; margin-top:14px; }
+  .pgw.on { display:block; }
+  .pgtrk { height:6px; background:var(--border); border-radius:3px; overflow:hidden; }
+  .pgfll { height:100%; background:var(--gold); border-radius:3px; transition:width .35s; width:0; }
+  .pglbl { font-size:11px; color:var(--muted); margin-top:6px; text-align:center; }
+
+  /* 로그 */
+  .logb { display:none; background:#0f1923; border-radius:10px; padding:12px 14px; max-height:150px; overflow-y:auto; font-family:monospace; font-size:11px; line-height:1.9; margin-top:14px; }
+  .logb.on { display:block; }
+  .lk  { color:#4ade80; display:block; }
+  .le  { color:#f87171; display:block; }
+  .li  { color:#93c5fd; display:block; }
+  .lw  { color:#fbbf24; display:block; }
+
+  /* 완료 배너 */
+  .okb { display:none; align-items:center; gap:12px; background:#e9f7f1; border:1px solid #6ee7b7; border-radius:10px; padding:14px 16px; margin-top:14px; }
+  .okb.on { display:flex; }
+  .okb-ic { font-size:26px; }
+  .okb-msg { flex:1; }
+  .okb-msg strong { font-size:13px; color:var(--green); display:block; margin-bottom:2px; }
+  .okb-msg a { font-size:11px; color:var(--navy); word-break:break-all; }
+  .bvisit { padding:8px 13px; background:var(--green); color:#fff; border:none; border-radius:8px; font-size:12px; font-weight:700; cursor:pointer; text-decoration:none; white-space:nowrap; }
+
+  /* 모달 버튼 */
+  .mact { display:flex; gap:10px; margin-top:18px; }
+  .bup { flex:1; padding:13px; background:var(--gold); color:#fff; border:none; border-radius:10px; font-size:14px; font-weight:700; cursor:pointer; font-family:inherit; transition:opacity .15s; }
+  .bup:disabled { opacity:.38; cursor:not-allowed; }
+  .bup:not(:disabled):hover { opacity:.88; }
+  .bcancel { padding:13px 18px; background:var(--bg); color:var(--muted); border:1px solid var(--border); border-radius:10px; font-size:13px; cursor:pointer; font-family:inherit; }
+  .bcancel:hover { background:#e4eaf2; }
+
+  /* 푸터 */
+  .footer { background:var(--navy-dark); padding:1.5rem 2rem; text-align:center; color:rgba(255,255,255,.4); font-size:12px; }
+
+  @media(max-width:600px){
+    .stats { grid-template-columns:1fr 1fr; }
+    .client-grid { grid-template-columns:1fr; }
+    .toolbar { flex-wrap:wrap; }
+    .mr { grid-template-columns:1fr; }
   }
 </style>
 </head>
 <body>
 
-<!-- 헤더 -->
 <div class="header">
   <div class="header-inner">
     <div class="logo">
       <div class="logo-circle">휘온</div>
-      <div>
-        <div class="logo-text">휘온세무회계</div>
-        <div class="logo-sub">WHION TAX & REALTY</div>
-      </div>
+      <div><div class="logo-text">휘온세무회계</div><div class="logo-sub">WHION TAX & REALTY</div></div>
     </div>
     <div class="header-right">보고서 포털 · 관리자 전용</div>
   </div>
 </div>
 
-<!-- 히어로 -->
 <div class="hero">
   <h1>고객사 법인세 보고서 포털</h1>
   <p>고객사별 · 연도별 보고서를 한곳에서 관리하고 링크로 전달하세요</p>
 </div>
 
-<!-- 검색/필터 -->
 <div class="toolbar">
   <div class="search-wrap">
     <span class="search-icon">🔍</span>
     <input type="text" id="searchInput" placeholder="고객사명으로 검색..." oninput="filterClients()">
   </div>
-  <button class="filter-btn active" onclick="filterYear('all', this)">전체</button>
-  <button class="filter-btn" onclick="filterYear('2025', this)">2025</button>
-  <button class="filter-btn" onclick="filterYear('2024', this)">2024</button>
+  <button class="filter-btn active" onclick="filterYear('all',this)">전체</button>
+  <button class="filter-btn" onclick="filterYear('2025',this)">2025</button>
+  <button class="filter-btn" onclick="filterYear('2024',this)">2024</button>
 </div>
 
-<!-- 메인 -->
 <div class="main">
 
-  <!-- 요약 수치 -->
   <div class="stats">
-    <div class="stat-card">
-      <div class="stat-icon blue">🏢</div>
-      <div>
-        <div class="stat-label">관리 고객사</div>
-        <div class="stat-value" id="totalClients">1</div>
-      </div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-icon gold">📄</div>
-      <div>
-        <div class="stat-label">전체 보고서</div>
-        <div class="stat-value" id="totalReports">1</div>
-      </div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-icon green">✅</div>
-      <div>
-        <div class="stat-label">발행 완료</div>
-        <div class="stat-value" id="liveReports">1</div>
-      </div>
-    </div>
+    <div class="stat-card"><div class="stat-icon blue">🏢</div><div><div class="stat-label">관리 고객사</div><div class="stat-value" id="nClients">1</div></div></div>
+    <div class="stat-card"><div class="stat-icon gold">📄</div><div><div class="stat-label">전체 보고서</div><div class="stat-value" id="nReports">1</div></div></div>
+    <div class="stat-card"><div class="stat-icon green">✅</div><div><div class="stat-label">발행 완료</div><div class="stat-value" id="nLive">1</div></div></div>
   </div>
 
   <div class="section-label">고객사 목록</div>
 
-  <!-- 고객사 카드 목록 -->
-  <div class="client-grid" id="clientGrid">
+  <div class="client-grid" id="cGrid">
 
     <!-- ✅ 대웅프라자 -->
     <div class="client-card" data-name="대웅프라자" data-years="2025">
       <div class="card-header">
         <div class="client-avatar">대웅</div>
-        <div>
-          <div class="client-name">(주)대웅프라자</div>
-          <div class="client-reg">750-81-00730 · 오국진 대표</div>
-        </div>
+        <div><div class="client-name">(주)대웅프라자</div><div class="client-reg">750-81-00730 · 오국진 대표</div></div>
       </div>
       <div class="card-body">
         <div class="year-list">
           <a class="year-item" href="./대웅프라자/2025.html" target="_blank" data-year="2025">
-            <div class="year-left">
-              <span class="year-badge">2025</span>
-              <span class="year-desc">법인세 및 결산 분석 보고서</span>
-            </div>
-            <div class="year-right">
-              <span class="status-dot live"></span>
-              <span class="link-icon">↗</span>
-            </div>
+            <div class="year-left"><span class="year-badge">2025</span><span class="year-desc">법인세 및 결산 분석 보고서</span></div>
+            <div class="year-right"><span class="status-dot live"></span><span class="link-icon">↗</span></div>
           </a>
         </div>
-        <div class="add-year">＋ 새 연도 보고서 추가</div>
+        <button class="add-year" onclick="openM('year','대웅프라자','(주)대웅프라자')">＋ 새 연도 보고서 추가</button>
       </div>
     </div>
 
-    <!-- 🔲 새 고객사 추가 안내 카드 -->
-    <div class="client-card" style="border: 2px dashed var(--border); background: transparent; box-shadow: none;">
-      <div class="card-header" style="border: none; justify-content: center; padding: 2rem 1.25rem;">
-        <div style="text-align: center;">
-          <div style="font-size: 32px; margin-bottom: 8px;">＋</div>
-          <div style="font-size: 14px; font-weight: 500; color: var(--muted);">새 고객사 보고서 추가</div>
-          <div style="font-size: 12px; color: #a0aec0; margin-top: 4px;">HTML 파일을 업로드하고<br>이 목록에 카드를 추가하세요</div>
+    <!-- ＋ 새 고객사 추가 카드 -->
+    <div class="client-card" id="addCard"
+      onclick="openM('client')"
+      ondragover="acOver(event)" ondragleave="acLeave(event)" ondrop="acDrop(event)">
+      <div class="card-header" style="border:none;justify-content:center;padding:2.4rem 1.25rem;">
+        <div style="text-align:center;pointer-events:none;">
+          <div style="font-size:36px;margin-bottom:10px" id="acIc">＋</div>
+          <div style="font-size:14px;font-weight:600;color:var(--muted)" id="acTi">새 고객사 보고서 추가</div>
+          <div style="font-size:12px;color:#a0aec0;margin-top:5px;line-height:1.65" id="acSb">HTML 파일을 드래그하거나<br>클릭하여 업로드하세요</div>
         </div>
       </div>
     </div>
@@ -368,41 +250,384 @@
   </div>
 </div>
 
-<!-- 푸터 -->
+<!-- ════════════ 업로드 모달 ════════════ -->
+<div class="overlay" id="ov" onclick="ovClick(event)">
+  <div class="modal">
+
+    <div class="mhd">
+      <div class="mhd-title" id="mTi">새 고객사 보고서 추가</div>
+      <button class="mhd-close" onclick="closeM()">✕</button>
+    </div>
+
+    <div class="mbody">
+
+      <!-- 토큰 -->
+      <div class="mf">
+        <label class="ml">GitHub 토큰 <span style="color:var(--red)">*</span></label>
+        <div class="tok-row">
+          <input type="password" class="mi" id="tokIn" placeholder="ghp_xxxxxxxxxxxx" oninput="tokReset()">
+          <button class="bxs bnavy" onclick="tokVer()">인증</button>
+          <button class="bxs bsave" onclick="tokSave()" title="브라우저에 저장/삭제">💾</button>
+        </div>
+        <div class="tok-msg" id="tokMsg"></div>
+      </div>
+
+      <!-- 고객사 정보 -->
+      <div class="mr">
+        <div>
+          <label class="ml">고객사명 <span style="color:var(--red)">*</span></label>
+          <input type="text" class="mi" id="mCl" placeholder="예: 한결기획" oninput="mUpd()">
+        </div>
+        <div>
+          <label class="ml">사업연도 <span style="color:var(--red)">*</span></label>
+          <input type="number" class="mi" id="mYr" value="2025" min="2020" max="2035" oninput="mUpd()">
+        </div>
+      </div>
+      <div class="mf" id="mRegR">
+        <label class="ml">사업자번호 · 대표자 <span style="color:#a0aec0;font-weight:400">(선택)</span></label>
+        <input type="text" class="mi" id="mReg" placeholder="000-00-00000 · 홍길동 대표">
+      </div>
+
+      <!-- 드롭존 -->
+      <div class="mf">
+        <label class="ml">HTML 파일 <span style="color:var(--red)">*</span></label>
+        <div class="dz" id="dz"
+          ondragover="dzOv(event)" ondragleave="dzLv()" ondrop="dzDp(event)"
+          onclick="document.getElementById('fIn').click()">
+          <input type="file" id="fIn" accept=".html" onchange="fSel(this.files[0])">
+          <div class="dz-ic" id="dzIc">📄</div>
+          <div class="dz-mn" id="dzMn">파일을 드래그하거나 클릭</div>
+          <div class="dz-sb" id="dzSb">.html 파일만 가능합니다</div>
+        </div>
+        <div class="fpill" id="fpill">
+          <span>📑</span>
+          <span class="fp-nm" id="fpNm">—</span>
+          <span class="fp-sz" id="fpSz">—</span>
+          <button class="fp-rm" onclick="fClr()">✕</button>
+        </div>
+      </div>
+
+      <!-- 경로 미리보기 -->
+      <div class="pbox" id="pbox">
+        <div class="pk">업로드 경로</div><div class="pv" id="pVal">—</div>
+        <div class="pk" style="margin-top:6px">배포 URL</div><div class="pv" id="pUrl" style="color:var(--muted)">—</div>
+      </div>
+
+      <!-- 진행바 -->
+      <div class="pgw" id="pgw"><div class="pgtrk"><div class="pgfll" id="pgf"></div></div><div class="pglbl" id="pgl"></div></div>
+
+      <!-- 로그 -->
+      <div class="logb" id="logb"></div>
+
+      <!-- 완료 배너 -->
+      <div class="okb" id="okb">
+        <span class="okb-ic">🎉</span>
+        <div class="okb-msg"><strong>업로드 완료!</strong><a id="okU" href="#" target="_blank">—</a></div>
+        <a class="bvisit" id="okBtn" href="#" target="_blank">열기 ↗</a>
+      </div>
+
+      <!-- 버튼 -->
+      <div class="mact">
+        <button class="bcancel" onclick="closeM()">취소</button>
+        <button class="bup" id="upBtn" onclick="doUp()" disabled>⬆ GitHub에 업로드</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="footer">
   휘온세무회계 · 권유진 대표세무사 · Tel: 02-6959-0169 · 서울 강남 테헤란로13길 8-5, 901호
 </div>
 
 <script>
-  let activeYear = 'all';
+/* ── 상수 ── */
+const OWNER  = 'whiontax', REPO = 'tax-reports', BR = 'main';
+const BASE   = 'https://whiontax.github.io/tax-reports';
 
-  function filterClients() {
-    const query = document.getElementById('searchInput').value.toLowerCase();
-    document.querySelectorAll('.client-card[data-name]').forEach(card => {
-      const name = card.dataset.name.toLowerCase();
-      const matchName = name.includes(query);
-      const matchYear = activeYear === 'all' || (card.dataset.years || '').includes(activeYear);
-      card.classList.toggle('hidden', !(matchName && matchYear));
-    });
-  }
+/* ── 상태 ── */
+let aYear = 'all', tokOK = false, curFile = null;
+let mMode = 'client', mFld = '', mFldLbl = '';
 
-  function filterYear(year, btn) {
-    activeYear = year;
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    filterClients();
-  }
-
-  // 링크 복사 기능 (연도 아이템 우클릭 시)
-  document.querySelectorAll('.year-item').forEach(item => {
-    item.addEventListener('contextmenu', e => {
-      e.preventDefault();
-      navigator.clipboard.writeText(item.href).then(() => {
-        alert('링크가 복사되었습니다:\n' + item.href);
-      });
-    });
+/* ── 검색/필터 ── */
+function filterClients() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  document.querySelectorAll('.client-card[data-name]').forEach(c => {
+    const ok = c.dataset.name.toLowerCase().includes(q) &&
+               (aYear==='all' || (c.dataset.years||'').includes(aYear));
+    c.classList.toggle('hidden', !ok);
   });
-</script>
+}
+function filterYear(y, btn) {
+  aYear = y;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  filterClients();
+}
+document.querySelectorAll('.year-item').forEach(a => {
+  a.addEventListener('contextmenu', e => {
+    e.preventDefault();
+    navigator.clipboard.writeText(a.href).then(() => alert('링크 복사됨:\n' + a.href));
+  });
+});
 
+/* ── ADD 카드 드래그앤드롭 ── */
+function acOver(e) {
+  e.preventDefault();
+  document.getElementById('addCard').classList.add('dov');
+  document.getElementById('acIc').textContent = '📄';
+  document.getElementById('acTi').textContent = '여기에 놓으세요';
+  document.getElementById('acSb').textContent = '.html 파일을 드롭하세요';
+}
+function acLeave() {
+  document.getElementById('addCard').classList.remove('dov');
+  document.getElementById('acIc').textContent = '＋';
+  document.getElementById('acTi').textContent = '새 고객사 보고서 추가';
+  document.getElementById('acSb').innerHTML   = 'HTML 파일을 드래그하거나<br>클릭하여 업로드하세요';
+}
+function acDrop(e) {
+  e.preventDefault(); acLeave();
+  const f = e.dataTransfer.files[0];
+  if (!f) return;
+  openM('client');
+  setTimeout(() => fSel(f), 60);
+}
+
+/* ── 모달 ── */
+function openM(mode, folder, label) {
+  mMode = mode || 'client'; mFld = folder || ''; mFldLbl = label || '';
+
+  if (mMode === 'year') {
+    document.getElementById('mTi').textContent    = `새 연도 보고서 — ${mFldLbl}`;
+    document.getElementById('mCl').value          = mFld;
+    document.getElementById('mCl').readOnly       = true;
+    document.getElementById('mCl').style.cssText  = 'background:#f4f6f9;color:var(--muted)';
+    document.getElementById('mRegR').style.display = 'none';
+  } else {
+    document.getElementById('mTi').textContent    = '새 고객사 보고서 추가';
+    document.getElementById('mCl').value          = '';
+    document.getElementById('mCl').readOnly       = false;
+    document.getElementById('mCl').style.cssText  = '';
+    document.getElementById('mRegR').style.display = '';
+  }
+
+  const saved = localStorage.getItem('whion_gh_token');
+  if (saved && !document.getElementById('tokIn').value) {
+    document.getElementById('tokIn').value = saved;
+    tokVer(true);
+  }
+
+  resetM();
+  document.getElementById('ov').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeM() {
+  document.getElementById('ov').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function ovClick(e) { if (e.target === document.getElementById('ov')) closeM(); }
+function resetM() {
+  fClr();
+  ['pbox','pgw','logb','okb'].forEach(id => document.getElementById(id).classList.remove('on'));
+  document.getElementById('logb').innerHTML = '';
+  chkReady();
+}
+
+/* ── 토큰 ── */
+function tokReset() { tokOK = false; document.getElementById('tokIn').classList.remove('tok-ok','tok-err'); setTM('',''); chkReady(); }
+async function tokVer(silent) {
+  const tok = document.getElementById('tokIn').value.trim();
+  if (!tok) return;
+  if (!silent) setTM('var(--muted)','인증 중...');
+  try {
+    const r = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}`, {
+      headers: { Authorization:`Bearer ${tok}`, 'X-GitHub-Api-Version':'2022-11-28' }
+    });
+    if (r.ok) {
+      tokOK = true;
+      document.getElementById('tokIn').classList.add('tok-ok'); document.getElementById('tokIn').classList.remove('tok-err');
+      setTM('var(--green)','✓ 인증 성공 — 저장소 접근 확인됨');
+    } else {
+      tokOK = false;
+      document.getElementById('tokIn').classList.add('tok-err'); document.getElementById('tokIn').classList.remove('tok-ok');
+      setTM('var(--red)','✗ 인증 실패 — 토큰 확인 (repo 권한 필요)');
+    }
+  } catch(e) { setTM('var(--red)','✗ 네트워크 오류'); }
+  chkReady();
+}
+function setTM(color, msg) { const el=document.getElementById('tokMsg'); el.style.color=color; el.textContent=msg; }
+function tokSave() {
+  const tok=document.getElementById('tokIn').value.trim(), sv=localStorage.getItem('whion_gh_token');
+  if (sv===tok) { localStorage.removeItem('whion_gh_token'); setTM('var(--muted)','토큰 삭제됨'); }
+  else          { localStorage.setItem('whion_gh_token',tok); setTM('var(--green)','✓ 브라우저에 저장됨'); }
+}
+
+/* ── 모달 내 드롭존 ── */
+function dzOv(e) { e.preventDefault(); document.getElementById('dz').classList.add('dov'); }
+function dzLv()  { document.getElementById('dz').classList.remove('dov'); }
+function dzDp(e) { e.preventDefault(); dzLv(); fSel(e.dataTransfer.files[0]); }
+
+function fSel(f) {
+  if (!f) return;
+  if (!f.name.endsWith('.html')) { alert('.html 파일만 업로드 가능합니다.'); return; }
+  curFile = f;
+  document.getElementById('dz').classList.add('done');
+  document.getElementById('dzIc').textContent = '✅';
+  document.getElementById('dzMn').textContent = '파일 선택됨';
+  document.getElementById('dzSb').textContent = '다른 파일로 바꾸려면 클릭';
+  document.getElementById('fpNm').textContent = f.name;
+  document.getElementById('fpSz').textContent = fmtB(f.size);
+  document.getElementById('fpill').classList.add('on');
+
+  if (mMode === 'client' && !document.getElementById('mCl').value) {
+    document.getElementById('mCl').value =
+      f.name.replace(/[_-]?\d{4}\.html$/i,'').replace(/\.html$/i,'').replace(/_/g,' ').trim();
+  }
+  mUpd();
+}
+function fClr() {
+  curFile = null;
+  document.getElementById('dz').classList.remove('done','dov');
+  document.getElementById('dzIc').textContent = '📄';
+  document.getElementById('dzMn').textContent = '파일을 드래그하거나 클릭';
+  document.getElementById('dzSb').textContent = '.html 파일만 가능합니다';
+  document.getElementById('fpill').classList.remove('on');
+  document.getElementById('fIn').value = '';
+  document.getElementById('pbox').classList.remove('on');
+  chkReady();
+}
+
+/* ── 미리보기 ── */
+function mUpd() {
+  const cl=document.getElementById('mCl').value.trim(), yr=document.getElementById('mYr').value.trim();
+  if (cl && yr && curFile) {
+    document.getElementById('pVal').textContent = `${cl}/${yr}.html`;
+    document.getElementById('pUrl').textContent = `${BASE}/${encodeURIComponent(cl)}/${yr}.html`;
+    document.getElementById('pbox').classList.add('on');
+  } else { document.getElementById('pbox').classList.remove('on'); }
+  chkReady();
+}
+function chkReady() {
+  const cl=document.getElementById('mCl').value.trim(), yr=document.getElementById('mYr').value.trim();
+  document.getElementById('upBtn').disabled = !(tokOK && curFile && cl && yr);
+}
+
+/* ── 업로드 ── */
+async function doUp() {
+  const tok=document.getElementById('tokIn').value.trim();
+  const cl =document.getElementById('mCl').value.trim();
+  const yr =document.getElementById('mYr').value.trim();
+  const reg=document.getElementById('mReg').value.trim();
+
+  showLog(); setP(10,'파일 읽는 중...');
+  aLog('i',`업로드 시작: ${cl}/${yr}.html`);
+
+  const b64  = await toB64(curFile);
+  const path = `${encodeURIComponent(cl)}/${yr}.html`;
+  const api  = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${path}`;
+  const hdrs = { Authorization:`Bearer ${tok}`, 'Content-Type':'application/json', 'X-GitHub-Api-Version':'2022-11-28' };
+
+  aLog('k',`파일 읽기 완료 (${fmtB(curFile.size)})`); setP(35,'SHA 확인 중...');
+
+  let sha = null;
+  try {
+    const c = await fetch(api, { headers: hdrs });
+    if (c.ok) { sha=(await c.json()).sha; aLog('w',`기존 파일 덮어쓰기 (SHA: ${sha.slice(0,8)}...)`); }
+    else aLog('i','신규 파일 생성');
+  } catch(e){}
+
+  setP(65,'GitHub에 업로드 중...');
+  const body = { message:`📊 ${cl} ${yr}년도 법인세 보고서 업로드`, content:b64, branch:BR };
+  if (sha) body.sha = sha;
+
+  try {
+    const res  = await fetch(api, { method:'PUT', headers:hdrs, body:JSON.stringify(body) });
+    const data = await res.json();
+    if (res.ok) {
+      setP(100,'완료!');
+      aLog('k',`✓ 업로드 성공! 커밋: ${data.commit.sha.slice(0,7)}`);
+      aLog('i',`배포 URL: ${BASE}/${path}`);
+      aLog('i','GitHub Pages 반영까지 약 30초~2분 소요');
+
+      const url = `${BASE}/${path}`;
+      document.getElementById('okU').textContent = url;
+      document.getElementById('okU').href  = url;
+      document.getElementById('okBtn').href = url;
+      document.getElementById('okb').classList.add('on');
+      insertCard(cl, yr, url, reg);
+    } else {
+      setP(0,'실패'); aLog('e',`업로드 실패 HTTP ${res.status}: ${data.message||''}`);
+    }
+  } catch(e) { setP(0,'오류'); aLog('e','네트워크 오류: '+e.message); }
+}
+
+/* ── 카드 삽입 ── */
+function insertCard(cl, yr, url, reg) {
+  const grid = document.getElementById('cGrid');
+  const addC = document.getElementById('addCard');
+
+  if (mMode === 'year') {
+    const card = document.querySelector(`.client-card[data-name="${mFld}"]`);
+    if (card) {
+      const a = document.createElement('a');
+      a.className='year-item'; a.href=url; a.target='_blank'; a.dataset.year=yr;
+      a.innerHTML=`<div class="year-left"><span class="year-badge">${yr}</span><span class="year-desc">법인세 및 결산 분석 보고서</span></div><div class="year-right"><span class="status-dot live"></span><span class="link-icon">↗</span></div>`;
+      a.addEventListener('contextmenu', e=>{ e.preventDefault(); navigator.clipboard.writeText(url).then(()=>alert('링크 복사됨:\n'+url)); });
+      card.querySelector('.year-list').appendChild(a);
+      card.dataset.years = (card.dataset.years ? card.dataset.years+',' : '') + yr;
+    }
+  } else {
+    const av = cl.replace(/^\(.*?\)/,'').replace(/주식회사|㈜|\(주\)/g,'').trim().slice(0,2) || cl.slice(0,2);
+    const el = document.createElement('div');
+    el.className='client-card'; el.dataset.name=cl; el.dataset.years=yr;
+    el.innerHTML=`
+      <div class="card-header">
+        <div class="client-avatar">${av}</div>
+        <div><div class="client-name">${cl}</div><div class="client-reg">${reg||'—'}</div></div>
+      </div>
+      <div class="card-body">
+        <div class="year-list">
+          <a class="year-item" href="${url}" target="_blank" data-year="${yr}">
+            <div class="year-left"><span class="year-badge">${yr}</span><span class="year-desc">법인세 및 결산 분석 보고서</span></div>
+            <div class="year-right"><span class="status-dot live"></span><span class="link-icon">↗</span></div>
+          </a>
+        </div>
+        <button class="add-year" onclick="openM('year','${cl}','${cl}')">＋ 새 연도 보고서 추가</button>
+      </div>`;
+    el.querySelector('.year-item').addEventListener('contextmenu', e=>{ e.preventDefault(); navigator.clipboard.writeText(url).then(()=>alert('링크 복사됨:\n'+url)); });
+    grid.insertBefore(el, addC);
+  }
+
+  // 통계 갱신
+  document.getElementById('nClients').textContent = document.querySelectorAll('.client-card[data-name]').length;
+  const nr = document.querySelectorAll('.year-item').length;
+  document.getElementById('nReports').textContent = nr;
+  document.getElementById('nLive').textContent    = nr;
+}
+
+/* ── 유틸 ── */
+function toB64(f){ return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result.split(',')[1]); r.onerror=rej; r.readAsDataURL(f); }); }
+function fmtB(b){ if(b<1024) return b+'B'; if(b<1048576) return (b/1024).toFixed(1)+'KB'; return (b/1048576).toFixed(2)+'MB'; }
+function showLog(){ document.getElementById('logb').classList.add('on'); }
+function aLog(t, msg){
+  const box=document.getElementById('logb');
+  const ts=new Date().toLocaleTimeString('ko-KR');
+  const ic={k:'✓',e:'✗',i:'·',w:'⚠'}[t]||'·';
+  const cls={k:'lk',e:'le',i:'li',w:'lw'}[t]||'li';
+  const sp=document.createElement('span'); sp.className=cls; sp.textContent=`[${ts}] ${ic} ${msg}`;
+  box.appendChild(sp); box.scrollTop=box.scrollHeight;
+}
+function setP(pct, lbl){
+  document.getElementById('pgw').classList.add('on');
+  document.getElementById('pgf').style.width=pct+'%';
+  document.getElementById('pgl').textContent=lbl;
+  if(pct>=100||pct===0) setTimeout(()=>document.getElementById('pgw').classList.remove('on'),2200);
+}
+
+/* 초기화 */
+window.addEventListener('load', ()=>{
+  const s=localStorage.getItem('whion_gh_token');
+  if(s) document.getElementById('tokIn').value=s;
+});
+</script>
 </body>
 </html>
