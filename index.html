@@ -426,73 +426,80 @@ function isDeletedYear(folder, year) {
 }
 
 async function loadClients() {
-  const grid = document.getElementById('cGrid');
-  const ts   = Date.now(); // 캐시 무력화용 타임스탬프
+  const ts      = Date.now();
+  const deleted = getDeletedList();
+
+  // GitHub API 헤더 — Cache-Control 헤더 제거 (preflight CORS 오류 방지)
+  const tok  = localStorage.getItem('whion_gh_token');
+  const hdrs = { 'X-GitHub-Api-Version': '2022-11-28' };
+  if (tok) hdrs['Authorization'] = `Bearer ${tok}`;
 
   try {
-    const tok = localStorage.getItem('whion_gh_token');
-    const hdrs = { 'X-GitHub-Api-Version': '2022-11-28', 'Cache-Control': 'no-cache' };
-    if (tok) hdrs['Authorization'] = `Bearer ${tok}`;
-
-    // 저장소 루트 디렉토리 목록 조회 (캐시 무력화 쿼리스트링 추가)
-    const r = await fetch(`${API}/repos/${OWNER}/${REPO}/contents/?t=${ts}`, { headers: hdrs });
-    if (!r.ok) throw new Error('저장소 접근 실패 (토큰 필요 또는 네트워크 오류)');
+    // 루트 조회 — URL 쿼리스트링으로 브라우저 캐시만 우회 (CORS-safe)
+    const r = await fetch(`${API}/repos/${OWNER}/${REPO}/contents/?_=${ts}`, { headers: hdrs });
+    if (!r.ok) throw new Error(`GitHub API ${r.status} — 토큰을 💾 저장 후 새로고침 해주세요`);
     const items = await r.json();
 
-    // 디렉토리만 필터 (고객사 폴더) + 삭제 블랙리스트 제외
-    const deleted = getDeletedList();
+    // 고객사 폴더 추출 + 블랙리스트 제외
     const folders = items.filter(i =>
       i.type === 'dir' &&
       !i.name.startsWith('.') &&
       !deleted.includes(i.name)
     );
 
-    // 각 폴더의 HTML 파일 조회 (병렬, 캐시 무력화)
+    // 각 폴더 처리 (병렬)
     const clients = await Promise.all(folders.map(async folder => {
-      const fr = await fetch(`${API}/repos/${OWNER}/${REPO}/contents/${encodeURIComponent(folder.name)}?t=${ts}`, { headers: hdrs });
-      if (!fr.ok) return null;
-      const files = await fr.json();
-      // 4자리 연도.html 파일만 유효 파일로 인정 + 삭제된 연도 제외
-      const htmlFiles = files.filter(f =>
-        f.type === 'file' &&
-        /^\d{4}\.html$/.test(f.name) &&
-        !deleted.includes(`${folder.name}/${f.name.replace('.html','')}`)
-      );
-      if (htmlFiles.length === 0) return null;
+      try {
+        const fr = await fetch(`${API}/repos/${OWNER}/${REPO}/contents/${encodeURIComponent(folder.name)}?_=${ts}`, { headers: hdrs });
+        if (!fr.ok) return null;
+        const files = await fr.json();
 
-      // HTML 파일에서 메타태그 읽기 시도
-      let reg = '', ceo = '';
-      if (htmlFiles.length > 0) {
+        // 4자리 연도.html만 유효, 삭제된 연도 제외
+        const htmlFiles = files.filter(f =>
+          f.type === 'file' &&
+          /^\d{4}\.html$/.test(f.name) &&
+          !deleted.includes(`${folder.name}/${f.name.replace('.html','')}`)
+        );
+        if (htmlFiles.length === 0) return null;
+
+        // 메타태그 읽기: raw.githubusercontent.com 사용 (CORS 문제 없음)
+        // 앞 4KB만 스트리밍으로 읽어서 <head> 파싱
+        let reg = '', ceo = '', displayName = folder.name;
         try {
-          const fr2 = await fetch(`${API}/repos/${OWNER}/${REPO}/contents/${encodeURIComponent(folder.name)}/${htmlFiles[0].name}`, { headers: hdrs });
-          if (fr2.ok) {
-            const fd = await fr2.json();
-            const html = decodeURIComponent(escape(atob(fd.content.replace(/\n/g,''))));
-            const regMatch = html.match(/<meta\s+name="client-reg"\s+content="([^"]+)"/i);
-            const ceoMatch = html.match(/<meta\s+name="client-ceo"\s+content="([^"]+)"/i);
-            const nameMatch = html.match(/<meta\s+name="client-name"\s+content="([^"]+)"/i);
-            if (regMatch) reg = regMatch[1];
-            if (ceoMatch) ceo = ceoMatch[1];
-            if (nameMatch) folder.displayName = nameMatch[1];
+          const rawUrl = `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BR}/${encodeURIComponent(folder.name)}/${htmlFiles[0].name}`;
+          const rr = await fetch(rawUrl);
+          if (rr.ok) {
+            const reader = rr.body.getReader();
+            let chunk = '';
+            while (chunk.length < 4096) {
+              const { value, done } = await reader.read();
+              if (done) break;
+              chunk += new TextDecoder().decode(value);
+            }
+            reader.cancel();
+            const regM  = chunk.match(/<meta\s+name="client-reg"\s+content="([^"]+)"/i);
+            const ceoM  = chunk.match(/<meta\s+name="client-ceo"\s+content="([^"]+)"/i);
+            const nameM = chunk.match(/<meta\s+name="client-name"\s+content="([^"]+)"/i);
+            if (regM)  reg  = regM[1];
+            if (ceoM)  ceo  = ceoM[1];
+            if (nameM) displayName = nameM[1];
           }
-        } catch(e) {}
-      }
+        } catch(e) { /* 메타태그 실패 시 폴더명 사용 */ }
 
-      return {
-        folder: folder.name,
-        displayName: folder.displayName || folder.name,
-        reg: reg ? `${reg}${ceo ? ' · ' + ceo + ' 대표' : ''}` : '',
-        years: htmlFiles.map(f => f.name.replace('.html','')).filter(n => /^\d{4}$/.test(n)).sort((a,b) => b-a)
-      };
+        return {
+          folder:      folder.name,
+          displayName,
+          reg: reg ? `${reg}${ceo ? ' · ' + ceo + ' 대표' : ''}` : '',
+          years: htmlFiles.map(f => f.name.replace('.html','')).sort((a,b) => b-a)
+        };
+      } catch(e) { return null; }
     }));
 
-    // null 제거 후 렌더링
-    const valid = clients.filter(Boolean);
-    renderGrid(valid);
+    renderGrid(clients.filter(Boolean));
 
   } catch(e) {
     document.getElementById('loadingWrap').innerHTML =
-      `<div style="color:var(--red);font-size:13px">⚠ 목록 로드 실패: ${e.message}<br><span style="color:var(--muted);font-size:11px">토큰을 저장하면 자동으로 인증됩니다</span></div>`;
+      `<div style="color:var(--red);font-size:13px">⚠ 목록 로드 실패: ${e.message}</div>`;
   }
 }
 
