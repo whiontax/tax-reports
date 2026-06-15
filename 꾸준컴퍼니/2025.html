@@ -171,6 +171,7 @@ td.num,th.num{text-align:right;font-family:'JetBrains Mono','Noto Sans KR',monos
   .main{max-width:100%;}
   .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
   .table-scroll>table{min-width:560px;}
+  .table-scroll>.compare-table{min-width:600px;}
   .kpi-grid{grid-template-columns:repeat(2,1fr);}
   .cover{padding:36px 24px 30px;}
   .report-page{padding:26px 22px;}
@@ -187,13 +188,6 @@ td.num,th.num{text-align:right;font-family:'JetBrains Mono','Noto Sans KR',monos
   .pl-table td,.compare-table td,.depr-table td{padding:8px 10px;}
   .tax-pay-amount{font-size:24px;}
   .prepay-amount{font-size:20px;}
-  /* 비교표·감가표 카드형 */
-  .compare-table.cardize thead,.depr-table.cardize thead{display:none;}
-  .compare-table.cardize tbody tr,.depr-table.cardize tbody tr{display:block;background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:8px;}
-  .compare-table.cardize td,.depr-table.cardize td{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:none;font-size:12px;}
-  .compare-table.cardize td::before,.depr-table.cardize td::before{content:attr(data-label);font-size:10.5px;font-weight:700;color:var(--ocean-deep);margin-right:10px;flex-shrink:0;}
-  .compare-table.cardize td.num,.depr-table.cardize td.num{justify-content:flex-end;font-family:'JetBrains Mono',monospace;font-weight:700;}
-  .compare-table.cardize td.num::before,.depr-table.cardize td.num::before{flex:1;text-align:left;}
 }
 @media screen and (max-width:380px){
   .pl-table,.calc-table,.compare-table,.depr-table{font-size:11px;}
@@ -341,7 +335,7 @@ td.num,th.num{text-align:right;font-family:'JetBrains Mono','Noto Sans KR',monos
     <div class="section-title">작년·올해 손익 비교 분석</div>
     <div class="section-sub">당기(2025년)·전기(2024년) 손익계산서 기준 주요 항목 비교입니다.</div>
     <div class="table-scroll">
-    <table class="compare-table cardize">
+    <table class="compare-table">
       <thead><tr><th>항목</th><th class="num">당기 (2025)</th><th class="num">전기 (2024)</th><th class="num">증감액</th><th class="num">증감률</th></tr></thead>
       <tbody>
         <tr class="cmp-major"><td data-label="항목">매출액(콘텐츠수입)</td><td data-label="당기" class="num">1,236,071,604</td><td data-label="전기" class="num">247,138,342</td><td data-label="증감액" class="num up">+988,933,262</td><td data-label="증감률" class="num up">+400.2%</td></tr>
@@ -463,7 +457,7 @@ td.num,th.num{text-align:right;font-family:'JetBrains Mono','Noto Sans KR',monos
       앞으로 비용 처리 가능한 잔여 금액(당기말 장부가액)은 <b class="num">7,863,419원</b>입니다.
     </div>
     <div class="table-scroll">
-    <table class="depr-table cardize">
+    <table class="depr-table">
       <thead><tr><th>자산유형</th><th class="num">회사계상상각비 (당기 비용)</th><th class="num">당기말 장부가액 (남은 비용처리 가능금액)</th></tr></thead>
       <tbody>
         <tr><td data-label="자산유형">비품</td><td data-label="회사계상상각비" class="num">1,973,252</td><td data-label="당기말 장부가액" class="num">7,863,419</td></tr>
@@ -699,6 +693,16 @@ td.num,th.num{text-align:right;font-family:'JetBrains Mono','Noto Sans KR',monos
     } catch (err) { setStatus('저장 실패: 네트워크 오류', 'err'); }
     finally { if (btn) btn.disabled = false; }
   }
+})();
+</script>
+<script>
+(function(){
+  document.querySelectorAll('.pl-table,.compare-table,.depr-table').forEach(function(t){
+    var p=t.parentElement;
+    if(p&&p.classList.contains('table-scroll'))return;
+    var w=document.createElement('div');w.className='table-scroll';
+    t.parentNode.insertBefore(w,t);w.appendChild(t);
+  });
 })();
 </script>
 </body>
