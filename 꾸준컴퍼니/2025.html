@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html lang="ko"><head>
+<html lang="ko">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>종합소득세 분석 보고서 - 김경동 (2025)</title>
 <meta name="client-name" content="김경동">
 <meta name="client-reg" content="950912-1******">
 <meta name="client-ceo" content="김경동">
+<meta name="client-biz" content="꾸준컴퍼니">
 <meta name="client-birth" content="950912">
 <meta name="report-year" content="2025">
-<meta name="gh-path" content="김경동/2025.html">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" rel="stylesheet">
+<meta name="gh-path" content="꾸준컴퍼니/2025.html">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --ocean-deep:#0a4d8c; --ocean-mid:#1976d2; --ocean-light:#4dabf5;
@@ -21,188 +23,210 @@
   --grad-line:linear-gradient(90deg,#1976d2,#26a69a);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-html,body{background:var(--bg);font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;}
+body{font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;}
 .num{font-family:'JetBrains Mono','Noto Sans KR',monospace;font-feature-settings:'tnum';}
-.main{max-width:794px;margin:0 auto;background:var(--card);box-shadow:0 4px 30px rgba(10,77,140,.08);}
+.main{max-width:794px;margin:0 auto;background:var(--card);box-shadow:0 0 40px rgba(0,0,0,.08);}
 
-/* ── 커버 ── */
-.cover{background:var(--grad-hero);color:#fff;padding:44px 40px 36px;position:relative;overflow:hidden;}
-.cover::after{content:"";position:absolute;right:-60px;top:-60px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.06);}
-.cover-badge{display:inline-block;background:#c8973a;color:#fff;font-size:11px;font-weight:700;letter-spacing:1px;padding:5px 13px;border-radius:20px;margin-bottom:18px;}
-.cover h1{font-size:30px;font-weight:900;letter-spacing:-.5px;margin-bottom:8px;}
-.cover-subtitle{font-size:14px;opacity:.95;font-weight:500;margin-bottom:26px;}
-.cover-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.18);border-radius:12px;overflow:hidden;}
-.cg-cell{background:rgba(255,255,255,.10);padding:13px 16px;}
-.cg-cell.span2{grid-column:1 / -1;}
-.cg-k{font-size:11px;opacity:.82;margin-bottom:3px;}
-.cg-v{font-size:15px;font-weight:700;}
-.cover-firm{margin-top:22px;font-size:12px;opacity:.9;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;}
+/* 커버 */
+.cover{background:var(--grad-hero);color:#fff;padding:48px 44px 40px;position:relative;overflow:hidden;}
+.cover::after{content:"";position:absolute;right:-60px;top:-60px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.07);}
+.cover-badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:2px;background:linear-gradient(135deg,#d4af37,#c8973a);padding:6px 14px;border-radius:20px;margin-bottom:22px;}
+.cover h1{font-size:34px;font-weight:900;letter-spacing:-1px;margin-bottom:14px;}
+.cover-subtitle{font-size:15px;font-weight:500;opacity:.95;margin-bottom:30px;}
+.cover-firm{font-size:13px;opacity:.85;margin-top:6px;}
+.cover-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.18);border-radius:12px;overflow:hidden;margin-top:26px;}
+.cover-cell{background:rgba(10,77,140,.45);padding:13px 16px;}
+.cover-cell.span2{grid-column:span 2;}
+.cover-cell .ck{font-size:10.5px;opacity:.75;letter-spacing:.5px;margin-bottom:3px;}
+.cover-cell .cv{font-size:14px;font-weight:700;}
 
-/* ── 섹션 공통 ── */
-.section{padding:30px 40px;}
-.section-title{font-size:19px;font-weight:900;color:var(--ocean-deep);display:flex;align-items:center;gap:9px;margin-bottom:4px;}
-.section-title::before{content:"";width:5px;height:20px;background:var(--grad-line);border-radius:3px;}
-.section-sub{font-size:12.5px;color:var(--text-light);margin:0 0 18px 14px;}
+/* KPI */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:26px 44px;}
+.kpi-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px 14px;text-align:center;}
+.kpi-card .kl{font-size:11px;color:var(--text-light);margin-bottom:7px;}
+.kpi-card .kv{font-size:18px;font-weight:800;color:var(--ocean-deep);}
+.kpi-card.refund .kv{color:var(--forest-mid);}
+.kpi-card .ku{font-size:11px;color:var(--text-mute);margin-top:2px;}
 
-/* ── KPI ── */
-.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
-.kpi-card{background:var(--ocean-pale);border:1px solid var(--border);border-radius:12px;padding:15px 14px;}
-.kpi-card.green{background:var(--forest-pale);border-color:#bbf7d0;}
-.kpi-k{font-size:11px;color:var(--text-light);margin-bottom:7px;font-weight:500;}
-.kpi-v{font-size:18px;font-weight:900;color:var(--ocean-deep);letter-spacing:-.5px;}
-.kpi-card.green .kpi-v{color:var(--forest-deep);}
-.kpi-unit{font-size:11px;font-weight:500;color:var(--text-mute);}
+/* 섹션 */
+.report-page{padding:30px 44px;border-top:1px solid #eef2f7;}
+.section-title{font-size:20px;font-weight:800;color:var(--ocean-deep);display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+.section-title::before{content:"";width:5px;height:22px;background:var(--grad-line);border-radius:3px;}
+.section-sub{font-size:12.5px;color:var(--text-light);margin-bottom:18px;}
 
-/* ── 성실 안내문 ── */
-.sincere-notice{background:#fff;border:1px solid var(--border);border-radius:14px;padding:24px 26px;}
-.sincere-notice-head{display:flex;align-items:center;gap:9px;font-size:16px;font-weight:900;color:var(--ocean-deep);margin-bottom:16px;}
-.sincere-icon{font-size:18px;}
-.sincere-select-box{background:var(--teal-pale);border-left:4px solid var(--teal-deep);border-radius:8px;padding:14px 16px;font-size:13.5px;line-height:1.7;margin-bottom:14px;}
-.sincere-explain{font-size:13px;color:var(--text);line-height:1.8;margin-bottom:16px;}
-.sincere-basis{border:1px solid var(--border);border-radius:10px;overflow:hidden;}
-.sincere-basis-row{display:flex;justify-content:space-between;align-items:center;padding:11px 16px;font-size:13px;border-bottom:1px solid var(--border);}
+/* 성실 안내 */
+.sincere-notice-head{display:flex;align-items:center;gap:8px;font-size:17px;font-weight:800;color:var(--ocean-deep);margin-bottom:14px;}
+.sincere-select-box{background:var(--ocean-pale);border-left:4px solid var(--ocean-mid);border-radius:8px;padding:15px 18px;font-size:14px;line-height:1.7;margin-bottom:16px;}
+.sincere-explain{font-size:13px;color:var(--text);line-height:1.8;background:#fafcff;border:1px solid var(--border);border-radius:8px;padding:15px 18px;margin-bottom:16px;}
+.sincere-basis{border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px;}
+.sincere-basis-row{display:flex;justify-content:space-between;align-items:center;padding:11px 16px;border-bottom:1px solid #eef2f7;font-size:13px;}
 .sincere-basis-row:last-child{border-bottom:none;}
 .sincere-basis-row span{color:var(--text-light);}
-.sincere-basis-row b{color:var(--text);font-weight:700;}
-.sincere-basis-row.highlight{background:var(--forest-pale);}
-.sincere-basis-row.highlight b{color:var(--forest-deep);font-weight:900;}
-.sincere-deadline{margin-top:14px;background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:12px 16px;font-size:13px;color:#9a3412;}
+.sincere-basis-row b{font-weight:700;color:var(--text);}
+.sincere-basis-row.highlight{background:var(--teal-pale);}
+.sincere-basis-row.highlight b{color:var(--teal-deep);}
+.sincere-deadline{background:var(--forest-pale);border:1px solid #bbf7d0;border-radius:8px;padding:13px 16px;font-size:13.5px;text-align:center;color:var(--forest-deep);}
 
-/* ── 세금납부 카드 ── */
-.refund-hero{background:var(--forest-pale);border:2px solid #86efac;border-radius:16px;padding:26px;text-align:center;margin-bottom:18px;}
-.refund-hero .rh-label{font-size:13px;color:var(--forest-mid);font-weight:700;margin-bottom:8px;}
-.refund-hero .rh-amount{font-size:40px;font-weight:900;color:var(--forest-deep);letter-spacing:-1px;}
-.refund-hero .rh-amount .arrow{font-size:30px;}
-.refund-hero .rh-tag{display:inline-block;margin-top:10px;background:var(--forest-mid);color:#fff;font-size:12px;font-weight:700;padding:5px 16px;border-radius:20px;}
-.refund-hero .rh-note{font-size:12px;color:var(--text-light);margin-top:10px;}
-.tax-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px;}
-.tax-pay-card{border:1px solid var(--border);border-radius:12px;padding:16px;background:#fff;}
-.tax-pay-card.onetime{border-color:#bfdbfe;}
-.tax-pay-label{font-size:12px;color:var(--text-light);font-weight:600;margin-bottom:8px;}
-.tax-pay-amount{font-size:20px;font-weight:900;color:var(--ocean-deep);}
-.tax-pay-amount.green{color:var(--forest-deep);}
-.tax-pay-date{font-size:11px;color:var(--text-mute);margin-top:6px;line-height:1.5;}
-.tax-pay-tag{display:inline-block;font-size:10.5px;font-weight:700;padding:3px 10px;border-radius:14px;margin-top:8px;}
-.tag-ot{background:#dbeafe;color:#1e40af;}
-.tag-rf{background:#dcfce7;color:#166534;}
-.prepay-card{background:var(--ocean-pale);border:1px solid #bfdbfe;border-radius:12px;padding:18px 20px;}
-.prepay-label{font-size:12px;font-weight:700;color:var(--ocean-deep);margin-bottom:6px;}
+/* 납부/환급 카드 */
+.tax-pay-card{border-radius:14px;padding:22px 24px;margin-bottom:14px;position:relative;}
+.tax-pay-card.refund{background:var(--forest-pale);border:2px solid var(--forest-mid);}
+.tax-pay-card.onetime{background:#f8fafc;border:1px solid var(--border);}
+.tax-pay-label{font-size:13px;font-weight:600;color:var(--text-light);margin-bottom:6px;}
+.tax-pay-amount{font-size:30px;font-weight:900;letter-spacing:-1px;}
+.tax-pay-card.refund .tax-pay-amount{color:var(--forest-mid);}
+.tax-pay-card.onetime .tax-pay-amount{color:var(--ocean-deep);font-size:22px;}
+.tax-pay-date{font-size:12px;color:var(--text-light);margin-top:6px;}
+.tax-pay-tag{position:absolute;top:18px;right:20px;font-size:11px;font-weight:700;padding:5px 12px;border-radius:14px;}
+.tag-refund{background:var(--forest-mid);color:#fff;}
+.tag-ot{background:#e2e8f0;color:#475569;}
+.refund-arrow{color:var(--forest-mid);font-weight:900;}
+.prepay-card{background:#fff;border:1.5px dashed var(--ocean-light);border-radius:12px;padding:18px 22px;margin-top:8px;}
+.prepay-label{font-size:12.5px;font-weight:700;color:var(--ocean-mid);margin-bottom:6px;}
 .prepay-amount{font-size:24px;font-weight:900;color:var(--ocean-deep);}
 .prepay-note{font-size:11.5px;color:var(--text-light);margin-top:8px;line-height:1.6;}
 
-/* ── 비교표 / 손익표 / 산정표 ── */
+/* 표 공통 */
+.table-scroll{width:100%;margin-bottom:8px;}
 table{width:100%;border-collapse:collapse;font-size:12.5px;}
-.compare-table th,.pl-table th,.calc-table th,.depr-table th{background:#eef2f7;color:var(--text);font-weight:700;padding:9px 12px;text-align:right;border:1px solid var(--border);}
-.compare-table th:first-child,.pl-table th:first-child,.calc-table th:first-child,.depr-table th:first-child{text-align:left;}
-.compare-table td,.pl-table td,.calc-table td,.depr-table td{padding:8px 12px;border:1px solid var(--border);}
-.num.up{color:var(--danger);}
-.num.down{color:var(--ocean-mid);}
-td.num,th.num{text-align:right;}
-.compare-table .cmp-major td,.pl-table .pl-major td{background:#f5f8fc;font-weight:700;}
-.compare-table .cmp-result td,.pl-table .pl-result td{background:var(--ocean-pale);font-weight:900;color:var(--ocean-deep);}
-.pl-table .pl-sub td:first-child{padding-left:26px;color:var(--text-light);}
-.pl-acct{width:auto;}
-.cmp-conv{margin-top:12px;background:var(--forest-pale);border:1px solid #bbf7d0;border-radius:8px;padding:11px 15px;font-size:13px;color:var(--forest-deep);font-weight:700;}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid #eef2f7;}
+th{background:#f1f5f9;font-weight:700;color:#475569;font-size:11.5px;}
+td.num,th.num{text-align:right;font-family:'JetBrains Mono','Noto Sans KR',monospace;}
+.up{color:var(--danger);font-weight:700;}
+.down{color:var(--forest-mid);font-weight:700;}
 
-/* 산정 내역서 */
-.calc-table .calc-row td{border:1px solid var(--border);}
-.calc-table .ci-no{width:34px;text-align:center;color:var(--text-mute);font-weight:700;}
-.calc-table .ci-name{font-weight:600;}
-.calc-table .ci-sub td:first-child{padding-left:30px;color:var(--text-light);font-weight:400;}
-.calc-table .ci-sub td{background:#fafcfe;font-size:12px;}
-.calc-table .ci-result td{background:var(--forest-pale);font-weight:900;color:var(--forest-deep);}
-.calc-table .ci-std td:nth-child(2){font-weight:700;}
-.badge-rf{display:inline-block;background:#dcfce7;color:#166534;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:6px;}
+/* 손익표 */
+.pl-table .pl-major td{font-weight:800;background:#f6f9fd;color:var(--ocean-deep);}
+.pl-table .pl-sub td:first-child{padding-left:28px;color:var(--text-light);}
+.pl-table .pl-result td{font-weight:800;background:var(--ocean-pale);color:var(--ocean-deep);border-top:2px solid var(--ocean-mid);}
+.pl-amt{text-align:right;}
 
-/* ── 사업장 카드 ── */
-.biz-card{border:1px solid var(--border);border-radius:14px;padding:20px 22px;background:#fff;}
-.biz-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
-.biz-name{font-size:15px;font-weight:900;color:var(--ocean-deep);}
-.biz-badge{font-size:11px;font-weight:700;padding:3px 12px;border-radius:14px;}
-.biz-badge.up{background:#dcfce7;color:#166534;}
-.biz-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
-.biz-stat{background:var(--ocean-pale);border-radius:9px;padding:11px 13px;}
-.biz-stat .bs-k{font-size:11px;color:var(--text-light);margin-bottom:4px;}
-.biz-stat .bs-v{font-size:15px;font-weight:900;color:var(--ocean-deep);}
-.biz-meta{font-size:12px;color:var(--text-light);margin-top:12px;}
+/* 비교표 */
+.compare-table .cmp-major td{font-weight:800;background:#f6f9fd;}
+.compare-table .cmp-result td{font-weight:800;background:var(--teal-pale);border-top:2px solid var(--teal-deep);}
 
-/* ── 감가상각 ── */
-.depr-summary{background:var(--ocean-pale);border-radius:10px;padding:14px 18px;font-size:13.5px;line-height:1.7;margin-bottom:14px;}
-.depr-table .depr-total td{background:var(--ocean-pale);font-weight:900;color:var(--ocean-deep);}
-.depr-table .depr-sub td:first-child{padding-left:26px;color:var(--text-light);font-weight:400;}
+/* 산정 16단계 */
+.calc-table .calc-step td:first-child{font-weight:700;}
+.calc-table .indent td:first-child{padding-left:30px;color:var(--text-light);font-size:11.5px;}
+.calc-table .calc-key td{background:#f6f9fd;font-weight:800;color:var(--ocean-deep);}
+.calc-table .calc-final td{background:var(--forest-pale);font-weight:800;color:var(--forest-deep);border-top:2px solid var(--forest-mid);}
+.calc-no{display:inline-block;width:22px;height:22px;line-height:22px;text-align:center;background:var(--ocean-mid);color:#fff;border-radius:50%;font-size:11px;font-weight:700;margin-right:8px;}
 
-/* ── 공제·감면 카드 ── */
-.credit-group-label{font-size:13.5px;font-weight:900;color:var(--ocean-deep);margin:18px 0 10px;padding-bottom:5px;border-bottom:2px solid var(--ocean-pale);}
-.credit-card{border:1px solid var(--border);border-radius:12px;margin-bottom:11px;overflow:hidden;}
-.credit-head{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:#f5f8fc;}
-.credit-name{font-size:13.5px;font-weight:800;color:var(--text);}
-.credit-amount{font-size:15px;font-weight:900;color:var(--ocean-deep);}
-.credit-amount.green{color:var(--forest-deep);}
-.credit-badge{font-size:10px;font-weight:700;padding:2px 9px;border-radius:10px;margin-left:8px;}
-.cb-min-out{background:#dcfce7;color:#166534;}
-.credit-body{padding:6px 16px 12px;}
-.credit-row{display:flex;gap:12px;padding:6px 0;font-size:12.5px;border-bottom:1px dashed var(--border);}
+/* 감가상각 */
+.depr-summary{background:var(--ocean-pale);border-radius:8px;padding:14px 18px;font-size:13.5px;line-height:1.7;margin-bottom:14px;}
+.depr-table .depr-total td{font-weight:800;background:var(--teal-pale);border-top:2px solid var(--teal-deep);}
+
+/* 공제감면 카드 */
+.credit-card{border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:14px;}
+.credit-head{display:flex;justify-content:space-between;align-items:center;background:var(--ocean-pale);padding:13px 18px;}
+.credit-name{font-size:14px;font-weight:700;color:var(--ocean-deep);}
+.credit-amount{font-size:15px;font-weight:800;color:var(--ocean-deep);}
+.credit-body{padding:6px 18px 12px;}
+.credit-row{display:flex;gap:14px;padding:8px 0;border-bottom:1px solid #f1f5f9;font-size:12.5px;}
 .credit-row:last-child{border-bottom:none;}
-.credit-k{flex:0 0 92px;color:var(--text-light);font-weight:600;}
+.credit-k{flex-shrink:0;width:92px;color:var(--text-light);font-weight:600;}
+.badge{display:inline-block;font-size:10.5px;font-weight:700;padding:3px 10px;border-radius:12px;margin-left:8px;}
+.badge-green{background:#dcfce7;color:var(--forest-deep);}
+.badge-yellow{background:#fef3c7;color:#92400e;}
+.badge-red{background:#fee2e2;color:#991b1b;}
+.badge-blue{background:#dbeafe;color:#1e40af;}
 
-/* ── 건보 카드 ── */
-.health-card{border:1px solid var(--border);border-radius:14px;padding:20px 22px;background:#fff;margin-bottom:14px;}
-.health-type{font-size:14px;font-weight:900;color:var(--teal-deep);margin-bottom:14px;}
-.health-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+/* 건보 카드 */
+.health-card{border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:14px;}
+.health-type{font-size:14px;font-weight:800;color:var(--ocean-deep);margin-bottom:14px;}
+.health-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
 .health-stat-label{font-size:11px;color:var(--text-light);margin-bottom:4px;}
-.health-stat-val{font-size:15px;font-weight:900;color:var(--text);}
+.health-stat-val{font-size:16px;font-weight:800;color:var(--text);}
 .health-stat-val.highlight{color:var(--teal-deep);}
-.health-note{font-size:11.5px;color:var(--text-light);margin-top:14px;line-height:1.8;background:var(--teal-pale);border-radius:8px;padding:12px 14px;}
-.ins-ref-table{margin-top:14px;}
-.ins-ref-table td{font-size:12px;padding:7px 12px;border:1px solid var(--border);}
-.ins-ref-table td:first-child{background:#f5f8fc;font-weight:600;width:40%;}
+.health-note{font-size:11.5px;color:var(--text-light);line-height:1.7;margin-top:14px;background:#fafcff;border-radius:8px;padding:11px 14px;}
 
-/* ── 세무조정 ── */
-.adj-table td{font-size:12.5px;padding:9px 12px;border:1px solid var(--border);}
-.adj-table th{background:#eef2f7;font-weight:700;padding:9px 12px;border:1px solid var(--border);text-align:left;}
-.proc-badge{font-size:10.5px;font-weight:700;padding:2px 9px;border-radius:10px;}
-.pb-out{background:#fee2e2;color:#b91c1c;}
+/* 코멘트 */
+.comment{background:linear-gradient(135deg,#fafcff,#f4f8fc);border-left:4px solid var(--teal-deep);border-radius:8px;padding:15px 18px;font-size:13px;line-height:1.8;color:var(--text);margin-top:14px;}
+.comment-label{font-size:11px;font-weight:700;color:var(--teal-deep);letter-spacing:.5px;margin-bottom:6px;}
 
-/* ── 코멘트 ── */
-.comment{background:var(--ocean-pale);border-left:4px solid var(--ocean-mid);border-radius:0 10px 10px 0;padding:14px 18px;font-size:13px;line-height:1.8;color:var(--text);margin-top:14px;}
+/* 푸터 */
+.footer{background:var(--ocean-deep);color:#fff;padding:34px 44px;text-align:center;}
+.footer-firm{font-size:16px;font-weight:800;margin-bottom:8px;}
+.footer-slogan{font-size:13px;opacity:.9;margin-bottom:6px;}
+.footer-sign{font-size:13px;opacity:.95;margin-bottom:16px;}
+.footer-contact{font-size:11.5px;opacity:.8;line-height:1.8;border-top:1px solid rgba(255,255,255,.2);padding-top:14px;}
 
-/* ── 푸터 ── */
-.footer{background:var(--ocean-deep);color:#fff;padding:34px 40px;text-align:center;}
-.footer .ft-firm{font-size:16px;font-weight:900;margin-bottom:8px;}
-.footer .ft-slogan{font-size:13px;opacity:.92;margin-bottom:6px;}
-.footer .ft-sign{font-size:13px;font-weight:700;margin-bottom:16px;}
-.footer .ft-contact{font-size:11.5px;opacity:.85;line-height:1.8;}
-
-@media (max-width:720px){
-  .kpi-row,.biz-grid,.health-grid,.tax-cards{grid-template-columns:1fr 1fr;}
-  .cover-grid{grid-template-columns:1fr;}
-  .section{padding:24px 20px;}
-  .cover{padding:32px 22px;}
-}
-
-/* ════════ A4 인쇄 표준 ════════ */
-@page{ size:A4 portrait; margin:12mm 14mm; }
+/* ===== @page + @media print (인쇄 최우선 불변) ===== */
+@page{size:A4 portrait;margin:12mm 14mm;}
 @media print{
-  *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
-  html,body{ background:#fff !important; }
-  #adminBar,.pw-gate,.no-print,.pdf-btn,.pdf-modal{ display:none !important; }
-  .main{ max-width:100% !important; margin:0 !important; box-shadow:none !important; }
-  .report-page{ break-before:auto; page-break-before:auto; border-bottom:none; }
-  .force-break{ break-before:page; page-break-before:always; }
-  h1,h2,h3,.section-title,.section-title-bar,.section-sub,
-  .sincere-notice-head,.credit-group-label{ break-after:avoid; page-break-after:avoid; }
-  .tax-card-wrap,.kpi-card,.biz-card,.health-card,.credit-card,
-  .comment,.sincere-select-box,.sincere-basis,.pay-timeline,.prepay-card,
-  .depr-summary,.calc-row,thead,tr{ break-inside:avoid; page-break-inside:avoid; }
-  .calc-table,.pl-table,.compare-table,.depr-table{ break-inside:auto; }
-  thead{ display:table-header-group; }
-  p,.health-note,.section-sub,.sincere-explain{ orphans:3; widows:3; }
+  *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
+  html,body{background:#fff !important;}
+  #adminBar,.pw-gate,.no-print{display:none !important;}
+  .main{max-width:100% !important;margin:0 !important;box-shadow:none !important;}
+  .report-page{break-before:auto;page-break-before:auto;border-bottom:none;}
+  .force-break{break-before:page;page-break-before:always;}
+  h1,h2,h3,.section-title,.section-sub,.sincere-notice-head,.credit-name{break-after:avoid;page-break-after:avoid;}
+  .kpi-card,.credit-card,.health-card,.comment,.sincere-select-box,.sincere-basis,.prepay-card,.depr-summary,.calc-row,thead,tr{break-inside:avoid;page-break-inside:avoid;}
+  .calc-table,.pl-table,.compare-table,.depr-table{break-inside:auto;}
+  thead{display:table-header-group;}
+  p,.health-note,.section-sub,.sincere-explain{orphans:3;widows:3;}
 }
+
+/* ===== @media screen (모바일 — 인쇄 무간섭) ===== */
+@media screen and (max-width:720px){
+  .main{max-width:100%;}
+  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .table-scroll>table{min-width:560px;}
+  .kpi-grid{grid-template-columns:repeat(2,1fr);}
+  .cover{padding:36px 24px 30px;}
+  .report-page{padding:26px 22px;}
+}
+@media screen and (max-width:480px){
+  .section-title{font-size:16px;}
+  .section-sub{font-size:11.5px;}
+  .kpi-grid{grid-template-columns:1fr;}
+  .cover h1{font-size:26px;}
+  .cover-grid{grid-template-columns:repeat(2,1fr);}
+  .health-grid{grid-template-columns:1fr;}
+  .pl-table,.calc-table,.compare-table,.depr-table{font-size:11.5px;}
+  .pl-table th,.compare-table th,.depr-table th{font-size:10.5px;padding:8px 10px;}
+  .pl-table td,.compare-table td,.depr-table td{padding:8px 10px;}
+  .tax-pay-amount{font-size:24px;}
+  .prepay-amount{font-size:20px;}
+  /* 비교표·감가표 카드형 */
+  .compare-table.cardize thead,.depr-table.cardize thead{display:none;}
+  .compare-table.cardize tbody tr,.depr-table.cardize tbody tr{display:block;background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:8px;}
+  .compare-table.cardize td,.depr-table.cardize td{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:none;font-size:12px;}
+  .compare-table.cardize td::before,.depr-table.cardize td::before{content:attr(data-label);font-size:10.5px;font-weight:700;color:var(--ocean-deep);margin-right:10px;flex-shrink:0;}
+  .compare-table.cardize td.num,.depr-table.cardize td.num{justify-content:flex-end;font-family:'JetBrains Mono',monospace;font-weight:700;}
+  .compare-table.cardize td.num::before,.depr-table.cardize td.num::before{flex:1;text-align:left;}
+}
+@media screen and (max-width:380px){
+  .pl-table,.calc-table,.compare-table,.depr-table{font-size:11px;}
+  .tax-pay-amount{font-size:22px;}
+}
+
+/* PW 게이트 */
+.pw-gate{position:fixed;inset:0;z-index:9999;background:linear-gradient(135deg,#0a4d8c 0%,#1976d2 50%,#26a69a 100%);display:flex;align-items:center;justify-content:center;padding:20px;}
+.pw-card{background:#fff;border-radius:16px;padding:40px 32px;max-width:380px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.25);text-align:center;}
+.pw-brand{font-size:14px;font-weight:700;color:#0a4d8c;letter-spacing:1px;}
+.pw-divider{width:40px;height:3px;background:#c8973a;margin:12px auto 20px;border-radius:2px;}
+.pw-title{font-size:17px;font-weight:700;color:#1e2a3a;margin:0 0 16px;}
+.pw-desc{font-size:13px;color:#5a6a7e;line-height:1.6;margin:0 0 20px;}
+.pw-desc strong{color:#1e2a3a;}
+.pw-hint{font-size:12px;color:#5a6a7e;margin:0 0 12px;}
+#pwInput{width:100%;padding:14px 16px;font-size:18px;text-align:center;letter-spacing:8px;border:1.5px solid #dce3ed;border-radius:10px;box-sizing:border-box;outline:none;transition:border-color .2s;}
+#pwInput:focus{border-color:#1976d2;}
+.pw-error{font-size:12px;color:#c0392b;min-height:18px;margin:8px 0;font-weight:600;}
+.pw-btn{width:100%;padding:14px;font-size:14px;font-weight:700;background:linear-gradient(135deg,#c8973a 0%,#b88830 100%);color:#fff;border:none;border-radius:10px;cursor:pointer;transition:transform .1s;}
+.pw-btn:active{transform:translateY(1px);}
+.pw-footer{font-size:11px;color:#5a6a7e;margin-top:18px;}
+@media screen and (max-width:480px){.pw-card{padding:32px 24px;}}
+.comment.admin-editing{outline:2px dashed #c8973a;outline-offset:3px;background:#fffdf5;cursor:text;}
+.comment.admin-editing:focus{outline-color:#1976d2;}
+.admin-bar{position:fixed;left:0;right:0;bottom:0;z-index:10000;background:#0a4d8c;color:#fff;display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:12px 20px;box-shadow:0 -4px 20px rgba(0,0,0,.25);font-size:13px;}
+.admin-bar-btn{background:#c8973a;color:#fff;border:none;border-radius:8px;padding:9px 18px;font-size:13px;font-weight:700;cursor:pointer;}
+.admin-bar-btn:active{transform:translateY(1px);}
+.admin-bar-btn:disabled{opacity:.6;cursor:default;}
+.admin-bar-status.is-ok{color:#7ee2a8;}.admin-bar-status.is-err{color:#ffb3ab;}.admin-bar-status.is-wait{color:#ffe08a;}
 </style>
 </head>
 <body>
 
-<!-- ════════ PW 게이트 ════════ -->
 <div id="pwGate" class="pw-gate">
   <div class="pw-card">
     <div class="pw-brand">휘온세무회계</div>
@@ -220,195 +244,182 @@ td.num,th.num{text-align:right;}
 <div id="reportBody" style="display:none;">
 <div class="main">
 
-  <!-- ① 표지 + KPI -->
-  <div class="cover report-page">
+  <!-- ① 커버 + KPI -->
+  <div class="cover">
     <span class="cover-badge">TAX REPORT · 2025 사업연도</span>
     <h1>종합소득세 분석 보고서</h1>
     <div class="cover-subtitle">김경동 님 · 2025년 귀속 · 성실신고확인대상자</div>
+    <div class="cover-firm">휘온세무회계 (WHION TAX &amp; REALTY)</div>
     <div class="cover-grid">
-      <div class="cg-cell"><div class="cg-k">대표자</div><div class="cg-v">김경동</div></div>
-      <div class="cg-cell"><div class="cg-k">생년월일</div><div class="cg-v">1995.09.12.</div></div>
-      <div class="cg-cell"><div class="cg-k">귀속</div><div class="cg-v">2025년</div></div>
-      <div class="cg-cell"><div class="cg-k">신고유형</div><div class="cg-v">성실신고확인</div></div>
-      <div class="cg-cell"><div class="cg-k">건보가입</div><div class="cg-v">지역가입자</div></div>
-      <div class="cg-cell"><div class="cg-k">성실신고</div><div class="cg-v">해당</div></div>
-      <div class="cg-cell span2"><div class="cg-k">담당세무사</div><div class="cg-v">권유진 대표세무사</div></div>
-    </div>
-    <div class="cover-firm">
-      <span>휘온세무회계 (WHION TAX &amp; REALTY)</span>
-      <span>TEL 02-6959-0169</span>
+      <div class="cover-cell"><div class="ck">대표자</div><div class="cv">김경동</div></div>
+      <div class="cover-cell"><div class="ck">생년월일</div><div class="cv">1995.09.12.</div></div>
+      <div class="cover-cell"><div class="ck">귀속</div><div class="cv">2025년</div></div>
+      <div class="cover-cell"><div class="ck">신고유형</div><div class="cv">성실신고확인</div></div>
+      <div class="cover-cell"><div class="ck">건보가입</div><div class="cv">지역가입자</div></div>
+      <div class="cover-cell"><div class="ck">성실신고</div><div class="cv">해당</div></div>
+      <div class="cover-cell span2"><div class="ck">담당세무사</div><div class="cv">권유진 대표세무사</div></div>
     </div>
   </div>
 
-  <div class="section report-page">
-    <div class="section-title">핵심 요약</div>
-    <div class="section-sub">2025년 귀속 종합소득세 신고 결과 핵심 지표입니다.</div>
-    <div class="kpi-row">
-      <div class="kpi-card"><div class="kpi-k">종합소득금액</div><div class="kpi-v num">1,097,857,022<span class="kpi-unit"> 원</span></div></div>
-      <div class="kpi-card green"><div class="kpi-k">결정세액</div><div class="kpi-v num">0<span class="kpi-unit"> 원</span></div></div>
-      <div class="kpi-card green"><div class="kpi-k">최종 환급세액</div><div class="kpi-v num">▼ 787,000<span class="kpi-unit"> 원 (환급)</span></div></div>
-      <div class="kpi-card"><div class="kpi-k">소득률</div><div class="kpi-v num">88.8<span class="kpi-unit"> %</span></div></div>
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="kl">종합소득금액</div><div class="kv num">1,097,857,022</div><div class="ku">원</div></div>
+    <div class="kpi-card"><div class="kl">결정세액</div><div class="kv num">0</div><div class="ku">원 · 전액 감면</div></div>
+    <div class="kpi-card refund"><div class="kl">최종 환급세액</div><div class="kv num">▼ 787,000</div><div class="ku">원 (환급)</div></div>
+    <div class="kpi-card"><div class="kl">소득률</div><div class="kv num">88.8%</div><div class="ku">사업소득 ÷ 수입</div></div>
+  </div>
+
+  <!-- ② 성실신고확인제도 안내 -->
+  <div class="report-page">
+    <div class="sincere-notice-head"><span>📌</span><span>성실신고확인제도 안내</span></div>
+    <div class="sincere-select-box">
+      우리 사업장은 이번 신고대상연도 연간 매출액 <b>1,236,071,604원</b>에 해당하여
+      <b>"성실신고확인대상자"</b>로 선정되었습니다.
+    </div>
+    <p class="sincere-explain">
+      성실신고확인제도란, 당해연도 수입금액이 기준금액 이상인 사업자가 종합소득세를 신고할 때,
+      담당 세무사가 직접 사업장에 대한 약식 세무조사를 실시하고, 회계장부 작성내용과 세금산출내역의
+      항목별 적정 여부를 검토하여 이를 증명하는 성실신고확인보고서를 작성 및 제출하도록 하는
+      국가정책제도입니다.
+    </p>
+    <div class="sincere-basis">
+      <div class="sincere-basis-row"><span>주업종</span><b>미디어콘텐츠창작업 (921505)</b></div>
+      <div class="sincere-basis-row"><span>적용 기준 (소득세법 시행령 §133 ① 2호)</span><b>7억 5천만원</b></div>
+      <div class="sincere-basis-row"><span>당해 수입금액</span><b>1,236,071,604원</b></div>
+      <div class="sincere-basis-row highlight"><span>판정 결과</span><b>성실신고확인대상자 해당</b></div>
+    </div>
+    <div class="sincere-deadline">
+      성실신고확인대상자는 신고·납부 기한이 <b>1개월 연장되어 6월 30일까지</b>입니다.
     </div>
   </div>
 
-  <!-- ② 성실신고확인제도 안내문 -->
-  <div class="section report-page">
-    <div class="sincere-notice">
-      <div class="sincere-notice-head">
-        <span class="sincere-icon">📌</span>
-        <span>성실신고확인제도 안내</span>
-      </div>
-      <div class="sincere-select-box">
-        우리 사업장은 이번 신고대상연도 연간 매출액 <b>1,236,071,604원</b>에 해당하여
-        <b>"성실신고확인대상자"</b>로 선정되었습니다.
-      </div>
-      <p class="sincere-explain">
-        성실신고확인제도란, 당해연도 수입금액이 기준금액 이상인 사업자가 종합소득세를 신고할 때,
-        담당 세무사가 직접 사업장에 대한 약식 세무조사를 실시하고, 회계장부 작성내용과 세금산출내역의
-        항목별 적정 여부를 검토하여 이를 증명하는 성실신고확인보고서를 작성 및 제출하도록 하는
-        국가정책제도입니다.
-      </p>
-      <div class="sincere-basis">
-        <div class="sincere-basis-row"><span>주업종</span><b>미디어콘텐츠창작업 (921505)</b></div>
-        <div class="sincere-basis-row"><span>적용 기준 (소득세법 시행령 §133 ① 2호)</span><b>7억 5천만원</b></div>
-        <div class="sincere-basis-row"><span>당해 수입금액</span><b>1,236,071,604원</b></div>
-        <div class="sincere-basis-row highlight"><span>판정 결과</span><b>성실신고확인대상자 해당</b></div>
-      </div>
-      <div class="sincere-deadline">
-        성실신고확인대상자는 신고·납부 기한이 <b>1개월 연장되어 6월 30일까지</b>입니다.
-      </div>
-    </div>
-  </div>
-
-  <!-- ③ 납부세액 현황 -->
-  <div class="section report-page">
+  <!-- ③ 납부세액 현황 (환급) -->
+  <div class="report-page">
     <div class="section-title">종합소득세 납부세액 현황</div>
-    <div class="section-sub">2025년 귀속 종합소득세 신고 결과 환급세액과 세목별 현황입니다.</div>
+    <div class="section-sub">세목별 납부·환급 현황과 다음 과세연도 중간예납 예상액을 안내합니다.</div>
 
-    <div class="refund-hero tax-card-wrap">
-      <div class="rh-label">최종 환급세액 (국세 + 지방세 + 농어촌특별세)</div>
-      <div class="rh-amount"><span class="arrow">▼</span> 787,000 원 <span style="font-size:18px;">(환급)</span></div>
-      <div class="rh-tag">환급</div>
-      <div class="rh-note">창업중소기업 세액감면 100% 적용으로 결정세액이 0원이 되어, 기납부하신 중간예납세액이 전액 환급됩니다.</div>
+    <div class="tax-pay-card refund">
+      <span class="tax-pay-tag tag-refund">환급</span>
+      <div class="tax-pay-label">종합소득세 (국세) · 환급</div>
+      <div class="tax-pay-amount num"><span class="refund-arrow">▼</span> 787,000 원 <span style="font-size:14px;">(환급)</span></div>
+      <div class="tax-pay-date">결정세액 0원 · 기납부 중간예납세액 787,000원 전액 환급 · 환급계좌(카카오뱅크) 입금 예정</div>
     </div>
 
-    <div class="tax-cards">
-      <div class="tax-pay-card onetime">
-        <div class="tax-pay-label">종합소득세 (국세)</div>
-        <div class="tax-pay-amount green">▼ 787,000 원</div>
-        <div class="tax-pay-date">결정세액 0원 / 기납부 787,000원 환급</div>
-        <span class="tax-pay-tag tag-rf">환급</span>
-      </div>
-      <div class="tax-pay-card">
-        <div class="tax-pay-label">농어촌특별세 (국세)</div>
-        <div class="tax-pay-amount">0 원</div>
-        <div class="tax-pay-date">해당 없음 (100% 감면 비과세)</div>
-      </div>
-      <div class="tax-pay-card onetime">
-        <div class="tax-pay-label">개인지방소득세 (지방세) · 일시납</div>
-        <div class="tax-pay-amount">0 원</div>
-        <div class="tax-pay-date">(납부할총세액 −787,000 + 중간예납 787,000) × 10% = 0원<br>분납 미적용 (납부할 세액 없음)</div>
-        <span class="tax-pay-tag tag-ot">일시납</span>
-      </div>
+    <div class="tax-pay-card onetime">
+      <span class="tax-pay-tag tag-ot">해당 없음</span>
+      <div class="tax-pay-label">개인지방소득세 (지방세)</div>
+      <div class="tax-pay-amount num">0 원</div>
+      <div class="tax-pay-date">(납부할총세액 −787,000 + 중간예납세액 787,000) × 10% = 0원 · 납부할 지방소득세 없음</div>
+    </div>
+
+    <div class="tax-pay-card onetime">
+      <span class="tax-pay-tag tag-ot">해당 없음</span>
+      <div class="tax-pay-label">농어촌특별세 (국세)</div>
+      <div class="tax-pay-amount num">0 원</div>
+      <div class="tax-pay-date">창업중소기업 세액감면(100% 감면)은 농어촌특별세 비과세 대상</div>
     </div>
 
     <div class="prepay-card">
       <div class="prepay-label">2026년 11월 납부 예정 · 중간예납세액 (예상)</div>
       <div class="prepay-amount num">0 원</div>
       <div class="prepay-note">
-        = (중간예납세액 787,000 + 납부할총세액 −787,000) ÷ 2 (천원미만 절사) ·
-        소득세법 §65. 당해 납부할 총세액이 환급(−787,000원)에 해당하여 예상 중간예납세액은 0원이며,
-        실제 고지액은 11월 세무서 고지서를 기준으로 확정됩니다.
+        = (중간예납세액 787,000 + 납부할총세액 −787,000) ÷ 2 (천원미만 절사) · 소득세법 §65.
+        당기 결정세액이 0원으로 산정되어 다음 과세연도 중간예납 고지액도 발생하지 않을 것으로 예상됩니다.
+        실제 고지액은 2026년 11월 세무서 고지서를 기준으로 확정됩니다.
       </div>
     </div>
 
-    <div class="comment">김경동 대표님의 2025년 귀속 종합소득세는 산출세액 427,162,868원에 대해 창업중소기업 세액감면(조세특례제한법 제6조)이 100% 적용되어 결정세액이 0원으로 확정되었습니다. 기납부하신 중간예납세액 787,000원은 전액 환급되며, 개인지방소득세와 농어촌특별세도 납부할 세액이 없습니다. 휘온세무회계가 환급 절차를 책임지고 진행하겠습니다.</div>
+    <div class="comment">
+      <div class="comment-label">세무사 코멘트</div>
+      이번 종합소득세 신고 결과 결정세액은 0원이며, 기 납부하신 중간예납세액 787,000원이 전액 환급됩니다.
+      창업중소기업 세액감면이 산출세액 전액에 적용되어 납부할 종합소득세 및 개인지방소득세가 발생하지 않았습니다.
+      환급금은 신고 후 신고서에 기재된 환급계좌로 입금되며, 휘온세무회계가 환급 진행 상황을 함께 확인하겠습니다.
+    </div>
   </div>
 
   <!-- ④ 손익 비교 -->
-  <div class="section report-page">
-    <div class="section-title">작년·올해 손익 비교 및 세금 변동 분석</div>
-    <div class="section-sub">손익계산서 당기(2025) · 전기(2024) 2개년 비교입니다.</div>
-    <table class="compare-table">
-      <thead>
-        <tr><th>항목</th><th class="num">당기 (2025)</th><th class="num">전기 (2024)</th><th class="num">증감액</th><th class="num">증감률</th></tr>
-      </thead>
+  <div class="report-page">
+    <div class="section-title">작년·올해 손익 비교 분석</div>
+    <div class="section-sub">당기(2025년)·전기(2024년) 손익계산서 기준 주요 항목 비교입니다.</div>
+    <div class="table-scroll">
+    <table class="compare-table cardize">
+      <thead><tr><th>항목</th><th class="num">당기 (2025)</th><th class="num">전기 (2024)</th><th class="num">증감액</th><th class="num">증감률</th></tr></thead>
       <tbody>
-        <tr class="cmp-major"><td>매출액 (콘텐츠수입)</td><td class="num">1,236,071,604</td><td class="num">247,138,342</td><td class="num up">+988,933,262</td><td class="num up">+400.2%</td></tr>
-        <tr><td>여비교통비</td><td class="num">49,107,395</td><td class="num">16,843,269</td><td class="num up">+32,264,126</td><td class="num up">+191.6%</td></tr>
-        <tr><td>콘텐츠제작비</td><td class="num">50,227,976</td><td class="num">23,363,100</td><td class="num up">+26,864,876</td><td class="num up">+115.0%</td></tr>
-        <tr><td>지급수수료</td><td class="num">15,591,738</td><td class="num">24,315,139</td><td class="num down">-8,723,401</td><td class="num down">-35.9%</td></tr>
-        <tr><td>소모품비</td><td class="num">13,098,423</td><td class="num">25,493,870</td><td class="num down">-12,395,447</td><td class="num down">-48.6%</td></tr>
-        <tr><td>접대비(기업업무추진비)</td><td class="num">5,479,488</td><td class="num">31,660,839</td><td class="num down">-26,181,351</td><td class="num down">-82.7%</td></tr>
-        <tr><td>감가상각비</td><td class="num">1,973,252</td><td class="num">194,750</td><td class="num up">+1,778,502</td><td class="num up">+913.2%</td></tr>
-        <tr><td>판매비와관리비 계</td><td class="num">138,345,713</td><td class="num">140,320,180</td><td class="num down">-1,974,467</td><td class="num down">-1.4%</td></tr>
-        <tr><td>영업이익</td><td class="num">1,097,725,891</td><td class="num">106,818,162</td><td class="num up">+990,907,729</td><td class="num up">+927.7%</td></tr>
-        <tr class="cmp-result"><td>당기순이익</td><td class="num">1,097,725,891</td><td class="num">106,820,362</td><td class="num up">+990,905,529</td><td class="num up">+927.5%</td></tr>
+        <tr class="cmp-major"><td data-label="항목">매출액(콘텐츠수입)</td><td data-label="당기" class="num">1,236,071,604</td><td data-label="전기" class="num">247,138,342</td><td data-label="증감액" class="num up">+988,933,262</td><td data-label="증감률" class="num up">+400.2%</td></tr>
+        <tr><td data-label="항목">여비교통비</td><td data-label="당기" class="num">49,107,395</td><td data-label="전기" class="num">16,843,269</td><td data-label="증감액" class="num up">+32,264,126</td><td data-label="증감률" class="num up">+191.6%</td></tr>
+        <tr><td data-label="항목">접대비(기업업무추진비)</td><td data-label="당기" class="num">5,479,488</td><td data-label="전기" class="num">31,660,839</td><td data-label="증감액" class="num down">-26,181,351</td><td data-label="증감률" class="num down">-82.7%</td></tr>
+        <tr><td data-label="항목">콘텐츠제작비</td><td data-label="당기" class="num">50,227,976</td><td data-label="전기" class="num">23,363,100</td><td data-label="증감액" class="num up">+26,864,876</td><td data-label="증감률" class="num up">+115.0%</td></tr>
+        <tr><td data-label="항목">지급수수료</td><td data-label="당기" class="num">15,591,738</td><td data-label="전기" class="num">24,315,139</td><td data-label="증감액" class="num down">-8,723,401</td><td data-label="증감률" class="num down">-35.9%</td></tr>
+        <tr><td data-label="항목">소모품비</td><td data-label="당기" class="num">13,098,423</td><td data-label="전기" class="num">25,493,870</td><td data-label="증감액" class="num down">-12,395,447</td><td data-label="증감률" class="num down">-48.6%</td></tr>
+        <tr><td data-label="항목">감가상각비</td><td data-label="당기" class="num">1,973,252</td><td data-label="전기" class="num">194,750</td><td data-label="증감액" class="num up">+1,778,502</td><td data-label="증감률" class="num up">+913.2%</td></tr>
+        <tr><td data-label="항목">인적용역비</td><td data-label="당기" class="num">0</td><td data-label="전기" class="num">17,989,910</td><td data-label="증감액" class="num down">-17,989,910</td><td data-label="증감률" class="num down">-100.0%</td></tr>
+        <tr><td data-label="항목">판매비와관리비 계</td><td data-label="당기" class="num">138,345,713</td><td data-label="전기" class="num">140,320,180</td><td data-label="증감액" class="num down">-1,974,467</td><td data-label="증감률" class="num down">-1.4%</td></tr>
+        <tr class="cmp-result"><td data-label="항목">당기순이익</td><td data-label="당기" class="num">1,097,725,891</td><td data-label="전기" class="num">106,820,362</td><td data-label="증감액" class="num up">+990,905,529</td><td data-label="증감률" class="num up">+927.6%</td></tr>
       </tbody>
     </table>
-    <div class="cmp-conv">흑자 유지 · 전기 대비 당기순이익 +990,905,529원 증가</div>
-    <div class="comment">2025년 매출액은 1,236,071,604원으로 전기 대비 988,933,262원(+400.2%) 증가하였으며, 콘텐츠 수입의 본격적인 성장이 주된 증가 요인입니다. 매출 증가에 따라 산출세액은 427,162,868원으로 산정되었으나, 창업중소기업 세액감면 100%가 적용되어 결정세액은 0원입니다. 판매비와관리비는 전기와 유사한 수준(138,345,713원)을 유지하였고, 접대비·소모품비·지급수수료는 감소한 반면 여비교통비와 콘텐츠제작비는 매출 확대와 함께 증가하였습니다. 그 결과 기납부한 중간예납세액 787,000원이 전액 환급됩니다.</div>
+    </div>
+    <div class="comment">
+      <div class="comment-label">세무사 코멘트 · 세금변동 요인</div>
+      당기 매출액은 1,236,071,604원으로 전기 247,138,342원 대비 988,933,262원(+400.2%) 증가하였습니다.
+      판매비와관리비는 전기와 유사한 수준을 유지하여 매출 성장이 그대로 이익 증가로 이어졌고, 당기순이익은 전기 대비 990,905,529원(+927.6%) 증가하여 흑자가 유지되었습니다.
+      매출 성장으로 산출세액은 크게 증가하였으나 창업중소기업 세액감면(100%)이 적용되어 결정세액은 0원으로 유지되었습니다.
+      휘온세무회계가 매출 구성과 경비 적정성을 함께 검토하였습니다.
+    </div>
   </div>
 
-  <!-- ⑤ 산정 내역서 16단계 -->
-  <div class="section report-page">
-    <div class="section-title">2025년 귀속 종합소득세 산정 내역서</div>
-    <div class="section-sub">종합소득금액부터 최종 납부(환급)세액까지의 산정 구조입니다.</div>
+  <!-- ⑤ 산정 16단계 -->
+  <div class="report-page">
+    <div class="section-title">당해연도 종합소득세 산정 내역서</div>
+    <div class="section-sub">소득금액부터 최종 납부(환급)세액까지 산정 단계를 순서대로 보여드립니다.</div>
+    <div class="table-scroll">
     <table class="calc-table">
-      <thead>
-        <tr><th class="ci-no">No</th><th class="ci-name" style="text-align:left;">구분</th><th class="num">금액 (원)</th></tr>
-      </thead>
+      <thead><tr><th>구분</th><th class="num">금액 (원)</th><th>비고</th></tr></thead>
       <tbody>
-        <tr class="calc-row"><td class="ci-no">①</td><td class="ci-name">사업체 소득금액</td><td class="num">1,097,857,022</td></tr>
-        <tr class="calc-row"><td class="ci-no">②</td><td class="ci-name">타소득 금액</td><td class="num">0</td></tr>
-        <tr class="calc-row"><td class="ci-no">③</td><td class="ci-name">종합소득금액 (①+②)</td><td class="num">1,097,857,022</td></tr>
-        <tr class="calc-row"><td class="ci-no">④</td><td class="ci-name">소득공제</td><td class="num">2,072,870</td></tr>
-        <tr class="calc-row ci-sub"><td></td><td>인적공제 (본인 기본공제)</td><td class="num">1,500,000</td></tr>
-        <tr class="calc-row ci-sub"><td></td><td>국민연금보험료공제</td><td class="num">572,870</td></tr>
-        <tr class="calc-row"><td class="ci-no">⑤</td><td class="ci-name">과세표준 (③−④)</td><td class="num">1,095,784,152</td></tr>
-        <tr class="calc-row ci-std"><td class="ci-no">⑥</td><td class="ci-name">세율</td><td class="num">45% (누진공제 65,940,000)</td></tr>
-        <tr class="calc-row"><td class="ci-no">⑦</td><td class="ci-name">산출세액</td><td class="num">427,162,868</td></tr>
-        <tr class="calc-row"><td class="ci-no">⑧</td><td class="ci-name">세액공제</td><td class="num">0</td></tr>
-        <tr class="calc-row"><td class="ci-no">⑨</td><td class="ci-name">세액감면 (창업중소기업 세액감면)</td><td class="num">427,162,868</td></tr>
-        <tr class="calc-row"><td class="ci-no">⑩</td><td class="ci-name">결정세액 (⑦−⑧−⑨)</td><td class="num">0</td></tr>
-        <tr class="calc-row"><td class="ci-no">⑪</td><td class="ci-name">가산세</td><td class="num">0</td></tr>
-        <tr class="calc-row"><td class="ci-no">⑫</td><td class="ci-name">가산납부세액 합계 (⑩+⑪)</td><td class="num">0</td></tr>
-        <tr class="calc-row"><td class="ci-no">⑬</td><td class="ci-name">기납부세액</td><td class="num">787,000</td></tr>
-        <tr class="calc-row ci-sub"><td></td><td>중간예납세액</td><td class="num">787,000</td></tr>
-        <tr class="calc-row ci-sub"><td></td><td>원천징수세액 합계 (이자·배당·사업·근로·연금·기타)</td><td class="num">0</td></tr>
-        <tr class="calc-row"><td class="ci-no">⑭</td><td class="ci-name">납부(환급)할 총세액 (⑫−⑬)<span class="badge-rf">환급</span></td><td class="num down">▼ -787,000</td></tr>
-        <tr class="calc-row"><td class="ci-no">⑮</td><td class="ci-name">농어촌특별세</td><td class="num">0</td></tr>
-        <tr class="calc-row"><td class="ci-no">⑯</td><td class="ci-name">개인지방소득세 [(−787,000+787,000)×10%]</td><td class="num">0</td></tr>
-        <tr class="calc-row ci-result"><td class="ci-no">⑰</td><td class="ci-name">최종 납부(환급)세액</td><td class="num">▼ -787,000 (환급)</td></tr>
+        <tr class="calc-step"><td><span class="calc-no">1</span>사업체 소득금액</td><td class="num">1,097,857,022</td><td>당기순이익 + 세무조정</td></tr>
+        <tr class="calc-step"><td><span class="calc-no">2</span>타소득 금액</td><td class="num">0</td><td>이자·배당·근로·연금·기타 0</td></tr>
+        <tr class="calc-key"><td><span class="calc-no">3</span>종합소득금액</td><td class="num">1,097,857,022</td><td>신고서 ⑲</td></tr>
+        <tr class="calc-step"><td><span class="calc-no">4</span>소득공제</td><td class="num">2,072,870</td><td>신고서 ⑳</td></tr>
+        <tr class="indent"><td>· 인적공제(본인)</td><td class="num">1,500,000</td><td>소득세법 §50</td></tr>
+        <tr class="indent"><td>· 국민연금보험료공제</td><td class="num">572,870</td><td>소득세법 §51의3</td></tr>
+        <tr class="calc-key"><td><span class="calc-no">5</span>과세표준</td><td class="num">1,095,784,152</td><td>③ − ④ · 신고서 ㉑</td></tr>
+        <tr class="calc-step"><td><span class="calc-no">6</span>세율</td><td class="num">45%</td><td>누진공제 65,940,000</td></tr>
+        <tr class="calc-key"><td><span class="calc-no">7</span>산출세액</td><td class="num">427,162,868</td><td>⑤ × 45% − 누진공제</td></tr>
+        <tr class="calc-step"><td><span class="calc-no">8</span>세액공제</td><td class="num">0</td><td>신고서 ㉕</td></tr>
+        <tr class="calc-step"><td><span class="calc-no">9</span>세액감면</td><td class="num">427,162,868</td><td>창업중소기업 감면 100%</td></tr>
+        <tr class="calc-key"><td><span class="calc-no">10</span>결정세액</td><td class="num">0</td><td>⑦ − ⑧ − ⑨ · 신고서 ㉘</td></tr>
+        <tr class="calc-step"><td><span class="calc-no">11</span>가산세</td><td class="num">0</td><td>신고서 ㉙</td></tr>
+        <tr class="calc-step"><td><span class="calc-no">12</span>가산납부세액 합계</td><td class="num">0</td><td>⑩ + ⑪</td></tr>
+        <tr class="calc-step"><td><span class="calc-no">13</span>기납부세액</td><td class="num">787,000</td><td>신고서 ㉝ 기준 · ⑯명세서 ⑪</td></tr>
+        <tr class="indent"><td>· 중간예납세액 ①</td><td class="num">787,000</td><td>기납부세액명세서 ①</td></tr>
+        <tr class="indent"><td>· 원천징수세액 ⑤~⑩</td><td class="num">0</td><td>해당 없음</td></tr>
+        <tr class="calc-key"><td><span class="calc-no">14</span>납부할 총세액(국세)</td><td class="num">-787,000</td><td>⑫ − ⑬ · 환급</td></tr>
+        <tr class="calc-step"><td><span class="calc-no">15</span>농어촌특별세</td><td class="num">0</td><td>100% 감면 비과세</td></tr>
+        <tr class="calc-step"><td><span class="calc-no">16</span>개인지방소득세</td><td class="num">0</td><td>(−787,000+787,000)×10%</td></tr>
+        <tr class="calc-final"><td><span class="calc-no" style="background:var(--forest-mid)">17</span>최종 환급세액</td><td class="num">▼ 787,000 (환급)</td><td>⑭ + ⑮ + ⑯</td></tr>
       </tbody>
     </table>
-    <div class="comment">개인지방소득세는 (납부할총세액 −787,000원 + 중간예납세액 787,000원) × 10%로 산정하여 0원이며, 결정세액 0원에서 원천징수합계 0원을 차감한 금액의 10%와도 일치합니다. 지방소득세는 일시납 대상이나 납부할 세액이 없습니다.</div>
+    </div>
+    <div class="comment">
+      <div class="comment-label">세무사 코멘트</div>
+      과세표준 1,095,784,152원에 45% 세율을 적용하여 산출세액 427,162,868원이 계산되었으며, 동일 금액이 창업중소기업 세액감면으로 전액 감면되어 결정세액은 0원입니다.
+      개인지방소득세는 두 가지 산식((납부할총세액+중간예납세액)×10% 및 (결정세액−원천징수)×10%) 모두 0원으로 일치 확인되었으며, 납부할 지방소득세는 없습니다.
+    </div>
   </div>
 
-  <!-- ⑥ 사업장 + 손익계산서 표 -->
-  <div class="section report-page">
-    <div class="section-title">연간 소득발생 현황 (사업장별)</div>
-    <div class="section-sub">사업장별 총수입금액·필요경비·사업소득금액 현황입니다.</div>
-    <div class="biz-card">
-      <div class="biz-head">
-        <span class="biz-name">꾸준컴퍼니 · 정보통신업 (미디어콘텐츠창작업)</span>
-        <span class="biz-badge up">▲ 흑자</span>
-      </div>
-      <div class="biz-grid">
-        <div class="biz-stat"><div class="bs-k">총수입금액</div><div class="bs-v num">1,236,071,604</div></div>
-        <div class="biz-stat"><div class="bs-k">필요경비</div><div class="bs-v num">138,214,582</div></div>
-        <div class="biz-stat"><div class="bs-k">사업소득금액</div><div class="bs-v num">1,097,857,022</div></div>
-        <div class="biz-stat"><div class="bs-k">소득률</div><div class="bs-v num">88.8%</div></div>
-      </div>
-      <div class="biz-meta">사업장 소재지: 경상북도 경주시 감포읍 오류리 305-1 · 과세기간 2025.01.01 ~ 2025.12.31 · 복식부기의무자</div>
+  <!-- ⑥ 사업장 소득 + 손익계산서 표 -->
+  <div class="report-page">
+    <div class="section-title">연간 소득발생 현황 · 손익계산서</div>
+    <div class="section-sub">꾸준컴퍼니 (미디어콘텐츠창작업) 당기·전기 2개년 손익계산서입니다.</div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px;">
+      <div class="kpi-card"><div class="kl">총수입금액</div><div class="kv num" style="font-size:15px;">1,236,071,604</div><div class="ku">원</div></div>
+      <div class="kpi-card"><div class="kl">필요경비</div><div class="kv num" style="font-size:15px;">138,214,582</div><div class="ku">원</div></div>
+      <div class="kpi-card"><div class="kl">사업소득금액</div><div class="kv num" style="font-size:15px;">1,097,857,022</div><div class="ku">원 <span class="badge badge-green">▲ 흑자</span></div></div>
+      <div class="kpi-card"><div class="kl">소득률</div><div class="kv num" style="font-size:15px;">88.8%</div><div class="ku">사업기간 12개월</div></div>
     </div>
 
-    <div class="section-title" style="margin-top:26px;font-size:16px;">손익계산서 (당기·전기 2개년)</div>
-    <div class="section-sub">손익계산서 원본 과목·금액을 그대로 옮긴 표입니다.</div>
+    <div class="table-scroll">
     <table class="pl-table">
-      <thead>
-        <tr><th class="pl-acct">과목</th><th class="num">제2(당)기 2025</th><th class="num">제1(전)기 2024</th></tr>
-      </thead>
+      <thead><tr><th class="pl-acct">과목</th><th class="pl-amt num">제2(당)기 2025</th><th class="pl-amt num">제1(전)기 2024</th></tr></thead>
       <tbody>
         <tr class="pl-major"><td>Ⅰ. 매출액</td><td class="num">1,236,071,604</td><td class="num">247,138,342</td></tr>
         <tr class="pl-sub"><td>콘텐츠수입</td><td class="num">1,236,071,604</td><td class="num">247,138,342</td></tr>
@@ -435,51 +446,52 @@ td.num,th.num{text-align:right;}
         <tr class="pl-result"><td>Ⅹ. 당기순이익</td><td class="num">1,097,725,891</td><td class="num">106,820,362</td></tr>
       </tbody>
     </table>
+    </div>
+    <div class="comment">
+      <div class="comment-label">세무사 코멘트</div>
+      당기순이익 1,097,725,891원에 세무조정사항(업무용승용차 감가상각비상당액 한도초과 131,131원)을 가산하여 사업소득금액 1,097,857,022원이 신고서 종합소득금액과 일치하게 확정되었습니다.
+      소득률은 88.8%로 콘텐츠 창작업의 특성상 매출 대비 경비 비중이 낮은 구조이며, 휘온세무회계가 매출 인식과 경비 적정성을 함께 점검하였습니다.
+    </div>
   </div>
 
   <!-- ⑦ 감가상각 -->
-  <div class="section report-page depr-section">
-    <div class="section-title">감가상각비·고정자산 검토</div>
-    <div class="section-sub">고정자산관리대장 기준 자산유형별 회사계상상각비 및 잔여 비용처리 가능금액입니다.</div>
+  <div class="report-page">
+    <div class="section-title">감가상각비 · 고정자산 검토</div>
+    <div class="section-sub">고정자산관리대장 기준 자산유형별 당기 비용 처리액과 잔여 비용처리 가능금액입니다.</div>
     <div class="depr-summary">
       당기 감가상각비 <b class="num">1,973,252원</b>이 비용 처리되었으며,
       앞으로 비용 처리 가능한 잔여 금액(당기말 장부가액)은 <b class="num">7,863,419원</b>입니다.
     </div>
-    <table class="depr-table">
-      <thead>
-        <tr><th>자산유형 / 자산명</th><th class="num">회사계상상각비 (당기 비용)</th><th class="num">당기말 장부가액 (남은 비용처리 가능금액)</th></tr>
-      </thead>
+    <div class="table-scroll">
+    <table class="depr-table cardize">
+      <thead><tr><th>자산유형</th><th class="num">회사계상상각비 (당기 비용)</th><th class="num">당기말 장부가액 (남은 비용처리 가능금액)</th></tr></thead>
       <tbody>
-        <tr><td><b>비품</b></td><td class="num"><b>1,973,252</b></td><td class="num"><b>7,863,419</b></td></tr>
-        <tr class="depr-sub"><td>업무용노트북</td><td class="num">691,167</td><td class="num">841,356</td></tr>
-        <tr class="depr-sub"><td>헤드폰1</td><td class="num">120,949</td><td class="num">522,687</td></tr>
-        <tr class="depr-sub"><td>노트북1</td><td class="num">598,600</td><td class="num">1,392,310</td></tr>
-        <tr class="depr-sub"><td>카메라1</td><td class="num">104,468</td><td class="num">451,464</td></tr>
-        <tr class="depr-sub"><td>헤드폰2</td><td class="num">168,281</td><td class="num">951,109</td></tr>
-        <tr class="depr-sub"><td>녹음기</td><td class="num">24,272</td><td class="num">137,183</td></tr>
-        <tr class="depr-sub"><td>카메라2</td><td class="num">38,615</td><td class="num">475,119</td></tr>
-        <tr class="depr-sub"><td>노트북2</td><td class="num">204,316</td><td class="num">2,513,866</td></tr>
-        <tr class="depr-sub"><td>비품</td><td class="num">22,584</td><td class="num">578,325</td></tr>
-        <tr class="depr-total"><td>총계</td><td class="num">1,973,252</td><td class="num">7,863,419</td></tr>
+        <tr><td data-label="자산유형">비품</td><td data-label="회사계상상각비" class="num">1,973,252</td><td data-label="당기말 장부가액" class="num">7,863,419</td></tr>
+        <tr class="depr-total"><td data-label="자산유형">총계</td><td data-label="회사계상상각비" class="num">1,973,252</td><td data-label="당기말 장부가액" class="num">7,863,419</td></tr>
       </tbody>
     </table>
-    <div class="comment">2025년 비품에 대한 감가상각비 1,973,252원이 비용으로 처리되었으며, 이는 손익계산서상 감가상각비와 일치합니다. 당기말 장부가액 7,863,419원은 향후 과세연도에 걸쳐 감가상각을 통해 비용 처리될 예정이며, 휘온세무회계가 자산별 내용연수에 따라 적정하게 비용 처리되도록 점검하겠습니다.</div>
+    </div>
+    <div class="comment">
+      <div class="comment-label">세무사 코멘트</div>
+      당기 신규 취득한 노트북·카메라·헤드폰 등 비품의 회사계상상각비 1,973,252원은 손익계산서 감가상각비와 일치합니다.
+      당기말 장부가액 7,863,419원은 향후 과세연도에 걸쳐 순차적으로 감가상각비로 비용 처리될 예정이며, 휘온세무회계가 자산별 상각 일정을 관리하겠습니다.
+    </div>
   </div>
 
   <!-- ⑧ 공제·감면 -->
-  <div class="section report-page">
-    <div class="section-title">소득공제·세액공제·세액감면 상세</div>
-    <div class="section-sub">적용된 공제·감면 항목별 적용 내용, 근거 법조문 및 세금 효과입니다.</div>
+  <div class="report-page">
+    <div class="section-title">소득공제 · 세액공제 · 세액감면 상세</div>
+    <div class="section-sub">적용된 공제·감면 항목별 적용 내용과 세금 효과입니다.</div>
 
-    <div class="credit-group-label">소득공제 (과세표준 감소)</div>
     <div class="credit-card">
-      <div class="credit-head"><span class="credit-name">인적공제 (본인 기본공제)</span><span class="credit-amount num">1,500,000 원</span></div>
+      <div class="credit-head"><span class="credit-name">인적공제 (본인)</span><span class="credit-amount num">1,500,000 원</span></div>
       <div class="credit-body">
         <div class="credit-row"><span class="credit-k">적용 내용</span><span>본인 기본공제 1명</span></div>
-        <div class="credit-row"><span class="credit-k">근거 법조문</span><span>소득세법 §50·§51 (기본공제·추가공제)</span></div>
+        <div class="credit-row"><span class="credit-k">근거 법조문</span><span>소득세법 §50 (기본공제)</span></div>
         <div class="credit-row"><span class="credit-k">세금 효과</span><span>과세표준 1,500,000원 감소</span></div>
       </div>
     </div>
+
     <div class="credit-card">
       <div class="credit-head"><span class="credit-name">국민연금보험료공제</span><span class="credit-amount num">572,870 원</span></div>
       <div class="credit-body">
@@ -489,73 +501,91 @@ td.num,th.num{text-align:right;}
       </div>
     </div>
 
-    <div class="credit-group-label">세액감면 (산출세액 직접 감면)</div>
     <div class="credit-card">
-      <div class="credit-head"><span class="credit-name">창업중소기업 세액감면 (최저한세 적용제외)<span class="credit-badge cb-min-out">최저한세 배제</span></span><span class="credit-amount green num">427,162,868 원</span></div>
+      <div class="credit-head"><span class="credit-name">창업중소기업 세액감면 <span class="badge badge-green">최저한세 배제</span></span><span class="credit-amount num">427,162,868 원</span></div>
       <div class="credit-body">
-        <div class="credit-row"><span class="credit-k">적용 내용</span><span>창업일 2024.05.31, 최초 소득발생 과세연도 2024년 기산 · 100% 감면 적용 (2025년은 2년차, 잔여 3년, 최종 감면연도 2028년)</span></div>
+        <div class="credit-row"><span class="credit-k">적용 내용</span><span>창업일 2024.05.31. · 최초 소득발생 과세연도 2024년 · 당기 2년차 · 산출세액 100% 감면</span></div>
         <div class="credit-row"><span class="credit-k">근거 법조문</span><span>조세특례제한법 §6 (창업중소기업 등에 대한 세액감면)</span></div>
-        <div class="credit-row"><span class="credit-k">세금 효과</span><span>산출세액 427,162,868원 전액 감면 → 결정세액 0원. 100% 감면구간으로 최저한세가 배제되며 농어촌특별세도 비과세됩니다.</span></div>
+        <div class="credit-row"><span class="credit-k">세금 효과</span><span>산출세액 427,162,868원 전액 직접 차감 (최저한세 적용제외 · 농어촌특별세 비과세)</span></div>
       </div>
     </div>
 
-    <div class="comment">창업중소기업 세액감면은 최초 소득발생 과세연도(2024년)를 기산으로 5년간 적용되며, 2025년은 2년차에 해당합니다. 본 감면은 100% 감면으로 최저한세 적용이 배제되고 농어촌특별세도 비과세되어, 산출세액 427,162,868원 전액이 감면되었습니다. 휘온세무회계가 잔여 감면기간 동안 적용 요건을 지속적으로 점검하겠습니다. (세액공제는 신고서상 적용된 항목이 없습니다.)</div>
+    <div class="comment">
+      <div class="comment-label">세무사 코멘트</div>
+      창업중소기업 세액감면은 당기 산출세액의 100%를 감면하는 제도로, 당기 산출세액 427,162,868원 전액이 감면되어 결정세액이 0원이 되었습니다.
+      본 감면은 최초 소득발생 과세연도(2024년)부터 5개 과세연도(2024년~2028년)에 걸쳐 적용되며, 휘온세무회계가 감면 연차와 잔여 적용 기간을 관리하겠습니다.
+      한편 성실신고확인비용 세액공제(1,200,000원)는 당기 결정세액이 0원이어서 적용할 세액이 없어 이월되었습니다.
+    </div>
   </div>
 
-  <!-- ⑨ 건강보험료 -->
-  <div class="section report-page">
+  <!-- ⑨ 건강보험료 (지역가입자) -->
+  <div class="report-page">
     <div class="section-title">대표자 건강보험료 검토</div>
-    <div class="section-sub">2025년 종합소득금액 기준 지역가입자 건강보험료 산정 내역입니다.</div>
+    <div class="section-sub">사업소득금액을 기준으로 한 지역가입자 건강보험료 산정 현황입니다.</div>
+
     <div class="health-card">
-      <div class="health-type">지역가입자 (소득기준 산정)</div>
+      <div class="health-type">지역가입자 (소득기준 산정 · 정산 없음)</div>
       <div class="health-grid">
-        <div><div class="health-stat-label">사업장 소득금액</div><div class="health-stat-val num">1,097,857,022 원</div></div>
-        <div><div class="health-stat-label">산출 총보험료 (연간)</div><div class="health-stat-val highlight num">89,308,100 원</div></div>
-        <div><div class="health-stat-label">갱신 월 보험료 (월)</div><div class="health-stat-val num">7,442,342 원/월</div></div>
+        <div><div class="health-stat-label">사업장소득금액(기준)</div><div class="health-stat-val num">1,097,857,022 원</div></div>
+        <div><div class="health-stat-label">산출 총보험료(연, 소득기준)</div><div class="health-stat-val highlight num">89,308,100 원</div></div>
+        <div><div class="health-stat-label">월 환산 보험료</div><div class="health-stat-val num">7,442,342 원/월</div></div>
       </div>
       <div class="health-note">
-        • 산출 총보험료 = 사업장 소득금액 × 8.134766%(건강보험료 + 장기요양보험료 합산율) 기준 안내치입니다.<br>
-        • 지역가입자 보험료는 매년 <b>11월</b> 국민건강보험공단이 소득·재산 등을 종합 반영하여 갱신·고지하며, 직장가입자와 달리 별도 정산 절차가 없습니다.<br>
-        • 정확한 금액은 11월 공단 고지서를 통해 확인하실 수 있습니다.
+        • 건강보험료 = 사업장소득금액 × 8.134766%(건강보험 7.09% + 장기요양 환산 합산율)로 산출한 추정치입니다.<br>
+        • 지역가입자 보험료는 매년 11월 소득·재산을 반영하여 갱신되며, 별도 정산 절차가 없습니다.<br>
+        • 실제 부과액은 국민건강보험공단의 소득·재산 점수 부과 기준 및 상한 적용에 따라 확정됩니다.
       </div>
     </div>
-    <div class="comment">김경동 대표님은 지역가입자로 확인되어, 2025년 종합소득금액을 기준으로 산정한 건강보험료를 안내드립니다. 위 금액은 소득 기준 안내치이며, 지역가입자 보험료는 매년 11월 국민건강보험공단이 소득과 재산 등을 종합하여 갱신·고지하므로 정확한 금액은 11월 고지서를 통해 확인하실 수 있습니다.</div>
+
+    <div class="comment">
+      <div class="comment-label">세무사 코멘트</div>
+      김경동 대표님은 지역가입자로 확인되어, 사업소득금액을 기준으로 산정한 건강보험료가 부과됩니다.
+      지역가입자 보험료는 매년 11월 종합소득 신고 결과가 반영되어 갱신되며, 실제 부과액은 국민건강보험공단의 부과 기준에 따라 확정됩니다.
+      휘온세무회계가 갱신 시점의 보험료 변동을 함께 안내하겠습니다.
+    </div>
   </div>
 
-  <!-- ⑩ 세무조정 + 재무 + 코멘트 -->
-  <div class="section report-page">
-    <div class="section-title">세무조정사항 및 재무제표 분석</div>
-    <div class="section-sub">과목별 소득금액 조정명세서 및 단년도 재무 구성 특이사항입니다.</div>
-    <table class="adj-table">
-      <thead>
-        <tr><th>과목</th><th class="num" style="text-align:right;">금액 (원)</th><th>처분</th><th>조정 내용</th></tr>
-      </thead>
+  <!-- ⑩ 세무조정 + 재무 분석 + 코멘트 -->
+  <div class="report-page">
+    <div class="section-title">세무조정사항 · 재무제표 분석</div>
+    <div class="section-sub">당기 세무조정 집계와 재무 구성 특이사항입니다.</div>
+
+    <div class="table-scroll">
+    <table>
+      <thead><tr><th>과목</th><th class="num">금액 (원)</th><th>처분</th><th>조정 내용</th></tr></thead>
       <tbody>
-        <tr>
-          <td>감가상각비상당액한도초과액</td>
-          <td class="num" style="text-align:right;">131,131</td>
-          <td><span class="proc-badge pb-out">기타사외유출</span></td>
-          <td>업무용승용차 감가상각비상당액 한도초과액 필요경비불산입</td>
-        </tr>
+        <tr><td>감가상각비상당액 한도초과액</td><td class="num">131,131</td><td><span class="badge badge-red">기타사외유출</span></td><td>업무용승용차 감가상각비상당액 한도초과액 필요경비불산입</td></tr>
       </tbody>
     </table>
-    <div class="comment">2025년 세무조정 사항은 업무용승용차(렌트 차량) 감가상각비상당액 한도초과액 131,131원의 필요경비불산입(기타사외유출) 1건입니다. 해당 한도초과액은, 다음연도로 이월되어 세법상 한도 여부를 매년 검토하여 한도부족분 발생시 추가 경비로 반영&nbsp; 가능한 항목입니다.(일시 이연)&nbsp; 휘온세무회계가 업무용승용차 관련 비용을 세법 기준에 따라 정확히 조정하여 결산서상 당기순이익 1,097,725,891원에서 세무조정 후 사업소득금액 1,097,857,022원으로 정확히 신고하였습니다.</div>
-    <div class="comment">2025년은 콘텐츠 수입(유튜브·콘텐츠 협업)을 중심으로 매출이 본격 성장한 해로, 매출액의 99.99%가 서비스(콘텐츠)수입으로 구성되어 있습니다. 사업소득금액 대비 소득률은 88.8%로 매출 성장 대비 경비 비중이 안정적으로 유지되었습니다. 휘온세무회계가 차기 신고에서도 사업관련 적격 비용 처리와 세무조정을 책임지고 점검하겠습니다.</div>
+    </div>
+
+    <div style="margin-top:18px;font-size:13px;line-height:1.8;color:var(--text);">
+      <b style="color:var(--ocean-deep);">매출 특이사항</b> — 당기 매출은 콘텐츠 협업 비용 및 유튜브 수익 등 미디어콘텐츠 창작 수입으로 구성되며, 전기 대비 4배 이상 성장하였습니다.<br>
+      <b style="color:var(--ocean-deep);">경비 특이사항</b> — 접대비·소모품비·인적용역비는 감소한 반면 여비교통비·콘텐츠제작비는 매출 확대와 함께 증가하였으며, 판매비와관리비 총액은 전기와 유사한 수준을 유지하였습니다.<br>
+      <b style="color:var(--ocean-deep);">재무상태</b> — 당기말 자산총계 41,416,390원, 유형자산(비품) 7,863,419원으로 자산 규모 대비 높은 수익성을 보입니다.
+    </div>
+
+    <div class="comment">
+      <div class="comment-label">세무사 코멘트</div>
+      당기 세무조정으로 업무용승용차(모델Y 렌트) 감가상각비상당액 한도초과액 131,131원이 필요경비불산입(기타사외유출)으로 반영되었습니다.
+      이는 업무용승용차 관련 비용의 세법상 한도 적용에 따른 조정으로, 휘온세무회계가 매년 한도 관리를 책임지고 점검하겠습니다.
+      당기 결정세액은 0원이며 중간예납세액 787,000원이 전액 환급되는 신고 결과입니다.
+    </div>
   </div>
 
   <!-- 푸터 -->
-  <div class="footer report-page">
-    <div class="ft-firm">휘온세무회계 (WHION TAX &amp; REALTY)</div>
-    <div class="ft-slogan">"고객 권익 증진을 위해 최선을 다하겠습니다."</div>
-    <div class="ft-sign">— 권유진 대표세무사 드림</div>
-    <div class="ft-contact">
+  <div class="footer">
+    <div class="footer-firm">휘온세무회계 (WHION TAX &amp; REALTY)</div>
+    <div class="footer-slogan">"고객 권익 증진을 위해 최선을 다하겠습니다."</div>
+    <div class="footer-sign">— 권유진 대표세무사 드림</div>
+    <div class="footer-contact">
       담당세무사: 권유진 대표세무사 | TEL: 02-6959-0169 | FAX: 0507-804-8790<br>
       서울 강남 테헤란로13길 8-5 (블루-b) 901호
     </div>
   </div>
 
-</div><!-- /main -->
-</div><!-- /reportBody -->
+</div>
+</div>
 
 <script>
 // ── 휘온 관리자 인프라: PW 게이트 + 코멘트 편집 + GitHub 자동 저장 (단일 IIFE) ──
@@ -671,30 +701,5 @@ td.num,th.num{text-align:right;}
   }
 })();
 </script>
-<style>
-.pw-gate{position:fixed;inset:0;z-index:9999;background:linear-gradient(135deg,#0a4d8c 0%,#1976d2 50%,#26a69a 100%);display:flex;align-items:center;justify-content:center;padding:20px;}
-.pw-card{background:#fff;border-radius:16px;padding:40px 32px;max-width:380px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.25);text-align:center;}
-.pw-brand{font-size:14px;font-weight:700;color:#0a4d8c;letter-spacing:1px;}
-.pw-divider{width:40px;height:3px;background:#c8973a;margin:12px auto 20px;border-radius:2px;}
-.pw-title{font-size:17px;font-weight:700;color:#1e2a3a;margin:0 0 16px;}
-.pw-desc{font-size:13px;color:#5a6a7e;line-height:1.6;margin:0 0 20px;}
-.pw-desc strong{color:#1e2a3a;}
-.pw-hint{font-size:12px;color:#5a6a7e;margin:0 0 12px;}
-#pwInput{width:100%;padding:14px 16px;font-size:18px;text-align:center;letter-spacing:8px;border:1.5px solid #dce3ed;border-radius:10px;box-sizing:border-box;outline:none;transition:border-color .2s;}
-#pwInput:focus{border-color:#1976d2;}
-.pw-error{font-size:12px;color:#c0392b;min-height:18px;margin:8px 0;font-weight:600;}
-.pw-btn{width:100%;padding:14px;font-size:14px;font-weight:700;background:linear-gradient(135deg,#c8973a 0%,#b88830 100%);color:#fff;border:none;border-radius:10px;cursor:pointer;transition:transform .1s;}
-.pw-btn:active{transform:translateY(1px);}
-.pw-footer{font-size:11px;color:#5a6a7e;margin-top:18px;}
-@media(max-width:480px){.pw-card{padding:32px 24px;}}
-.comment.admin-editing{outline:2px dashed #c8973a;outline-offset:3px;background:#fffdf5;cursor:text;}
-.comment.admin-editing:focus{outline-color:#1976d2;}
-.admin-bar{position:fixed;left:0;right:0;bottom:0;z-index:10000;background:#0a4d8c;color:#fff;display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:12px 20px;box-shadow:0 -4px 20px rgba(0,0,0,.25);font-size:13px;}
-.admin-bar-btn{background:#c8973a;color:#fff;border:none;border-radius:8px;padding:9px 18px;font-size:13px;font-weight:700;cursor:pointer;}
-.admin-bar-btn:active{transform:translateY(1px);}
-.admin-bar-btn:disabled{opacity:.6;cursor:default;}
-.admin-bar-status.is-ok{color:#7ee2a8;}.admin-bar-status.is-err{color:#ffb3ab;}.admin-bar-status.is-wait{color:#ffe08a;}
-</style>
-
-
-</body></html>
+</body>
+</html>
