@@ -47,6 +47,7 @@ body{font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,sans-serif;back
 .kpi-card .kv{font-size:18px;font-weight:800;color:var(--ocean-deep);}
 .kpi-card.refund .kv{color:var(--forest-mid);}
 .kpi-card .ku{font-size:11px;color:var(--text-mute);margin-top:2px;}
+.biz-kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px;}
 
 /* 섹션 */
 .report-page{padding:30px 44px;border-top:1px solid #eef2f7;}
@@ -127,6 +128,7 @@ td.num,th.num{text-align:right;font-family:'JetBrains Mono','Noto Sans KR',monos
 .dv.down{color:var(--forest-mid);font-weight:700;}
 .dgrid.cols-2 .drow{grid-template-columns:1.7fr 1fr;}
 .dgrid.cols-3 .drow{grid-template-columns:1.6fr 1fr 1fr;}
+.dgrid.cols-4 .drow{grid-template-columns:1.4fr 1fr 0.9fr 1.6fr;}
 .dgrid.cols-5 .drow{grid-template-columns:1.5fr 1fr 1fr 1fr 0.9fr;}
 .drow.dhead{background:var(--ocean-pale);color:var(--ocean-deep);font-weight:700;font-size:11.5px;}
 .drow.pl-major,.drow.calc-key,.drow.cmp-major{background:#f6f9fd;font-weight:800;color:var(--ocean-deep);}
@@ -137,12 +139,15 @@ td.num,th.num{text-align:right;font-family:'JetBrains Mono','Noto Sans KR',monos
 .drow.pl-sub .dlabel,.drow.indent .dlabel{padding-left:22px;color:var(--text-light);font-weight:400;}
 @media screen and (max-width:600px){
   .dgrid{border:none;border-radius:0;background:transparent;overflow:visible;}
-  .drow{grid-template-columns:1fr;gap:3px;padding:12px 14px;border:1px solid var(--border);border-radius:10px;margin-bottom:8px;}
+  .drow{gap:3px;padding:12px 14px;border:1px solid var(--border);border-radius:10px;margin-bottom:8px;}
+  /* ★ 단일열 stack: .dgrid.cols-N .drow(특이도 0,3,0)을 이겨야 하므로 동일 특이도로 재선언 */
+  .dgrid.cols-2 .drow,.dgrid.cols-3 .drow,.dgrid.cols-4 .drow,.dgrid.cols-5 .drow{grid-template-columns:1fr;}
   .drow.dhead{display:none;}
   .dcell{display:flex;justify-content:space-between;align-items:baseline;gap:12px;}
   .dcell .dk{display:inline;font-size:10.5px;font-weight:700;color:var(--text-light);flex-shrink:0;}
   .dcell.dlabel{display:block;font-weight:800;font-size:13px;border-bottom:1px solid var(--border);padding-bottom:5px;margin-bottom:4px;}
   .drow.pl-sub .dlabel,.drow.indent .dlabel{padding-left:0;}
+  .dv{overflow-wrap:anywhere;text-align:right;}
 }
 
 
@@ -198,12 +203,14 @@ td.num,th.num{text-align:right;font-family:'JetBrains Mono','Noto Sans KR',monos
 }
 
 /* ===== @media screen (모바일 — 인쇄 무간섭) ===== */
+/* ★ 전역 가로 오버플로우 차단(화면 전용): 어떤 요소도 뷰포트 폭을 넘지 못하게 하여 핀치줌 축소 방지 */
+@media screen{
+  html,body{max-width:100%;overflow-x:hidden;}
+  img,svg,table{max-width:100%;}
+}
 @media screen and (max-width:720px){
   .main{max-width:100%;}
-  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
-  .table-scroll>table{min-width:560px;}
-  .table-scroll>.compare-table{min-width:600px;}
-  .kpi-grid{grid-template-columns:repeat(2,1fr);}
+  .kpi-grid,.biz-kpi-grid{grid-template-columns:repeat(2,1fr);}
   .cover{padding:36px 24px 30px;}
   .report-page{padding:26px 22px;}
 }
@@ -427,7 +434,7 @@ td.num,th.num{text-align:right;font-family:'JetBrains Mono','Noto Sans KR',monos
     <div class="section-title">연간 소득발생 현황 · 손익계산서</div>
     <div class="section-sub">꾸준컴퍼니 (미디어콘텐츠창작업) 당기·전기 2개년 손익계산서입니다.</div>
 
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px;">
+    <div class="biz-kpi-grid">
       <div class="kpi-card"><div class="kl">총수입금액</div><div class="kv num" style="font-size:15px;">1,236,071,604</div><div class="ku">원</div></div>
       <div class="kpi-card"><div class="kl">필요경비</div><div class="kv num" style="font-size:15px;">138,214,582</div><div class="ku">원</div></div>
       <div class="kpi-card"><div class="kl">사업소득금액</div><div class="kv num" style="font-size:15px;">1,097,857,022</div><div class="ku">원 <span class="badge badge-green">▲ 흑자</span></div></div>
@@ -559,13 +566,9 @@ td.num,th.num{text-align:right;font-family:'JetBrains Mono','Noto Sans KR',monos
     <div class="section-title">세무조정사항 · 재무제표 분석</div>
     <div class="section-sub">당기 세무조정 집계와 재무 구성 특이사항입니다.</div>
 
-    <div class="table-scroll">
-    <table>
-      <thead><tr><th>과목</th><th class="num">금액 (원)</th><th>처분</th><th>조정 내용</th></tr></thead>
-      <tbody>
-        <tr><td>감가상각비상당액 한도초과액</td><td class="num">131,131</td><td><span class="badge badge-red">기타사외유출</span></td><td>업무용승용차 감가상각비상당액 한도초과액 필요경비불산입</td></tr>
-      </tbody>
-    </table>
+    <div class="dgrid cols-4 adj-table">
+      <div class="drow dhead"><div class="dcell">과목</div><div class="dcell num">금액 (원)</div><div class="dcell">처분</div><div class="dcell">조정 내용</div></div>
+      <div class="drow"><div class="dcell dlabel">감가상각비상당액 한도초과액</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">131,131</span></div><div class="dcell"><span class="dk">처분</span><span class="dv"><span class="badge badge-red">기타사외유출</span></span></div><div class="dcell"><span class="dk">조정 내용</span><span class="dv">업무용승용차 감가상각비상당액 한도초과액 필요경비불산입</span></div></div>
     </div>
 
     <div style="margin-top:18px;font-size:13px;line-height:1.8;color:var(--text);">
@@ -708,16 +711,6 @@ td.num,th.num{text-align:right;font-family:'JetBrains Mono','Noto Sans KR',monos
     } catch (err) { setStatus('저장 실패: 네트워크 오류', 'err'); }
     finally { if (btn) btn.disabled = false; }
   }
-})();
-</script>
-<script>
-(function(){
-  document.querySelectorAll('.pl-table,.compare-table,.depr-table').forEach(function(t){
-    var p=t.parentElement;
-    if(p&&p.classList.contains('table-scroll'))return;
-    var w=document.createElement('div');w.className='table-scroll';
-    t.parentNode.insertBefore(w,t);w.appendChild(t);
-  });
 })();
 </script>
 </body>
