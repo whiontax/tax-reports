@@ -115,6 +115,37 @@ td.num,th.num{text-align:right;font-family:'JetBrains Mono','Noto Sans KR',monos
 .depr-summary{background:var(--ocean-pale);border-radius:8px;padding:14px 18px;font-size:13.5px;line-height:1.7;margin-bottom:14px;}
 .depr-table .depr-total td{font-weight:800;background:var(--teal-pale);border-top:2px solid var(--teal-deep);}
 
+/* ===== div 그리드 데이터 테이블 (표 대체 · 모바일 자연 stack) ===== */
+.dgrid{border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:8px;background:#fff;}
+.drow{display:grid;align-items:center;gap:4px 12px;padding:11px 16px;border-bottom:1px solid var(--border);font-size:12.5px;}
+.drow:last-child{border-bottom:none;}
+.dcell{min-width:0;}
+.dcell .dk{display:none;}
+.dcell.num{text-align:right;}
+.dcell.num,.dv.num{font-family:'JetBrains Mono','Noto Sans KR',monospace;font-feature-settings:'tnum';}
+.dv.up{color:var(--danger);font-weight:700;}
+.dv.down{color:var(--forest-mid);font-weight:700;}
+.dgrid.cols-2 .drow{grid-template-columns:1.7fr 1fr;}
+.dgrid.cols-3 .drow{grid-template-columns:1.6fr 1fr 1fr;}
+.dgrid.cols-5 .drow{grid-template-columns:1.5fr 1fr 1fr 1fr 0.9fr;}
+.drow.dhead{background:var(--ocean-pale);color:var(--ocean-deep);font-weight:700;font-size:11.5px;}
+.drow.pl-major,.drow.calc-key,.drow.cmp-major{background:#f6f9fd;font-weight:800;color:var(--ocean-deep);}
+.drow.pl-result{background:var(--ocean-pale);font-weight:800;color:var(--ocean-deep);border-top:2px solid var(--ocean-mid);}
+.drow.cmp-result,.drow.depr-total{background:var(--teal-pale);font-weight:800;border-top:2px solid var(--teal-deep);}
+.drow.calc-final{background:var(--forest-pale);font-weight:800;color:var(--forest-deep);border-top:2px solid var(--forest-mid);}
+.drow.calc-step .dlabel{font-weight:700;}
+.drow.pl-sub .dlabel,.drow.indent .dlabel{padding-left:22px;color:var(--text-light);font-weight:400;}
+@media screen and (max-width:600px){
+  .dgrid{border:none;border-radius:0;background:transparent;overflow:visible;}
+  .drow{grid-template-columns:1fr;gap:3px;padding:12px 14px;border:1px solid var(--border);border-radius:10px;margin-bottom:8px;}
+  .drow.dhead{display:none;}
+  .dcell{display:flex;justify-content:space-between;align-items:baseline;gap:12px;}
+  .dcell .dk{display:inline;font-size:10.5px;font-weight:700;color:var(--text-light);flex-shrink:0;}
+  .dcell.dlabel{display:block;font-weight:800;font-size:13px;border-bottom:1px solid var(--border);padding-bottom:5px;margin-bottom:4px;}
+  .drow.pl-sub .dlabel,.drow.indent .dlabel{padding-left:0;}
+}
+
+
 /* 공제감면 카드 */
 .credit-card{border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:14px;}
 .credit-head{display:flex;justify-content:space-between;align-items:center;background:var(--ocean-pale);padding:13px 18px;}
@@ -160,7 +191,7 @@ td.num,th.num{text-align:right;font-family:'JetBrains Mono','Noto Sans KR',monos
   .report-page{break-before:auto;page-break-before:auto;border-bottom:none;}
   .force-break{break-before:page;page-break-before:always;}
   h1,h2,h3,.section-title,.section-sub,.sincere-notice-head,.credit-name{break-after:avoid;page-break-after:avoid;}
-  .kpi-card,.credit-card,.health-card,.comment,.sincere-select-box,.sincere-basis,.prepay-card,.depr-summary,.calc-row,thead,tr{break-inside:avoid;page-break-inside:avoid;}
+  .kpi-card,.credit-card,.health-card,.comment,.sincere-select-box,.sincere-basis,.prepay-card,.depr-summary,.calc-row,.drow,thead,tr{break-inside:avoid;page-break-inside:avoid;}
   .calc-table,.pl-table,.compare-table,.depr-table{break-inside:auto;}
   thead{display:table-header-group;}
   p,.health-note,.section-sub,.sincere-explain{orphans:3;widows:3;}
@@ -334,22 +365,18 @@ td.num,th.num{text-align:right;font-family:'JetBrains Mono','Noto Sans KR',monos
   <div class="report-page">
     <div class="section-title">작년·올해 손익 비교 분석</div>
     <div class="section-sub">당기(2025년)·전기(2024년) 손익계산서 기준 주요 항목 비교입니다.</div>
-    <div class="table-scroll">
-    <table class="compare-table">
-      <thead><tr><th>항목</th><th class="num">당기 (2025)</th><th class="num">전기 (2024)</th><th class="num">증감액</th><th class="num">증감률</th></tr></thead>
-      <tbody>
-        <tr class="cmp-major"><td data-label="항목">매출액(콘텐츠수입)</td><td data-label="당기" class="num">1,236,071,604</td><td data-label="전기" class="num">247,138,342</td><td data-label="증감액" class="num up">+988,933,262</td><td data-label="증감률" class="num up">+400.2%</td></tr>
-        <tr><td data-label="항목">여비교통비</td><td data-label="당기" class="num">49,107,395</td><td data-label="전기" class="num">16,843,269</td><td data-label="증감액" class="num up">+32,264,126</td><td data-label="증감률" class="num up">+191.6%</td></tr>
-        <tr><td data-label="항목">접대비(기업업무추진비)</td><td data-label="당기" class="num">5,479,488</td><td data-label="전기" class="num">31,660,839</td><td data-label="증감액" class="num down">-26,181,351</td><td data-label="증감률" class="num down">-82.7%</td></tr>
-        <tr><td data-label="항목">콘텐츠제작비</td><td data-label="당기" class="num">50,227,976</td><td data-label="전기" class="num">23,363,100</td><td data-label="증감액" class="num up">+26,864,876</td><td data-label="증감률" class="num up">+115.0%</td></tr>
-        <tr><td data-label="항목">지급수수료</td><td data-label="당기" class="num">15,591,738</td><td data-label="전기" class="num">24,315,139</td><td data-label="증감액" class="num down">-8,723,401</td><td data-label="증감률" class="num down">-35.9%</td></tr>
-        <tr><td data-label="항목">소모품비</td><td data-label="당기" class="num">13,098,423</td><td data-label="전기" class="num">25,493,870</td><td data-label="증감액" class="num down">-12,395,447</td><td data-label="증감률" class="num down">-48.6%</td></tr>
-        <tr><td data-label="항목">감가상각비</td><td data-label="당기" class="num">1,973,252</td><td data-label="전기" class="num">194,750</td><td data-label="증감액" class="num up">+1,778,502</td><td data-label="증감률" class="num up">+913.2%</td></tr>
-        <tr><td data-label="항목">인적용역비</td><td data-label="당기" class="num">0</td><td data-label="전기" class="num">17,989,910</td><td data-label="증감액" class="num down">-17,989,910</td><td data-label="증감률" class="num down">-100.0%</td></tr>
-        <tr><td data-label="항목">판매비와관리비 계</td><td data-label="당기" class="num">138,345,713</td><td data-label="전기" class="num">140,320,180</td><td data-label="증감액" class="num down">-1,974,467</td><td data-label="증감률" class="num down">-1.4%</td></tr>
-        <tr class="cmp-result"><td data-label="항목">당기순이익</td><td data-label="당기" class="num">1,097,725,891</td><td data-label="전기" class="num">106,820,362</td><td data-label="증감액" class="num up">+990,905,529</td><td data-label="증감률" class="num up">+927.6%</td></tr>
-      </tbody>
-    </table>
+    <div class="dgrid cols-5 compare-table">
+      <div class="drow dhead"><div class="dcell">항목</div><div class="dcell num">당기 (2025)</div><div class="dcell num">전기 (2024)</div><div class="dcell num">증감액</div><div class="dcell num">증감률</div></div>
+      <div class="drow cmp-major"><div class="dcell dlabel">매출액(콘텐츠수입)</div><div class="dcell num"><span class="dk">당기 (2025)</span><span class="dv num">1,236,071,604</span></div><div class="dcell num"><span class="dk">전기 (2024)</span><span class="dv num">247,138,342</span></div><div class="dcell num"><span class="dk">증감액</span><span class="dv num up">+988,933,262</span></div><div class="dcell num"><span class="dk">증감률</span><span class="dv num up">+400.2%</span></div></div>
+      <div class="drow"><div class="dcell dlabel">여비교통비</div><div class="dcell num"><span class="dk">당기 (2025)</span><span class="dv num">49,107,395</span></div><div class="dcell num"><span class="dk">전기 (2024)</span><span class="dv num">16,843,269</span></div><div class="dcell num"><span class="dk">증감액</span><span class="dv num up">+32,264,126</span></div><div class="dcell num"><span class="dk">증감률</span><span class="dv num up">+191.6%</span></div></div>
+      <div class="drow"><div class="dcell dlabel">접대비(기업업무추진비)</div><div class="dcell num"><span class="dk">당기 (2025)</span><span class="dv num">5,479,488</span></div><div class="dcell num"><span class="dk">전기 (2024)</span><span class="dv num">31,660,839</span></div><div class="dcell num"><span class="dk">증감액</span><span class="dv num down">-26,181,351</span></div><div class="dcell num"><span class="dk">증감률</span><span class="dv num down">-82.7%</span></div></div>
+      <div class="drow"><div class="dcell dlabel">콘텐츠제작비</div><div class="dcell num"><span class="dk">당기 (2025)</span><span class="dv num">50,227,976</span></div><div class="dcell num"><span class="dk">전기 (2024)</span><span class="dv num">23,363,100</span></div><div class="dcell num"><span class="dk">증감액</span><span class="dv num up">+26,864,876</span></div><div class="dcell num"><span class="dk">증감률</span><span class="dv num up">+115.0%</span></div></div>
+      <div class="drow"><div class="dcell dlabel">지급수수료</div><div class="dcell num"><span class="dk">당기 (2025)</span><span class="dv num">15,591,738</span></div><div class="dcell num"><span class="dk">전기 (2024)</span><span class="dv num">24,315,139</span></div><div class="dcell num"><span class="dk">증감액</span><span class="dv num down">-8,723,401</span></div><div class="dcell num"><span class="dk">증감률</span><span class="dv num down">-35.9%</span></div></div>
+      <div class="drow"><div class="dcell dlabel">소모품비</div><div class="dcell num"><span class="dk">당기 (2025)</span><span class="dv num">13,098,423</span></div><div class="dcell num"><span class="dk">전기 (2024)</span><span class="dv num">25,493,870</span></div><div class="dcell num"><span class="dk">증감액</span><span class="dv num down">-12,395,447</span></div><div class="dcell num"><span class="dk">증감률</span><span class="dv num down">-48.6%</span></div></div>
+      <div class="drow"><div class="dcell dlabel">감가상각비</div><div class="dcell num"><span class="dk">당기 (2025)</span><span class="dv num">1,973,252</span></div><div class="dcell num"><span class="dk">전기 (2024)</span><span class="dv num">194,750</span></div><div class="dcell num"><span class="dk">증감액</span><span class="dv num up">+1,778,502</span></div><div class="dcell num"><span class="dk">증감률</span><span class="dv num up">+913.2%</span></div></div>
+      <div class="drow"><div class="dcell dlabel">인적용역비</div><div class="dcell num"><span class="dk">당기 (2025)</span><span class="dv num">0</span></div><div class="dcell num"><span class="dk">전기 (2024)</span><span class="dv num">17,989,910</span></div><div class="dcell num"><span class="dk">증감액</span><span class="dv num down">-17,989,910</span></div><div class="dcell num"><span class="dk">증감률</span><span class="dv num down">-100.0%</span></div></div>
+      <div class="drow"><div class="dcell dlabel">판매비와관리비 계</div><div class="dcell num"><span class="dk">당기 (2025)</span><span class="dv num">138,345,713</span></div><div class="dcell num"><span class="dk">전기 (2024)</span><span class="dv num">140,320,180</span></div><div class="dcell num"><span class="dk">증감액</span><span class="dv num down">-1,974,467</span></div><div class="dcell num"><span class="dk">증감률</span><span class="dv num down">-1.4%</span></div></div>
+      <div class="drow cmp-result"><div class="dcell dlabel">당기순이익</div><div class="dcell num"><span class="dk">당기 (2025)</span><span class="dv num">1,097,725,891</span></div><div class="dcell num"><span class="dk">전기 (2024)</span><span class="dv num">106,820,362</span></div><div class="dcell num"><span class="dk">증감액</span><span class="dv num up">+990,905,529</span></div><div class="dcell num"><span class="dk">증감률</span><span class="dv num up">+927.6%</span></div></div>
     </div>
     <div class="comment">
       <div class="comment-label">세무사 코멘트 · 세금변동 요인</div>
@@ -364,33 +391,29 @@ td.num,th.num{text-align:right;font-family:'JetBrains Mono','Noto Sans KR',monos
   <div class="report-page">
     <div class="section-title">당해연도 종합소득세 산정 내역서</div>
     <div class="section-sub">소득금액부터 최종 납부(환급)세액까지 산정 단계를 순서대로 보여드립니다.</div>
-    <div class="table-scroll">
-    <table class="calc-table">
-      <thead><tr><th>구분</th><th class="num">금액 (원)</th><th>비고</th></tr></thead>
-      <tbody>
-        <tr class="calc-step"><td><span class="calc-no">1</span>사업체 소득금액</td><td class="num">1,097,857,022</td><td>당기순이익 + 세무조정</td></tr>
-        <tr class="calc-step"><td><span class="calc-no">2</span>타소득 금액</td><td class="num">0</td><td>이자·배당·근로·연금·기타 0</td></tr>
-        <tr class="calc-key"><td><span class="calc-no">3</span>종합소득금액</td><td class="num">1,097,857,022</td><td>신고서 ⑲</td></tr>
-        <tr class="calc-step"><td><span class="calc-no">4</span>소득공제</td><td class="num">2,072,870</td><td>신고서 ⑳</td></tr>
-        <tr class="indent"><td>· 인적공제(본인)</td><td class="num">1,500,000</td><td>소득세법 §50</td></tr>
-        <tr class="indent"><td>· 국민연금보험료공제</td><td class="num">572,870</td><td>소득세법 §51의3</td></tr>
-        <tr class="calc-key"><td><span class="calc-no">5</span>과세표준</td><td class="num">1,095,784,152</td><td>③ − ④ · 신고서 ㉑</td></tr>
-        <tr class="calc-step"><td><span class="calc-no">6</span>세율</td><td class="num">45%</td><td>누진공제 65,940,000</td></tr>
-        <tr class="calc-key"><td><span class="calc-no">7</span>산출세액</td><td class="num">427,162,868</td><td>⑤ × 45% − 누진공제</td></tr>
-        <tr class="calc-step"><td><span class="calc-no">8</span>세액공제</td><td class="num">0</td><td>신고서 ㉕</td></tr>
-        <tr class="calc-step"><td><span class="calc-no">9</span>세액감면</td><td class="num">427,162,868</td><td>창업중소기업 감면 100%</td></tr>
-        <tr class="calc-key"><td><span class="calc-no">10</span>결정세액</td><td class="num">0</td><td>⑦ − ⑧ − ⑨ · 신고서 ㉘</td></tr>
-        <tr class="calc-step"><td><span class="calc-no">11</span>가산세</td><td class="num">0</td><td>신고서 ㉙</td></tr>
-        <tr class="calc-step"><td><span class="calc-no">12</span>가산납부세액 합계</td><td class="num">0</td><td>⑩ + ⑪</td></tr>
-        <tr class="calc-step"><td><span class="calc-no">13</span>기납부세액</td><td class="num">787,000</td><td>신고서 ㉝ 기준 · ⑯명세서 ⑪</td></tr>
-        <tr class="indent"><td>· 중간예납세액 ①</td><td class="num">787,000</td><td>기납부세액명세서 ①</td></tr>
-        <tr class="indent"><td>· 원천징수세액 ⑤~⑩</td><td class="num">0</td><td>해당 없음</td></tr>
-        <tr class="calc-key"><td><span class="calc-no">14</span>납부할 총세액(국세)</td><td class="num">-787,000</td><td>⑫ − ⑬ · 환급</td></tr>
-        <tr class="calc-step"><td><span class="calc-no">15</span>농어촌특별세</td><td class="num">0</td><td>100% 감면 비과세</td></tr>
-        <tr class="calc-step"><td><span class="calc-no">16</span>개인지방소득세</td><td class="num">0</td><td>(−787,000+787,000)×10%</td></tr>
-        <tr class="calc-final"><td><span class="calc-no" style="background:var(--forest-mid)">17</span>최종 환급세액</td><td class="num">▼ 787,000 (환급)</td><td>⑭ + ⑮ + ⑯</td></tr>
-      </tbody>
-    </table>
+    <div class="dgrid cols-3 calc-table">
+      <div class="drow dhead"><div class="dcell">구분</div><div class="dcell num">금액 (원)</div><div class="dcell">비고</div></div>
+      <div class="drow calc-step"><div class="dcell dlabel"><span class="calc-no">1</span>사업체 소득금액</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">1,097,857,022</span></div><div class="dcell"><span class="dk">비고</span><span class="dv ">당기순이익 + 세무조정</span></div></div>
+      <div class="drow calc-step"><div class="dcell dlabel"><span class="calc-no">2</span>타소득 금액</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">0</span></div><div class="dcell"><span class="dk">비고</span><span class="dv ">이자·배당·근로·연금·기타 0</span></div></div>
+      <div class="drow calc-key"><div class="dcell dlabel"><span class="calc-no">3</span>종합소득금액</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">1,097,857,022</span></div><div class="dcell"><span class="dk">비고</span><span class="dv ">신고서 ⑲</span></div></div>
+      <div class="drow calc-step"><div class="dcell dlabel"><span class="calc-no">4</span>소득공제</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">2,072,870</span></div><div class="dcell"><span class="dk">비고</span><span class="dv ">신고서 ⑳</span></div></div>
+      <div class="drow indent"><div class="dcell dlabel">· 인적공제(본인)</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">1,500,000</span></div><div class="dcell"><span class="dk">비고</span><span class="dv ">소득세법 §50</span></div></div>
+      <div class="drow indent"><div class="dcell dlabel">· 국민연금보험료공제</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">572,870</span></div><div class="dcell"><span class="dk">비고</span><span class="dv ">소득세법 §51의3</span></div></div>
+      <div class="drow calc-key"><div class="dcell dlabel"><span class="calc-no">5</span>과세표준</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">1,095,784,152</span></div><div class="dcell"><span class="dk">비고</span><span class="dv ">③ − ④ · 신고서 ㉑</span></div></div>
+      <div class="drow calc-step"><div class="dcell dlabel"><span class="calc-no">6</span>세율</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">45%</span></div><div class="dcell"><span class="dk">비고</span><span class="dv ">누진공제 65,940,000</span></div></div>
+      <div class="drow calc-key"><div class="dcell dlabel"><span class="calc-no">7</span>산출세액</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">427,162,868</span></div><div class="dcell"><span class="dk">비고</span><span class="dv ">⑤ × 45% − 누진공제</span></div></div>
+      <div class="drow calc-step"><div class="dcell dlabel"><span class="calc-no">8</span>세액공제</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">0</span></div><div class="dcell"><span class="dk">비고</span><span class="dv ">신고서 ㉕</span></div></div>
+      <div class="drow calc-step"><div class="dcell dlabel"><span class="calc-no">9</span>세액감면</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">427,162,868</span></div><div class="dcell"><span class="dk">비고</span><span class="dv ">창업중소기업 감면 100%</span></div></div>
+      <div class="drow calc-key"><div class="dcell dlabel"><span class="calc-no">10</span>결정세액</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">0</span></div><div class="dcell"><span class="dk">비고</span><span class="dv ">⑦ − ⑧ − ⑨ · 신고서 ㉘</span></div></div>
+      <div class="drow calc-step"><div class="dcell dlabel"><span class="calc-no">11</span>가산세</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">0</span></div><div class="dcell"><span class="dk">비고</span><span class="dv ">신고서 ㉙</span></div></div>
+      <div class="drow calc-step"><div class="dcell dlabel"><span class="calc-no">12</span>가산납부세액 합계</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">0</span></div><div class="dcell"><span class="dk">비고</span><span class="dv ">⑩ + ⑪</span></div></div>
+      <div class="drow calc-step"><div class="dcell dlabel"><span class="calc-no">13</span>기납부세액</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">787,000</span></div><div class="dcell"><span class="dk">비고</span><span class="dv ">신고서 ㉝ 기준 · ⑯명세서 ⑪</span></div></div>
+      <div class="drow indent"><div class="dcell dlabel">· 중간예납세액 ①</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">787,000</span></div><div class="dcell"><span class="dk">비고</span><span class="dv ">기납부세액명세서 ①</span></div></div>
+      <div class="drow indent"><div class="dcell dlabel">· 원천징수세액 ⑤~⑩</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">0</span></div><div class="dcell"><span class="dk">비고</span><span class="dv ">해당 없음</span></div></div>
+      <div class="drow calc-key"><div class="dcell dlabel"><span class="calc-no">14</span>납부할 총세액(국세)</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">-787,000</span></div><div class="dcell"><span class="dk">비고</span><span class="dv ">⑫ − ⑬ · 환급</span></div></div>
+      <div class="drow calc-step"><div class="dcell dlabel"><span class="calc-no">15</span>농어촌특별세</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">0</span></div><div class="dcell"><span class="dk">비고</span><span class="dv ">100% 감면 비과세</span></div></div>
+      <div class="drow calc-step"><div class="dcell dlabel"><span class="calc-no">16</span>개인지방소득세</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">0</span></div><div class="dcell"><span class="dk">비고</span><span class="dv ">(−787,000+787,000)×10%</span></div></div>
+      <div class="drow calc-final"><div class="dcell dlabel"><span class="calc-no" style="background:var(--forest-mid)">17</span>최종 환급세액</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">▼ 787,000 (환급)</span></div><div class="dcell"><span class="dk">비고</span><span class="dv ">⑭ + ⑮ + ⑯</span></div></div>
     </div>
     <div class="comment">
       <div class="comment-label">세무사 코멘트</div>
@@ -411,35 +434,31 @@ td.num,th.num{text-align:right;font-family:'JetBrains Mono','Noto Sans KR',monos
       <div class="kpi-card"><div class="kl">소득률</div><div class="kv num" style="font-size:15px;">88.8%</div><div class="ku">사업기간 12개월</div></div>
     </div>
 
-    <div class="table-scroll">
-    <table class="pl-table">
-      <thead><tr><th class="pl-acct">과목</th><th class="pl-amt num">제2(당)기 2025</th><th class="pl-amt num">제1(전)기 2024</th></tr></thead>
-      <tbody>
-        <tr class="pl-major"><td>Ⅰ. 매출액</td><td class="num">1,236,071,604</td><td class="num">247,138,342</td></tr>
-        <tr class="pl-sub"><td>콘텐츠수입</td><td class="num">1,236,071,604</td><td class="num">247,138,342</td></tr>
-        <tr class="pl-major"><td>Ⅱ. 매출원가</td><td class="num">0</td><td class="num">0</td></tr>
-        <tr class="pl-major"><td>Ⅲ. 매출총이익</td><td class="num">1,236,071,604</td><td class="num">247,138,342</td></tr>
-        <tr class="pl-major"><td>Ⅳ. 판매비와관리비</td><td class="num">138,345,713</td><td class="num">140,320,180</td></tr>
-        <tr class="pl-sub"><td>여비교통비</td><td class="num">49,107,395</td><td class="num">16,843,269</td></tr>
-        <tr class="pl-sub"><td>접대비(기업업무추진비)</td><td class="num">5,479,488</td><td class="num">31,660,839</td></tr>
-        <tr class="pl-sub"><td>통신비</td><td class="num">819,160</td><td class="num">459,303</td></tr>
-        <tr class="pl-sub"><td>감가상각비</td><td class="num">1,973,252</td><td class="num">194,750</td></tr>
-        <tr class="pl-sub"><td>지급임차료</td><td class="num">1,139,710</td><td class="num">0</td></tr>
-        <tr class="pl-sub"><td>보험료</td><td class="num">893,080</td><td class="num">0</td></tr>
-        <tr class="pl-sub"><td>차량유지비</td><td class="num">15,491</td><td class="num">0</td></tr>
-        <tr class="pl-sub"><td>소모품비</td><td class="num">13,098,423</td><td class="num">25,493,870</td></tr>
-        <tr class="pl-sub"><td>지급수수료</td><td class="num">15,591,738</td><td class="num">24,315,139</td></tr>
-        <tr class="pl-sub"><td>콘텐츠제작비</td><td class="num">50,227,976</td><td class="num">23,363,100</td></tr>
-        <tr class="pl-sub"><td>인적용역비</td><td class="num">0</td><td class="num">17,989,910</td></tr>
-        <tr class="pl-major"><td>Ⅴ. 영업이익</td><td class="num">1,097,725,891</td><td class="num">106,818,162</td></tr>
-        <tr class="pl-major"><td>Ⅵ. 영업외수익</td><td class="num">0</td><td class="num">2,200</td></tr>
-        <tr class="pl-sub"><td>잡이익</td><td class="num">0</td><td class="num">2,200</td></tr>
-        <tr class="pl-major"><td>Ⅶ. 영업외비용</td><td class="num">0</td><td class="num">0</td></tr>
-        <tr class="pl-major"><td>Ⅷ. 소득세차감전이익</td><td class="num">1,097,725,891</td><td class="num">106,820,362</td></tr>
-        <tr class="pl-major"><td>Ⅸ. 소득세등</td><td class="num">0</td><td class="num">0</td></tr>
-        <tr class="pl-result"><td>Ⅹ. 당기순이익</td><td class="num">1,097,725,891</td><td class="num">106,820,362</td></tr>
-      </tbody>
-    </table>
+    <div class="dgrid cols-3 pl-table">
+      <div class="drow dhead"><div class="dcell">과목</div><div class="dcell num">제2(당)기 2025</div><div class="dcell num">제1(전)기 2024</div></div>
+      <div class="drow pl-major"><div class="dcell dlabel">Ⅰ. 매출액</div><div class="dcell num"><span class="dk">제2(당)기 2025</span><span class="dv num">1,236,071,604</span></div><div class="dcell num"><span class="dk">제1(전)기 2024</span><span class="dv num">247,138,342</span></div></div>
+      <div class="drow pl-sub"><div class="dcell dlabel">콘텐츠수입</div><div class="dcell num"><span class="dk">제2(당)기 2025</span><span class="dv num">1,236,071,604</span></div><div class="dcell num"><span class="dk">제1(전)기 2024</span><span class="dv num">247,138,342</span></div></div>
+      <div class="drow pl-major"><div class="dcell dlabel">Ⅱ. 매출원가</div><div class="dcell num"><span class="dk">제2(당)기 2025</span><span class="dv num">0</span></div><div class="dcell num"><span class="dk">제1(전)기 2024</span><span class="dv num">0</span></div></div>
+      <div class="drow pl-major"><div class="dcell dlabel">Ⅲ. 매출총이익</div><div class="dcell num"><span class="dk">제2(당)기 2025</span><span class="dv num">1,236,071,604</span></div><div class="dcell num"><span class="dk">제1(전)기 2024</span><span class="dv num">247,138,342</span></div></div>
+      <div class="drow pl-major"><div class="dcell dlabel">Ⅳ. 판매비와관리비</div><div class="dcell num"><span class="dk">제2(당)기 2025</span><span class="dv num">138,345,713</span></div><div class="dcell num"><span class="dk">제1(전)기 2024</span><span class="dv num">140,320,180</span></div></div>
+      <div class="drow pl-sub"><div class="dcell dlabel">여비교통비</div><div class="dcell num"><span class="dk">제2(당)기 2025</span><span class="dv num">49,107,395</span></div><div class="dcell num"><span class="dk">제1(전)기 2024</span><span class="dv num">16,843,269</span></div></div>
+      <div class="drow pl-sub"><div class="dcell dlabel">접대비(기업업무추진비)</div><div class="dcell num"><span class="dk">제2(당)기 2025</span><span class="dv num">5,479,488</span></div><div class="dcell num"><span class="dk">제1(전)기 2024</span><span class="dv num">31,660,839</span></div></div>
+      <div class="drow pl-sub"><div class="dcell dlabel">통신비</div><div class="dcell num"><span class="dk">제2(당)기 2025</span><span class="dv num">819,160</span></div><div class="dcell num"><span class="dk">제1(전)기 2024</span><span class="dv num">459,303</span></div></div>
+      <div class="drow pl-sub"><div class="dcell dlabel">감가상각비</div><div class="dcell num"><span class="dk">제2(당)기 2025</span><span class="dv num">1,973,252</span></div><div class="dcell num"><span class="dk">제1(전)기 2024</span><span class="dv num">194,750</span></div></div>
+      <div class="drow pl-sub"><div class="dcell dlabel">지급임차료</div><div class="dcell num"><span class="dk">제2(당)기 2025</span><span class="dv num">1,139,710</span></div><div class="dcell num"><span class="dk">제1(전)기 2024</span><span class="dv num">0</span></div></div>
+      <div class="drow pl-sub"><div class="dcell dlabel">보험료</div><div class="dcell num"><span class="dk">제2(당)기 2025</span><span class="dv num">893,080</span></div><div class="dcell num"><span class="dk">제1(전)기 2024</span><span class="dv num">0</span></div></div>
+      <div class="drow pl-sub"><div class="dcell dlabel">차량유지비</div><div class="dcell num"><span class="dk">제2(당)기 2025</span><span class="dv num">15,491</span></div><div class="dcell num"><span class="dk">제1(전)기 2024</span><span class="dv num">0</span></div></div>
+      <div class="drow pl-sub"><div class="dcell dlabel">소모품비</div><div class="dcell num"><span class="dk">제2(당)기 2025</span><span class="dv num">13,098,423</span></div><div class="dcell num"><span class="dk">제1(전)기 2024</span><span class="dv num">25,493,870</span></div></div>
+      <div class="drow pl-sub"><div class="dcell dlabel">지급수수료</div><div class="dcell num"><span class="dk">제2(당)기 2025</span><span class="dv num">15,591,738</span></div><div class="dcell num"><span class="dk">제1(전)기 2024</span><span class="dv num">24,315,139</span></div></div>
+      <div class="drow pl-sub"><div class="dcell dlabel">콘텐츠제작비</div><div class="dcell num"><span class="dk">제2(당)기 2025</span><span class="dv num">50,227,976</span></div><div class="dcell num"><span class="dk">제1(전)기 2024</span><span class="dv num">23,363,100</span></div></div>
+      <div class="drow pl-sub"><div class="dcell dlabel">인적용역비</div><div class="dcell num"><span class="dk">제2(당)기 2025</span><span class="dv num">0</span></div><div class="dcell num"><span class="dk">제1(전)기 2024</span><span class="dv num">17,989,910</span></div></div>
+      <div class="drow pl-major"><div class="dcell dlabel">Ⅴ. 영업이익</div><div class="dcell num"><span class="dk">제2(당)기 2025</span><span class="dv num">1,097,725,891</span></div><div class="dcell num"><span class="dk">제1(전)기 2024</span><span class="dv num">106,818,162</span></div></div>
+      <div class="drow pl-major"><div class="dcell dlabel">Ⅵ. 영업외수익</div><div class="dcell num"><span class="dk">제2(당)기 2025</span><span class="dv num">0</span></div><div class="dcell num"><span class="dk">제1(전)기 2024</span><span class="dv num">2,200</span></div></div>
+      <div class="drow pl-sub"><div class="dcell dlabel">잡이익</div><div class="dcell num"><span class="dk">제2(당)기 2025</span><span class="dv num">0</span></div><div class="dcell num"><span class="dk">제1(전)기 2024</span><span class="dv num">2,200</span></div></div>
+      <div class="drow pl-major"><div class="dcell dlabel">Ⅶ. 영업외비용</div><div class="dcell num"><span class="dk">제2(당)기 2025</span><span class="dv num">0</span></div><div class="dcell num"><span class="dk">제1(전)기 2024</span><span class="dv num">0</span></div></div>
+      <div class="drow pl-major"><div class="dcell dlabel">Ⅷ. 소득세차감전이익</div><div class="dcell num"><span class="dk">제2(당)기 2025</span><span class="dv num">1,097,725,891</span></div><div class="dcell num"><span class="dk">제1(전)기 2024</span><span class="dv num">106,820,362</span></div></div>
+      <div class="drow pl-major"><div class="dcell dlabel">Ⅸ. 소득세등</div><div class="dcell num"><span class="dk">제2(당)기 2025</span><span class="dv num">0</span></div><div class="dcell num"><span class="dk">제1(전)기 2024</span><span class="dv num">0</span></div></div>
+      <div class="drow pl-result"><div class="dcell dlabel">Ⅹ. 당기순이익</div><div class="dcell num"><span class="dk">제2(당)기 2025</span><span class="dv num">1,097,725,891</span></div><div class="dcell num"><span class="dk">제1(전)기 2024</span><span class="dv num">106,820,362</span></div></div>
     </div>
     <div class="comment">
       <div class="comment-label">세무사 코멘트</div>
@@ -456,14 +475,10 @@ td.num,th.num{text-align:right;font-family:'JetBrains Mono','Noto Sans KR',monos
       당기 감가상각비 <b class="num">1,973,252원</b>이 비용 처리되었으며,
       앞으로 비용 처리 가능한 잔여 금액(당기말 장부가액)은 <b class="num">7,863,419원</b>입니다.
     </div>
-    <div class="table-scroll">
-    <table class="depr-table">
-      <thead><tr><th>자산유형</th><th class="num">회사계상상각비 (당기 비용)</th><th class="num">당기말 장부가액 (남은 비용처리 가능금액)</th></tr></thead>
-      <tbody>
-        <tr><td data-label="자산유형">비품</td><td data-label="회사계상상각비" class="num">1,973,252</td><td data-label="당기말 장부가액" class="num">7,863,419</td></tr>
-        <tr class="depr-total"><td data-label="자산유형">총계</td><td data-label="회사계상상각비" class="num">1,973,252</td><td data-label="당기말 장부가액" class="num">7,863,419</td></tr>
-      </tbody>
-    </table>
+    <div class="dgrid cols-3 depr-table">
+      <div class="drow dhead"><div class="dcell">자산유형</div><div class="dcell num">회사계상상각비 (당기 비용)</div><div class="dcell num">당기말 장부가액 (남은 비용처리 가능금액)</div></div>
+      <div class="drow"><div class="dcell dlabel">비품</div><div class="dcell num"><span class="dk">회사계상상각비 (당기 비용)</span><span class="dv num">1,973,252</span></div><div class="dcell num"><span class="dk">당기말 장부가액 (남은 비용처리 가능금액)</span><span class="dv num">7,863,419</span></div></div>
+      <div class="drow depr-total"><div class="dcell dlabel">총계</div><div class="dcell num"><span class="dk">회사계상상각비 (당기 비용)</span><span class="dv num">1,973,252</span></div><div class="dcell num"><span class="dk">당기말 장부가액 (남은 비용처리 가능금액)</span><span class="dv num">7,863,419</span></div></div>
     </div>
     <div class="comment">
       <div class="comment-label">세무사 코멘트</div>
