@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="client-name" content="서상일">
+<meta name="client-reg" content="840702-1******">
+<meta name="client-ceo" content="서상일">
+<meta name="client-biz" content="닥터서동물심장병원">
+<meta name="client-birth" content="840702">
+<meta name="report-year" content="2025">
+<meta name="gh-path" content="닥터서동물심장병원/2025.html">
+<title>종합소득세 분석 보고서 - 서상일 (2025)</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ocean-deep:#0a4d8c; --ocean-mid:#1976d2; --ocean-light:#4dabf5;
+  --teal-deep:#26a69a; --teal-light:#4db6ac; --teal-pale:#e7f6f4; --ocean-pale:#eaf2fa;
+  --forest-deep:#166534; --forest-mid:#15803d; --forest-pale:#f0fdf4;
+  --bg:#f7f9fc; --card:#ffffff; --text:#1a2433; --text-light:#6b7a8f; --text-mute:#9aa5b8; --border:#e2e8f0;
+  --success:#16a34a; --warn:#d97706; --danger:#dc2626;
+  --grad-hero:linear-gradient(135deg,#0a4d8c 0%,#1976d2 35%,#26a69a 75%,#4db6ac 100%);
+  --grad-line:linear-gradient(90deg,#1976d2,#26a69a);
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,sans-serif;line-height:1.6;}
+.num{font-family:'JetBrains Mono','Noto Sans KR',monospace;font-feature-settings:'tnum';}
+.main{max-width:794px;margin:24px auto;background:var(--card);box-shadow:0 4px 30px rgba(10,77,140,.10);}
+
+/* ── 커버 ── */
+.cover{background:var(--grad-hero);color:#fff;padding:44px 44px 30px;}
+.cover-badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1.5px;background:rgba(255,255,255,.16);padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.25);}
+.cover-firm{font-size:13px;font-weight:700;letter-spacing:1px;margin-top:18px;opacity:.92;}
+.cover h1{font-size:34px;font-weight:900;letter-spacing:-1px;margin:8px 0 6px;}
+.cover-subtitle{font-size:14px;font-weight:500;opacity:.92;}
+.cover-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.16);border-radius:14px;overflow:hidden;margin-top:24px;}
+.cover-cell{background:rgba(10,77,140,.42);padding:13px 16px;}
+.cover-cell.span2{grid-column:span 2;}
+.cover-cell .ck{font-size:10.5px;opacity:.72;letter-spacing:.4px;margin-bottom:4px;}
+.cover-cell .cv{font-size:14px;font-weight:700;}
+
+/* ── KPI ── */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:24px 44px;}
+.kpi-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:18px 14px;text-align:center;position:relative;}
+.kpi-card .kl{font-size:11px;color:var(--text-light);margin-bottom:8px;font-weight:600;word-break:keep-all;}
+.kpi-card .kl-sub{display:block;font-size:9.5px;font-weight:500;opacity:.82;margin-top:3px;letter-spacing:.2px;white-space:nowrap;}
+.kpi-card .kv{font-size:20px;font-weight:800;color:var(--ocean-deep);letter-spacing:-0.4px;}
+.kpi-card .ku{font-size:11px;color:var(--text-mute);margin-top:3px;}
+.kpi-card.hero{background:var(--grad-hero);border:none;color:#fff;box-shadow:0 8px 24px rgba(10,77,140,.28);}
+.kpi-card.hero .kl{color:rgba(255,255,255,.85);}
+.kpi-card.hero .kv{color:#fff;font-size:25px;}
+.kpi-card.hero .ku{color:rgba(255,255,255,.8);}
+.kpi-card.refund .kv{color:var(--forest-mid);}
+.kpi-card.hero.refund{background:linear-gradient(135deg,#166534,#15803d 60%,#22c55e);box-shadow:0 8px 24px rgba(22,101,52,.28);}
+
+/* ── 섹션 공통 ── */
+.body-pad{padding:8px 44px 44px;}
+.section-title{font-size:19px;font-weight:800;color:var(--ocean-deep);margin:34px 0 4px;display:flex;align-items:center;gap:10px;}
+.section-title::before{content:"";width:5px;height:20px;background:var(--grad-line);border-radius:3px;}
+.section-sub{font-size:12.5px;color:var(--text-light);margin:0 0 14px;padding-left:15px;}
+
+/* ── div 그리드 데이터 테이블 ── */
+.dgrid{border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:8px;background:#fff;}
+.drow{display:grid;align-items:center;gap:4px 12px;padding:11px 16px;border-bottom:1px solid var(--border);font-size:12.5px;}
+.drow:last-child{border-bottom:none;}
+.dcell{min-width:0;}
+.dcell .dk{display:none;}
+.dcell.num{text-align:right;}
+.dcell.num,.dv.num{font-family:'JetBrains Mono','Noto Sans KR',monospace;font-feature-settings:'tnum';}
+.dv.up{color:var(--danger);font-weight:700;}
+.dv.down{color:var(--forest-mid);font-weight:700;}
+.dgrid.cols-2 .drow{grid-template-columns:1.7fr 1fr;}
+.dgrid.cols-3 .drow{grid-template-columns:1.6fr 1fr 1fr;}
+.dgrid.cols-4 .drow{grid-template-columns:1.4fr 1fr 0.9fr 1.6fr;}
+.dgrid.cols-5 .drow{grid-template-columns:1.5fr 1fr 1fr 1fr 0.9fr;}
+.drow.dhead{background:var(--ocean-pale);color:var(--ocean-deep);font-weight:700;font-size:11.5px;}
+.drow.pl-major,.drow.calc-key,.drow.cmp-major{background:#f6f9fd;font-weight:800;color:var(--ocean-deep);}
+.drow.pl-result{background:var(--ocean-pale);font-weight:800;color:var(--ocean-deep);border-top:2px solid var(--ocean-mid);}
+.drow.cmp-result,.drow.depr-total{background:var(--teal-pale);font-weight:800;border-top:2px solid var(--teal-deep);}
+.drow.calc-final{background:var(--forest-pale);font-weight:800;color:var(--forest-deep);border-top:2px solid var(--forest-mid);}
+.drow.calc-step .dlabel{font-weight:700;}
+.drow.pl-sub .dlabel,.drow.indent .dlabel{padding-left:22px;color:var(--text-light);font-weight:400;}
+.calc-no{display:inline-block;min-width:20px;height:20px;line-height:20px;text-align:center;background:var(--ocean-mid);color:#fff;border-radius:6px;font-size:10.5px;font-weight:700;margin-right:7px;}
+.drow.calc-final .calc-no{background:var(--forest-mid);}
+.drow.calc-key .calc-no{background:var(--ocean-deep);}
+
+/* ── 성실신고 안내 ── */
+.sincere-notice{border:1.5px solid var(--ocean-pale);border-radius:14px;padding:22px;background:linear-gradient(180deg,#f8fbff,#fff 50%);margin-bottom:8px;}
+.sincere-notice-head{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:800;color:var(--ocean-deep);margin-bottom:14px;}
+.sincere-icon{font-size:18px;}
+.sincere-select-box{background:var(--ocean-pale);border-radius:10px;padding:14px 16px;font-size:13.5px;line-height:1.7;margin-bottom:14px;}
+.sincere-explain{font-size:12.5px;color:var(--text);line-height:1.85;margin:0 0 16px;}
+.sincere-basis{border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:14px;}
+.sincere-basis-row{display:flex;justify-content:space-between;gap:12px;padding:11px 16px;font-size:12.5px;border-bottom:1px solid var(--border);}
+.sincere-basis-row:last-child{border-bottom:none;}
+.sincere-basis-row span{color:var(--text-light);}
+.sincere-basis-row b{color:var(--text);font-weight:700;}
+.sincere-basis-row.highlight{background:var(--forest-pale);}
+.sincere-basis-row.highlight b{color:var(--forest-deep);}
+.sincere-deadline{background:var(--forest-mid);color:#fff;border-radius:10px;padding:12px 16px;font-size:13px;font-weight:600;text-align:center;}
+
+/* ── 납부 카드 ── */
+.taxpay-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px;}
+.tax-pay-card{border-radius:14px;padding:18px 16px;color:#fff;position:relative;}
+.tax-pay-card.nat{background:var(--grad-hero);}
+.tax-pay-card.nat2{background:linear-gradient(135deg,#1976d2,#4dabf5);}
+.tax-pay-card.onetime{background:linear-gradient(135deg,#166534,#15803d 70%,#22c55e);}
+.tax-pay-label{font-size:11.5px;font-weight:600;opacity:.9;margin-bottom:8px;}
+.tax-pay-amount{font-size:23px;font-weight:900;letter-spacing:-0.5px;}
+.tax-pay-date{font-size:10.5px;opacity:.85;margin-top:8px;}
+.tax-pay-tag{display:inline-block;font-size:9.5px;font-weight:700;background:rgba(255,255,255,.22);padding:3px 9px;border-radius:12px;margin-top:8px;}
+.final-pay-banner{background:linear-gradient(135deg,#0a4d8c,#15803d);color:#fff;border-radius:14px;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px;}
+.final-pay-banner .fpl{font-size:13px;font-weight:600;opacity:.92;}
+.final-pay-banner .fpv{font-size:28px;font-weight:900;letter-spacing:-0.8px;}
+.prepay-card{border:1.5px dashed var(--ocean-mid);border-radius:14px;padding:18px;background:#f8fbff;margin-bottom:8px;}
+.prepay-label{font-size:12px;font-weight:700;color:var(--ocean-deep);margin-bottom:6px;}
+.prepay-amount{font-size:24px;font-weight:900;color:var(--ocean-deep);letter-spacing:-0.5px;}
+.prepay-note{font-size:11px;color:var(--text-light);line-height:1.6;margin-top:8px;}
+
+/* ── 사업장 카드 ── */
+.biz-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px;}
+.biz-card{border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center;background:#fff;}
+.biz-card .bl{font-size:10.5px;color:var(--text-light);margin-bottom:6px;}
+.biz-card .bv{font-size:15px;font-weight:800;color:var(--ocean-deep);}
+.badge-profit{display:inline-block;font-size:10px;font-weight:700;background:var(--forest-pale);color:var(--forest-deep);padding:3px 9px;border-radius:10px;}
+.badge-loss{display:inline-block;font-size:10px;font-weight:700;background:#fef2f2;color:var(--danger);padding:3px 9px;border-radius:10px;}
+
+/* ── 공제·감면 ── */
+.credit-head{display:flex;justify-content:space-between;align-items:center;gap:10px;}
+.credit-name{min-width:0;}
+.credit-amount{white-space:nowrap;flex-shrink:0;}
+.credit-group{margin-bottom:18px;}
+.credit-group-label{display:flex;align-items:center;gap:10px;padding:8px 2px 10px;margin-bottom:12px;border-bottom:2px solid var(--ocean-pale);}
+.cg-tag{font-size:13px;font-weight:800;padding:4px 12px;border-radius:8px;color:#fff;}
+.cg-income{background:var(--ocean-mid);}
+.cg-tax{background:var(--teal-deep);}
+.cg-reduce{background:var(--forest-mid);}
+.cg-desc{font-size:11.5px;color:var(--text-light);}
+.cg-subtotal{margin-left:auto;font-size:13px;font-weight:700;color:var(--text);}
+.credit-card{border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:10px;background:#fff;}
+.credit-card.feature{border:2px solid var(--forest-mid);background:linear-gradient(180deg,var(--forest-pale),#fff 60%);box-shadow:0 6px 20px rgba(22,101,52,.14);}
+.credit-name{font-size:14px;font-weight:800;color:var(--text);}
+.credit-amount{font-size:16px;font-weight:800;color:var(--ocean-deep);}
+.credit-amount.mega{font-size:24px;font-weight:900;color:var(--forest-deep);letter-spacing:-0.5px;}
+.feature-highlight{margin:6px 0 12px;padding:10px 14px;border-radius:10px;background:var(--forest-mid);color:#fff;font-size:13px;font-weight:700;}
+.credit-body{margin-top:10px;border-top:1px dashed var(--border);padding-top:10px;}
+.credit-row{display:flex;gap:12px;font-size:12px;padding:3px 0;}
+.credit-k{flex-shrink:0;width:88px;color:var(--text-light);font-weight:600;}
+.badge{display:inline-block;font-size:9.5px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:6px;vertical-align:middle;}
+.badge-green{background:var(--forest-pale);color:var(--forest-deep);}
+.badge-yellow{background:#fffbeb;color:var(--warn);}
+
+/* ── 건보 ── */
+.health-card{border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:14px;background:#fff;}
+.health-type{font-size:14px;font-weight:800;color:var(--teal-deep);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.health-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px;}
+.health-stat-label{font-size:10.5px;color:var(--text-light);margin-bottom:5px;}
+.health-stat-val{font-size:16px;font-weight:800;color:var(--text);}
+.health-stat-val.highlight{color:var(--teal-deep);}
+.health-note{font-size:11.5px;color:var(--text-light);line-height:1.8;background:#f8fbfb;border-radius:8px;padding:10px 14px;}
+
+/* ── 코멘트 ── */
+.comment{border-left:4px solid var(--teal-deep);background:#f8fbfb;border-radius:0 10px 10px 0;padding:14px 18px;font-size:12.5px;line-height:1.85;color:var(--text);margin:14px 0;}
+.comment::before{content:"세무사 검토 의견";display:block;font-size:10.5px;font-weight:700;color:var(--teal-deep);margin-bottom:6px;letter-spacing:.5px;}
+
+/* ── 분석 박스 ── */
+.analysis-box{border:1px solid var(--border);border-radius:12px;padding:16px 18px;background:#fff;margin-bottom:12px;}
+.analysis-box h4{font-size:13px;font-weight:800;color:var(--ocean-deep);margin:0 0 8px;}
+.analysis-box ul{margin:0;padding-left:18px;font-size:12.5px;line-height:1.85;}
+.summary-banner{background:linear-gradient(135deg,#eaf2fa,#e7f6f4);border-radius:12px;padding:14px 18px;font-size:13px;font-weight:600;color:var(--ocean-deep);margin-bottom:14px;border:1px solid var(--ocean-pale);}
+
+.depr-summary{background:var(--ocean-pale);border-radius:10px;padding:14px 16px;font-size:13px;line-height:1.7;margin-bottom:12px;}
+
+/* ── 푸터 ── */
+.report-footer{background:var(--ocean-deep);color:#fff;padding:30px 44px;margin-top:34px;}
+.footer-firm{font-size:16px;font-weight:800;margin-bottom:6px;}
+.footer-slogan{font-size:13px;opacity:.9;margin-bottom:4px;}
+.footer-sign{font-size:12.5px;opacity:.85;margin-bottom:14px;}
+.footer-contact{font-size:11.5px;opacity:.8;line-height:1.8;border-top:1px solid rgba(255,255,255,.2);padding-top:14px;}
+
+/* ── PW 게이트 ── */
+.pw-gate{position:fixed;inset:0;z-index:9999;background:linear-gradient(135deg,#0a4d8c 0%,#1976d2 50%,#26a69a 100%);display:flex;align-items:center;justify-content:center;padding:20px;}
+.pw-card{background:#fff;border-radius:16px;padding:40px 32px;max-width:380px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.25);text-align:center;}
+.pw-brand{font-size:14px;font-weight:700;color:#0a4d8c;letter-spacing:1px;}
+.pw-divider{width:40px;height:3px;background:#c8973a;margin:12px auto 20px;border-radius:2px;}
+.pw-title{font-size:17px;font-weight:700;color:#1e2a3a;margin:0 0 16px;}
+.pw-desc{font-size:13px;color:#5a6a7e;line-height:1.6;margin:0 0 20px;}
+.pw-desc strong{color:#1e2a3a;}
+.pw-hint{font-size:12px;color:#5a6a7e;margin:0 0 12px;}
+#pwInput{width:100%;padding:14px 16px;font-size:18px;text-align:center;letter-spacing:8px;border:1.5px solid #dce3ed;border-radius:10px;box-sizing:border-box;outline:none;transition:border-color .2s;}
+#pwInput:focus{border-color:#1976d2;}
+.pw-error{font-size:12px;color:#c0392b;min-height:18px;margin:8px 0;font-weight:600;}
+.pw-btn{width:100%;padding:14px;font-size:14px;font-weight:700;background:linear-gradient(135deg,#c8973a 0%,#b88830 100%);color:#fff;border:none;border-radius:10px;cursor:pointer;transition:transform .1s;}
+.pw-btn:active{transform:translateY(1px);}
+.pw-footer{font-size:11px;color:#5a6a7e;margin-top:18px;}
+.comment.admin-editing{outline:2px dashed #c8973a;outline-offset:3px;background:#fffdf5;cursor:text;}
+.comment.admin-editing:focus{outline-color:#1976d2;}
+.admin-bar{position:fixed;left:0;right:0;bottom:0;z-index:10000;background:#0a4d8c;color:#fff;display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:12px 20px;box-shadow:0 -4px 20px rgba(0,0,0,.25);font-size:13px;}
+.admin-bar-btn{background:#c8973a;color:#fff;border:none;border-radius:8px;padding:9px 18px;font-size:13px;font-weight:700;cursor:pointer;}
+.admin-bar-btn:active{transform:translateY(1px);}
+.admin-bar-btn:disabled{opacity:.6;cursor:default;}
+.admin-bar-status.is-ok{color:#7ee2a8;}.admin-bar-status.is-err{color:#ffb3ab;}.admin-bar-status.is-wait{color:#ffe08a;}
+
+/* ── 전역 가로 오버플로우 가드(화면 전용) ── */
+@media screen{
+  html,body{max-width:100%;overflow-x:hidden;}
+  img,svg,table{max-width:100%;}
+}
+/* ── 모바일: div 그리드 1열 stack ── */
+@media screen and (max-width:600px){
+  .dgrid{border:none;border-radius:0;background:transparent;overflow:visible;}
+  .drow{gap:3px;padding:12px 14px;border:1px solid var(--border);border-radius:10px;margin-bottom:8px;}
+  .dgrid.cols-2 .drow,.dgrid.cols-3 .drow,.dgrid.cols-4 .drow,.dgrid.cols-5 .drow{grid-template-columns:1fr;}
+  .drow.dhead{display:none;}
+  .dcell{display:flex;justify-content:space-between;align-items:baseline;gap:12px;}
+  .dcell .dk{display:inline;font-size:10.5px;font-weight:700;color:var(--text-light);flex-shrink:0;}
+  .dcell.dlabel{display:block;font-weight:800;font-size:13px;border-bottom:1px solid var(--border);padding-bottom:5px;margin-bottom:4px;}
+  .drow.pl-sub .dlabel,.drow.indent .dlabel{padding-left:0;}
+  .dv{overflow-wrap:anywhere;text-align:right;}
+}
+@media screen and (max-width:720px){
+  .main{max-width:100%;margin:0;}
+  .cover,.body-pad,.kpi-grid,.report-footer{padding-left:20px;padding-right:20px;}
+  .cover-grid{grid-template-columns:repeat(2,1fr);}
+  .kpi-grid,.biz-grid,.taxpay-grid,.health-grid{grid-template-columns:repeat(2,1fr);}
+  .credit-k{width:78px;}
+}
+@media screen and (max-width:480px){
+  .cover h1{font-size:26px;}
+  .section-title{font-size:16px;}
+  .section-sub{font-size:11.5px;}
+  .kpi-grid,.biz-grid,.taxpay-grid,.health-grid{grid-template-columns:1fr;}
+  .tax-pay-amount{font-size:22px;}
+  .prepay-amount{font-size:20px;}
+  .credit-group-label{flex-wrap:wrap;}
+  .credit-group-label .cg-subtotal{margin-left:0;width:100%;}
+  .credit-amount.mega{font-size:21px;}
+  .final-pay-banner .fpv{font-size:23px;}
+}
+@media screen and (max-width:380px){
+  .tax-pay-amount{font-size:20px;}
+  .prepay-amount{font-size:18px;}
+}
+
+/* ── A4 인쇄 ── */
+@page{ size:A4 portrait; margin:12mm 14mm; }
+@media print{
+  *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
+  html,body{background:#fff !important;}
+  #adminBar,.pw-gate,.no-print,.pdf-btn,.pdf-modal{display:none !important;}
+  .main{max-width:100% !important;margin:0 !important;box-shadow:none !important;}
+  .report-page{break-before:auto;page-break-before:auto;border-bottom:none;}
+  .force-break{break-before:page;page-break-before:always;}
+  h1,h2,h3,.section-title,.section-title-bar,.section-sub,.sincere-notice-head,.credit-group-label{break-after:avoid;page-break-after:avoid;}
+  .tax-card-wrap,.kpi-card,.biz-card,.health-card,.credit-card,.comment,.sincere-select-box,.sincere-basis,.pay-timeline,.prepay-card,.depr-summary,.calc-row,.drow,thead,tr{break-inside:avoid;page-break-inside:avoid;}
+  .calc-table,.pl-table,.compare-table,.depr-table{break-inside:auto;}
+  thead{display:table-header-group;}
+  p,.health-note,.section-sub,.sincere-explain{orphans:3;widows:3;}
+}
+</style>
+</head>
+<body>
+
+<div id="pwGate" class="pw-gate">
+  <div class="pw-card">
+    <div class="pw-brand">휘온세무회계</div>
+    <div class="pw-divider"></div>
+    <h2 class="pw-title">종합소득세 분석 보고서</h2>
+    <p class="pw-desc">본 보고서는 휘온세무회계가 작성한<br><strong id="pwClientName">서상일</strong> 원장님 전용 분석 보고서입니다.</p>
+    <p class="pw-hint">열람을 위해 대표자 생년월일 6자리를 입력해주세요</p>
+    <input id="pwInput" type="password" inputmode="numeric" maxlength="6" placeholder="YYMMDD" autocomplete="off">
+    <div id="pwError" class="pw-error"></div>
+    <button id="pwSubmit" class="pw-btn" type="button">보고서 열람</button>
+    <div class="pw-footer">휘온세무회계 (WHION TAX &amp; REALTY)</div>
+  </div>
+</div>
+
+<div id="reportBody" style="display:none;">
+<div class="main">
+
+  <!-- ① 표지 커버 + KPI -->
+  <div class="cover">
+    <span class="cover-badge">TAX REPORT · 2025 사업연도</span>
+    <div class="cover-firm">휘온세무회계 · WHION TAX &amp; REALTY</div>
+    <h1>종합소득세 분석 보고서</h1>
+    <div class="cover-subtitle">서상일 님 · 2025년 귀속 · 성실신고확인대상자</div>
+    <div class="cover-grid">
+      <div class="cover-cell"><div class="ck">대표자</div><div class="cv">서상일</div></div>
+      <div class="cover-cell"><div class="ck">생년월일</div><div class="cv">1984.07.02.</div></div>
+      <div class="cover-cell"><div class="ck">귀속</div><div class="cv">2025년</div></div>
+      <div class="cover-cell"><div class="ck">신고유형</div><div class="cv">성실신고확인</div></div>
+      <div class="cover-cell"><div class="ck">건보가입</div><div class="cv">직장가입자</div></div>
+      <div class="cover-cell"><div class="ck">성실신고</div><div class="cv">해당</div></div>
+      <div class="cover-cell span2"><div class="ck">담당세무사</div><div class="cv">권유진 대표세무사</div></div>
+    </div>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="kl">종합소득금액</div><div class="kv num">195,879,590</div><div class="ku">원</div></div>
+    <div class="kpi-card"><div class="kl">결정세액 (소득세)</div><div class="kv num">42,012,876</div><div class="ku">원</div></div>
+    <div class="kpi-card hero"><div class="kl">최종 납부세액<span class="kl-sub">국세 + 농특세 + 지방세</span></div><div class="kv num">12,998,163</div><div class="ku">원 · 2026.6.30. 까지</div></div>
+    <div class="kpi-card"><div class="kl">소득률</div><div class="kv num">35.4</div><div class="ku">%</div></div>
+  </div>
+
+  <div class="body-pad">
+
+  <!-- ② 성실신고확인제도 안내 -->
+  <h2 class="section-title">성실신고확인대상자 안내</h2>
+  <div class="section-sub">소득세법 시행령 제133조 제1항에 따른 성실신고확인대상 판정 결과입니다.</div>
+  <div class="sincere-notice report-page">
+    <div class="sincere-notice-head"><span class="sincere-icon">📌</span><span>성실신고확인제도 안내</span></div>
+    <div class="sincere-select-box">
+      우리 사업장은 이번 신고대상연도 연간 매출액 <b>554,046,835원</b>에 해당하여
+      <b>"성실신고확인대상자"</b>로 선정되었습니다.
+    </div>
+    <p class="sincere-explain">
+      성실신고확인제도란, 당해연도 수입금액이 기준금액 이상인 사업자가 종합소득세를 신고할 때,
+      담당 세무사가 직접 사업장에 대한 약식 세무조사를 실시하고, 회계장부 작성내용과 세금산출내역의
+      항목별 적정 여부를 검토하여 이를 증명하는 성실신고확인보고서를 작성 및 제출하도록 하는
+      국가정책제도입니다.
+    </p>
+    <div class="sincere-basis">
+      <div class="sincere-basis-row"><span>주업종</span><b>수의업 (852000)</b></div>
+      <div class="sincere-basis-row"><span>적용 기준 (소득세법 시행령 §133 ① 3호)</span><b>5억원</b></div>
+      <div class="sincere-basis-row"><span>당해 수입금액</span><b>554,046,835원</b></div>
+      <div class="sincere-basis-row highlight"><span>판정 결과</span><b>성실신고확인대상자 해당</b></div>
+    </div>
+    <div class="sincere-deadline">성실신고확인대상자는 신고·납부 기한이 <b>1개월 연장되어 6월 30일까지</b>입니다.</div>
+  </div>
+
+  <!-- ③ 납부세액 현황 -->
+  <h2 class="section-title">종합소득세 납부세액 현황</h2>
+  <div class="section-sub">세목별 납부세액과 납부기한, 중간예납 예상액을 안내합니다. (납부기한 2026.6.30.)</div>
+
+  <div class="final-pay-banner report-page">
+    <div class="fpl">2025년 귀속 최종 납부세액 합계 (국세 + 농어촌특별세 + 지방소득세)</div>
+    <div class="fpv num">12,998,163 원</div>
+  </div>
+
+  <div class="taxpay-grid">
+    <div class="tax-pay-card nat">
+      <div class="tax-pay-label">① 종합소득세 (국세)</div>
+      <div class="tax-pay-amount num">7,549,876 원</div>
+      <div class="tax-pay-date">납부기한: 2026년 6월 30일 이내</div>
+      <span class="tax-pay-tag">일시납</span>
+    </div>
+    <div class="tax-pay-card nat2">
+      <div class="tax-pay-label">② 농어촌특별세 (국세)</div>
+      <div class="tax-pay-amount num">1,247,000 원</div>
+      <div class="tax-pay-date">납부기한: 2026년 6월 30일 이내</div>
+      <span class="tax-pay-tag">통합고용세액공제 20%</span>
+    </div>
+    <div class="tax-pay-card onetime">
+      <div class="tax-pay-label">③ 개인지방소득세 (지방세) · 일시납</div>
+      <div class="tax-pay-amount num">4,201,287 원</div>
+      <div class="tax-pay-date">납부기한: 2026년 6월 30일 이내 · 분납 미적용 (전액 납부)</div>
+      <span class="tax-pay-tag">일시납</span>
+    </div>
+  </div>
+
+  <div class="summary-banner">
+    국세(종합소득세 + 농어촌특별세) 합계 8,796,876원은 분납 기준금액(1천만원)을 넘지 않아 전액 일시납으로 안내됩니다.
+    지방소득세는 분납 없이 6월 30일 이내 전액 납부합니다.
+  </div>
+
+  <div class="prepay-card report-page">
+    <div class="prepay-label">2026년 11월 납부 예정 · 중간예납세액 (예상)</div>
+    <div class="prepay-amount num">21,006,000 원</div>
+    <div class="prepay-note">
+      = (중간예납세액 34,463,000 + 납부할총세액 7,549,876) ÷ 2 (천원미만 절사) ·
+      소득세법 §65. 실제 고지액은 11월 세무서 고지서를 기준으로 확정됩니다.
+    </div>
+  </div>
+
+  <div class="comment">닥터서동물심장병원 서상일 원장님의 2025년 귀속 종합소득세 납부할 총세액은 국세(종합소득세) 7,549,876원, 농어촌특별세 1,247,000원, 개인지방소득세 4,201,287원으로, 합산 최종 납부세액은 12,998,163원입니다. 납부기한은 성실신고확인대상자 기준 2026년 6월 30일까지이며, 휘온세무회계가 기한 내 납부 일정을 안내해 드리겠습니다. 2026년 11월에 납부 예정인 중간예납세액은 예상치로, 세무서 고지서 수령 후 정확한 금액을 함께 확인해 드리겠습니다.</div>
+
+  <!-- ④ 손익 비교 -->
+  <h2 class="section-title">작년·올해 손익 비교 분석</h2>
+  <div class="section-sub">제4(당)기 2025년과 제3(전)기 2024년 손익을 비교하여 세금 변동 요인을 정리합니다.</div>
+
+  <div class="summary-banner report-page">흑자 유지 (전기 대비 당기순이익 69,279,372원 감소 · −26.6%)</div>
+
+  <div class="dgrid cols-5 compare-table">
+    <div class="drow dhead"><div class="dcell">항목</div><div class="dcell num">당기 (2025)</div><div class="dcell num">전기 (2024)</div><div class="dcell num">증감액</div><div class="dcell num">증감률</div></div>
+    <div class="drow cmp-major">
+      <div class="dcell dlabel">매출액</div>
+      <div class="dcell num"><span class="dk">당기 (2025)</span><span class="dv num">554,046,835</span></div>
+      <div class="dcell num"><span class="dk">전기 (2024)</span><span class="dv num">681,698,269</span></div>
+      <div class="dcell num"><span class="dk">증감액</span><span class="dv num down">−127,651,434</span></div>
+      <div class="dcell num"><span class="dk">증감률</span><span class="dv num down">−18.7%</span></div>
+    </div>
+    <div class="drow">
+      <div class="dcell dlabel">매출원가</div>
+      <div class="dcell num"><span class="dk">당기 (2025)</span><span class="dv num">56,020,701</span></div>
+      <div class="dcell num"><span class="dk">전기 (2024)</span><span class="dv num">70,784,985</span></div>
+      <div class="dcell num"><span class="dk">증감액</span><span class="dv num down">−14,764,284</span></div>
+      <div class="dcell num"><span class="dk">증감률</span><span class="dv num down">−20.9%</span></div>
+    </div>
+    <div class="drow">
+      <div class="dcell dlabel">직원급여</div>
+      <div class="dcell num"><span class="dk">당기 (2025)</span><span class="dv num">71,267,742</span></div>
+      <div class="dcell num"><span class="dk">전기 (2024)</span><span class="dv num">73,728,085</span></div>
+      <div class="dcell num"><span class="dk">증감액</span><span class="dv num down">−2,460,343</span></div>
+      <div class="dcell num"><span class="dk">증감률</span><span class="dv num down">−3.3%</span></div>
+    </div>
+    <div class="drow">
+      <div class="dcell dlabel">감가상각비</div>
+      <div class="dcell num"><span class="dk">당기 (2025)</span><span class="dv num">26,283,068</span></div>
+      <div class="dcell num"><span class="dk">전기 (2024)</span><span class="dv num">37,211,456</span></div>
+      <div class="dcell num"><span class="dk">증감액</span><span class="dv num down">−10,928,388</span></div>
+      <div class="dcell num"><span class="dk">증감률</span><span class="dv num down">−29.4%</span></div>
+    </div>
+    <div class="drow">
+      <div class="dcell dlabel">보험료</div>
+      <div class="dcell num"><span class="dk">당기 (2025)</span><span class="dv num">38,753,648</span></div>
+      <div class="dcell num"><span class="dk">전기 (2024)</span><span class="dv num">35,071,033</span></div>
+      <div class="dcell num"><span class="dk">증감액</span><span class="dv num up">+3,682,615</span></div>
+      <div class="dcell num"><span class="dk">증감률</span><span class="dv num up">+10.5%</span></div>
+    </div>
+    <div class="drow">
+      <div class="dcell dlabel">외주용역비</div>
+      <div class="dcell num"><span class="dk">당기 (2025)</span><span class="dv num">25,161,033</span></div>
+      <div class="dcell num"><span class="dk">전기 (2024)</span><span class="dv num">40,398,668</span></div>
+      <div class="dcell num"><span class="dk">증감액</span><span class="dv num down">−15,237,635</span></div>
+      <div class="dcell num"><span class="dk">증감률</span><span class="dv num down">−37.7%</span></div>
+    </div>
+    <div class="drow">
+      <div class="dcell dlabel">소모품비</div>
+      <div class="dcell num"><span class="dk">당기 (2025)</span><span class="dv num">10,769,859</span></div>
+      <div class="dcell num"><span class="dk">전기 (2024)</span><span class="dv num">21,062,185</span></div>
+      <div class="dcell num"><span class="dk">증감액</span><span class="dv num down">−10,292,326</span></div>
+      <div class="dcell num"><span class="dk">증감률</span><span class="dv num down">−48.9%</span></div>
+    </div>
+    <div class="drow">
+      <div class="dcell dlabel">기부금</div>
+      <div class="dcell num"><span class="dk">당기 (2025)</span><span class="dv num">9,900,000</span></div>
+      <div class="dcell num"><span class="dk">전기 (2024)</span><span class="dv num">4,420,000</span></div>
+      <div class="dcell num"><span class="dk">증감액</span><span class="dv num up">+5,480,000</span></div>
+      <div class="dcell num"><span class="dk">증감률</span><span class="dv num up">+124.0%</span></div>
+    </div>
+    <div class="drow cmp-major">
+      <div class="dcell dlabel">영업이익</div>
+      <div class="dcell num"><span class="dk">당기 (2025)</span><span class="dv num">207,053,948</span></div>
+      <div class="dcell num"><span class="dk">전기 (2024)</span><span class="dv num">272,618,461</span></div>
+      <div class="dcell num"><span class="dk">증감액</span><span class="dv num down">−65,564,513</span></div>
+      <div class="dcell num"><span class="dk">증감률</span><span class="dv num down">−24.0%</span></div>
+    </div>
+    <div class="drow cmp-result">
+      <div class="dcell dlabel">당기순이익</div>
+      <div class="dcell num"><span class="dk">당기 (2025)</span><span class="dv num">190,899,590</span></div>
+      <div class="dcell num"><span class="dk">전기 (2024)</span><span class="dv num">260,178,962</span></div>
+      <div class="dcell num"><span class="dk">증감액</span><span class="dv num down">−69,279,372</span></div>
+      <div class="dcell num"><span class="dk">증감률</span><span class="dv num down">−26.6%</span></div>
+    </div>
+  </div>
+
+  <div class="analysis-box">
+    <h4>세금 변동에 영향을 준 주요 내용</h4>
+    <ul>
+      <li>매출액이 전기 대비 127,651,434원(−18.7%) 감소하여 사업소득금액 축소 요인으로 작용했습니다.</li>
+      <li>외주용역비(−15,237,635), 소모품비(−10,292,326), 감가상각비(−10,928,388) 등 주요 경비가 함께 감소했습니다.</li>
+      <li>보험료(+3,682,615), 기부금(+5,480,000)은 증가했습니다.</li>
+      <li>통합고용세액공제 6,235,000원과 성실신고확인비용 세액공제 1,200,000원이 결정세액 산정에 반영되었습니다.</li>
+    </ul>
+  </div>
+
+  <div class="comment">당기 매출액은 554,046,835원으로 전기 681,698,269원 대비 127,651,434원(18.7%) 감소하였고, 당기순이익은 190,899,590원으로 전기 대비 26.6% 감소하였으나 흑자 기조를 유지하였습니다. 매출 감소에 따라 사업소득금액이 줄었으며, 통합고용세액공제 등 세액공제 8,585,000원이 산출세액에서 차감되어 결정세액이 산정되었습니다. 휘온세무회계가 연도별 손익 추이를 지속적으로 점검해 드리겠습니다.</div>
+
+  <!-- ⑤ 산정 내역서 16단계 -->
+  <h2 class="section-title">2025년 귀속 종합소득세 산정 내역서</h2>
+  <div class="section-sub">종합소득금액부터 최종 납부세액까지 16단계 산정 구조 전체를 표시합니다.</div>
+
+  <div class="dgrid cols-3 calc-table">
+    <div class="drow dhead"><div class="dcell">구분</div><div class="dcell num">금액 (원)</div><div class="dcell">비고</div></div>
+    <div class="drow calc-step"><div class="dcell dlabel"><span class="calc-no">1</span>사업체 소득금액</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">195,879,590</span></div><div class="dcell"><span class="dk">비고</span><span class="dv">당기순이익 190,899,590 + 세무조정 가산 4,980,000</span></div></div>
+    <div class="drow calc-step"><div class="dcell dlabel"><span class="calc-no">2</span>타소득 금액</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">0</span></div><div class="dcell"><span class="dk">비고</span><span class="dv">이자·배당·근로·연금·기타소득 없음</span></div></div>
+    <div class="drow calc-key"><div class="dcell dlabel"><span class="calc-no">3</span>종합소득금액</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">195,879,590</span></div><div class="dcell"><span class="dk">비고</span><span class="dv">신고서 ⑲ (① + ②)</span></div></div>
+    <div class="drow calc-step"><div class="dcell dlabel"><span class="calc-no">4</span>소득공제</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">10,253,600</span></div><div class="dcell"><span class="dk">비고</span><span class="dv">신고서 ⑳</span></div></div>
+    <div class="drow indent"><div class="dcell dlabel">· 인적공제 (본인)</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">1,500,000</span></div><div class="dcell"><span class="dk">비고</span><span class="dv">소득세법 §50</span></div></div>
+    <div class="drow indent"><div class="dcell dlabel">· 국민연금보험료공제</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">6,753,600</span></div><div class="dcell"><span class="dk">비고</span><span class="dv">소득세법 §51의3</span></div></div>
+    <div class="drow indent"><div class="dcell dlabel">· 노란우산공제</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">2,000,000</span></div><div class="dcell"><span class="dk">비고</span><span class="dv">조특법 §86의3</span></div></div>
+    <div class="drow calc-key"><div class="dcell dlabel"><span class="calc-no">5</span>과세표준</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">185,625,990</span></div><div class="dcell"><span class="dk">비고</span><span class="dv">신고서 ㉑ (③ − ④)</span></div></div>
+    <div class="drow calc-step"><div class="dcell dlabel"><span class="calc-no">6</span>세율</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">38%</span></div><div class="dcell"><span class="dk">비고</span><span class="dv">누진공제 19,940,000</span></div></div>
+    <div class="drow calc-key"><div class="dcell dlabel"><span class="calc-no">7</span>산출세액</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">50,597,876</span></div><div class="dcell"><span class="dk">비고</span><span class="dv">신고서 ㉓ (⑤×38% − 19,940,000)</span></div></div>
+    <div class="drow calc-step"><div class="dcell dlabel"><span class="calc-no">8</span>세액공제</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">8,585,000</span></div><div class="dcell"><span class="dk">비고</span><span class="dv">신고서 ㉕</span></div></div>
+    <div class="drow indent"><div class="dcell dlabel">· 연금계좌 세액공제</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">1,080,000</span></div><div class="dcell"><span class="dk">비고</span><span class="dv">퇴직연금 360,000 + 연금저축 720,000</span></div></div>
+    <div class="drow indent"><div class="dcell dlabel">· 통합고용세액공제</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">6,235,000</span></div><div class="dcell"><span class="dk">비고</span><span class="dv">조특법 §29의8</span></div></div>
+    <div class="drow indent"><div class="dcell dlabel">· 성실신고확인비용 세액공제</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">1,200,000</span></div><div class="dcell"><span class="dk">비고</span><span class="dv">성실신고확인비용 2,000,000 × 60%</span></div></div>
+    <div class="drow indent"><div class="dcell dlabel">· 표준세액공제</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">70,000</span></div><div class="dcell"><span class="dk">비고</span><span class="dv">소득세법 §59의4 ⑨</span></div></div>
+    <div class="drow calc-step"><div class="dcell dlabel"><span class="calc-no">9</span>세액감면</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">0</span></div><div class="dcell"><span class="dk">비고</span><span class="dv">신고서 ㉔ · 해당 없음</span></div></div>
+    <div class="drow calc-key"><div class="dcell dlabel"><span class="calc-no">10</span>결정세액</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">42,012,876</span></div><div class="dcell"><span class="dk">비고</span><span class="dv">신고서 ㉖ (⑦ − ⑧ − ⑨)</span></div></div>
+    <div class="drow calc-step"><div class="dcell dlabel"><span class="calc-no">11</span>가산세</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">0</span></div><div class="dcell"><span class="dk">비고</span><span class="dv">신고서 ㉙ · 해당 없음</span></div></div>
+    <div class="drow calc-step"><div class="dcell dlabel"><span class="calc-no">12</span>가산납부세액 합계</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">42,012,876</span></div><div class="dcell"><span class="dk">비고</span><span class="dv">신고서 ㉛ (⑩ + ⑪)</span></div></div>
+    <div class="drow calc-step"><div class="dcell dlabel"><span class="calc-no">13</span>기납부세액</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">34,463,000</span></div><div class="dcell"><span class="dk">비고</span><span class="dv">신고서 ㉜ (= ⑯ 합계)</span></div></div>
+    <div class="drow indent"><div class="dcell dlabel">· 중간예납세액 ①</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">34,463,000</span></div><div class="dcell"><span class="dk">비고</span><span class="dv">기납부세액명세서 ①</span></div></div>
+    <div class="drow indent"><div class="dcell dlabel">· 원천징수세액 ⑤~⑩</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">0</span></div><div class="dcell"><span class="dk">비고</span><span class="dv">해당 없음</span></div></div>
+    <div class="drow calc-key"><div class="dcell dlabel"><span class="calc-no">14</span>납부할 총세액 (국세)</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">7,549,876</span></div><div class="dcell"><span class="dk">비고</span><span class="dv">신고서 ㉝ 납부(환급)할 총세액</span></div></div>
+    <div class="drow calc-step"><div class="dcell dlabel"><span class="calc-no">15</span>농어촌특별세</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">1,247,000</span></div><div class="dcell"><span class="dk">비고</span><span class="dv">통합고용세액공제 6,235,000 × 20%</span></div></div>
+    <div class="drow calc-step"><div class="dcell dlabel"><span class="calc-no">16</span>개인지방소득세</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">4,201,287</span></div><div class="dcell"><span class="dk">비고</span><span class="dv">(7,549,876 + 34,463,000) × 10% · 일시납</span></div></div>
+    <div class="drow calc-final"><div class="dcell dlabel"><span class="calc-no">17</span>최종 납부세액</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">12,998,163</span></div><div class="dcell"><span class="dk">비고</span><span class="dv">⑭ + ⑮ + ⑯</span></div></div>
+  </div>
+
+  <div class="analysis-box">
+    <h4>개인지방소득세 교차검증</h4>
+    <ul>
+      <li>검증 1: (납부할총세액 7,549,876 + 중간예납세액① 34,463,000) × 10% = <b>4,201,287원</b></li>
+      <li>검증 2: (결정세액 42,012,876 − 원천징수합계 0) × 10% = <b>4,201,287원</b></li>
+      <li>두 산식 결과 일치 → 검증 통과 ✓ (개인지방소득세는 분납 없이 6월 30일 이내 일시납)</li>
+    </ul>
+  </div>
+
+  <!-- ⑥ 사업장 소득현황 + 손익계산서 -->
+  <h2 class="section-title">연간 소득발생 현황 · 손익계산서</h2>
+  <div class="section-sub">사업장: 닥터서동물심장병원 (수의업) · 제4(당)기 2025.01.01 ~ 2025.12.31</div>
+
+  <div class="biz-grid report-page">
+    <div class="biz-card"><div class="bl">총수입금액</div><div class="bv num">554,046,835</div></div>
+    <div class="biz-card"><div class="bl">필요경비</div><div class="bv num">358,167,245</div></div>
+    <div class="biz-card"><div class="bl">사업소득금액</div><div class="bv num">195,879,590</div><div style="margin-top:6px"><span class="badge-profit">▲ 흑자</span></div></div>
+    <div class="biz-card"><div class="bl">소득률 / 사업기간</div><div class="bv num">35.4%</div><div style="font-size:10px;color:var(--text-light);margin-top:3px">12개월</div></div>
+  </div>
+
+  <div class="dgrid cols-3 pl-table">
+    <div class="drow dhead"><div class="dcell">과목</div><div class="dcell num">제4(당)기 2025</div><div class="dcell num">제3(전)기 2024</div></div>
+    <div class="drow pl-major"><div class="dcell dlabel">Ⅰ. 매출액</div><div class="dcell num"><span class="dk">제4(당)기 2025</span><span class="dv num">554,046,835</span></div><div class="dcell num"><span class="dk">제3(전)기 2024</span><span class="dv num">681,698,269</span></div></div>
+    <div class="drow pl-sub"><div class="dcell dlabel">상품매출</div><div class="dcell num"><span class="dk">제4(당)기 2025</span><span class="dv num">2,688,638</span></div><div class="dcell num"><span class="dk">제3(전)기 2024</span><span class="dv num">2,985,456</span></div></div>
+    <div class="drow pl-sub"><div class="dcell dlabel">진료매출</div><div class="dcell num"><span class="dk">제4(당)기 2025</span><span class="dv num">551,358,197</span></div><div class="dcell num"><span class="dk">제3(전)기 2024</span><span class="dv num">678,712,813</span></div></div>
+    <div class="drow pl-major"><div class="dcell dlabel">Ⅱ. 매출원가</div><div class="dcell num"><span class="dk">제4(당)기 2025</span><span class="dv num">56,020,701</span></div><div class="dcell num"><span class="dk">제3(전)기 2024</span><span class="dv num">70,784,985</span></div></div>
+    <div class="drow pl-sub"><div class="dcell dlabel">상품매출원가</div><div class="dcell num"><span class="dk">제4(당)기 2025</span><span class="dv num">616,018</span></div><div class="dcell num"><span class="dk">제3(전)기 2024</span><span class="dv num">796,820</span></div></div>
+    <div class="drow pl-sub"><div class="dcell dlabel">의약품매출원가</div><div class="dcell num"><span class="dk">제4(당)기 2025</span><span class="dv num">55,404,683</span></div><div class="dcell num"><span class="dk">제3(전)기 2024</span><span class="dv num">69,988,165</span></div></div>
+    <div class="drow pl-result"><div class="dcell dlabel">Ⅲ. 매출총이익</div><div class="dcell num"><span class="dk">제4(당)기 2025</span><span class="dv num">498,026,134</span></div><div class="dcell num"><span class="dk">제3(전)기 2024</span><span class="dv num">610,913,284</span></div></div>
+    <div class="drow pl-major"><div class="dcell dlabel">Ⅳ. 판매비와관리비</div><div class="dcell num"><span class="dk">제4(당)기 2025</span><span class="dv num">290,972,186</span></div><div class="dcell num"><span class="dk">제3(전)기 2024</span><span class="dv num">338,294,823</span></div></div>
+    <div class="drow pl-sub"><div class="dcell dlabel">직원급여</div><div class="dcell num"><span class="dk">제4(당)기 2025</span><span class="dv num">71,267,742</span></div><div class="dcell num"><span class="dk">제3(전)기 2024</span><span class="dv num">73,728,085</span></div></div>
+    <div class="drow pl-sub"><div class="dcell dlabel">잡급</div><div class="dcell num"><span class="dk">제4(당)기 2025</span><span class="dv num">0</span></div><div class="dcell num"><span class="dk">제3(전)기 2024</span><span class="dv num">148,388</span></div></div>
+    <div class="drow pl-sub"><div class="dcell dlabel">퇴직급여</div><div class="dcell num"><span class="dk">제4(당)기 2025</span><span class="dv num">3,309,500</span></div><div class="dcell num"><span class="dk">제3(전)기 2024</span><span class="dv num">3,148,560</span></div></div>
+    <div class="drow pl-sub"><div class="dcell dlabel">복리후생비</div><div class="dcell num"><span class="dk">제4(당)기 2025</span><span class="dv num">7,182,745</span></div><div class="dcell num"><span class="dk">제3(전)기 2024</span><span class="dv num">13,389,841</span></div></div>
+    <div class="drow pl-sub"><div class="dcell dlabel">여비교통비</div><div class="dcell num"><span class="dk">제4(당)기 2025</span><span class="dv num">3,315,747</span></div><div class="dcell num"><span class="dk">제3(전)기 2024</span><span class="dv num">4,021,409</span></div></div>
+    <div class="drow pl-sub"><div class="dcell dlabel">접대비(기업업무추진비)</div><div class="dcell num"><span class="dk">제4(당)기 2025</span><span class="dv num">5,143,600</span></div><div class="dcell num"><span class="dk">제3(전)기 2024</span><span class="dv num">11,831,470</span></div></div>
+    <div class="drow pl-sub"><div class="dcell dlabel">통신비</div><div class="dcell num"><span class="dk">제4(당)기 2025</span><span class="dv num">1,249,325</span></div><div class="dcell num"><span class="dk">제3(전)기 2024</span><span class="dv num">1,391,333</span></div></div>
+    <div class="drow pl-sub"><div class="dcell dlabel">세금과공과금</div><div class="dcell num"><span class="dk">제4(당)기 2025</span><span class="dv num">2,294,930</span></div><div class="dcell num"><span class="dk">제3(전)기 2024</span><span class="dv num">1,763,110</span></div></div>
+    <div class="drow pl-sub"><div class="dcell dlabel">감가상각비</div><div class="dcell num"><span class="dk">제4(당)기 2025</span><span class="dv num">26,283,068</span></div><div class="dcell num"><span class="dk">제3(전)기 2024</span><span class="dv num">37,211,456</span></div></div>
+    <div class="drow pl-sub"><div class="dcell dlabel">지급임차료</div><div class="dcell num"><span class="dk">제4(당)기 2025</span><span class="dv num">48,000,000</span></div><div class="dcell num"><span class="dk">제3(전)기 2024</span><span class="dv num">48,000,000</span></div></div>
+    <div class="drow pl-sub"><div class="dcell dlabel">보험료</div><div class="dcell num"><span class="dk">제4(당)기 2025</span><span class="dv num">38,753,648</span></div><div class="dcell num"><span class="dk">제3(전)기 2024</span><span class="dv num">35,071,033</span></div></div>
+    <div class="drow pl-sub"><div class="dcell dlabel">차량유지비</div><div class="dcell num"><span class="dk">제4(당)기 2025</span><span class="dv num">1,382,326</span></div><div class="dcell num"><span class="dk">제3(전)기 2024</span><span class="dv num">691,600</span></div></div>
+    <div class="drow pl-sub"><div class="dcell dlabel">소모품비</div><div class="dcell num"><span class="dk">제4(당)기 2025</span><span class="dv num">10,769,859</span></div><div class="dcell num"><span class="dk">제3(전)기 2024</span><span class="dv num">21,062,185</span></div></div>
+    <div class="drow pl-sub"><div class="dcell dlabel">지급수수료</div><div class="dcell num"><span class="dk">제4(당)기 2025</span><span class="dv num">22,778,950</span></div><div class="dcell num"><span class="dk">제3(전)기 2024</span><span class="dv num">21,391,228</span></div></div>
+    <div class="drow pl-sub"><div class="dcell dlabel">건물관리비</div><div class="dcell num"><span class="dk">제4(당)기 2025</span><span class="dv num">24,079,713</span></div><div class="dcell num"><span class="dk">제3(전)기 2024</span><span class="dv num">25,046,457</span></div></div>
+    <div class="drow pl-sub"><div class="dcell dlabel">외주용역비</div><div class="dcell num"><span class="dk">제4(당)기 2025</span><span class="dv num">25,161,033</span></div><div class="dcell num"><span class="dk">제3(전)기 2024</span><span class="dv num">40,398,668</span></div></div>
+    <div class="drow pl-result"><div class="dcell dlabel">Ⅴ. 영업이익</div><div class="dcell num"><span class="dk">제4(당)기 2025</span><span class="dv num">207,053,948</span></div><div class="dcell num"><span class="dk">제3(전)기 2024</span><span class="dv num">272,618,461</span></div></div>
+    <div class="drow pl-major"><div class="dcell dlabel">Ⅵ. 영업외수익</div><div class="dcell num"><span class="dk">제4(당)기 2025</span><span class="dv num">0</span></div><div class="dcell num"><span class="dk">제3(전)기 2024</span><span class="dv num">3,000,000</span></div></div>
+    <div class="drow pl-sub"><div class="dcell dlabel">잡이익</div><div class="dcell num"><span class="dk">제4(당)기 2025</span><span class="dv num">0</span></div><div class="dcell num"><span class="dk">제3(전)기 2024</span><span class="dv num">3,000,000</span></div></div>
+    <div class="drow pl-major"><div class="dcell dlabel">Ⅶ. 영업외비용</div><div class="dcell num"><span class="dk">제4(당)기 2025</span><span class="dv num">16,154,358</span></div><div class="dcell num"><span class="dk">제3(전)기 2024</span><span class="dv num">15,439,499</span></div></div>
+    <div class="drow pl-sub"><div class="dcell dlabel">이자비용</div><div class="dcell num"><span class="dk">제4(당)기 2025</span><span class="dv num">6,254,358</span></div><div class="dcell num"><span class="dk">제3(전)기 2024</span><span class="dv num">11,019,499</span></div></div>
+    <div class="drow pl-sub"><div class="dcell dlabel">기부금</div><div class="dcell num"><span class="dk">제4(당)기 2025</span><span class="dv num">9,900,000</span></div><div class="dcell num"><span class="dk">제3(전)기 2024</span><span class="dv num">4,420,000</span></div></div>
+    <div class="drow pl-major"><div class="dcell dlabel">Ⅷ. 소득세차감전이익</div><div class="dcell num"><span class="dk">제4(당)기 2025</span><span class="dv num">190,899,590</span></div><div class="dcell num"><span class="dk">제3(전)기 2024</span><span class="dv num">260,178,962</span></div></div>
+    <div class="drow pl-result"><div class="dcell dlabel">Ⅹ. 당기순이익</div><div class="dcell num"><span class="dk">제4(당)기 2025</span><span class="dv num">190,899,590</span></div><div class="dcell num"><span class="dk">제3(전)기 2024</span><span class="dv num">260,178,962</span></div></div>
+  </div>
+  <div class="section-sub" style="padding-left:2px">※ 당기순이익 190,899,590원에 세무조정 가산 4,980,000원을 반영한 사업소득금액은 195,879,590원입니다.</div>
+
+  <!-- ⑦ 감가상각 -->
+  <h2 class="section-title">감가상각비·고정자산 검토</h2>
+  <div class="section-sub">고정자산관리대장 기준 자산유형별 회사계상상각비와 당기말 장부가액(남은 비용처리 가능금액)입니다.</div>
+
+  <div class="depr-summary">
+    당기 감가상각비 <b class="num">26,283,068원</b>이 비용 처리되었으며,
+    앞으로 비용 처리 가능한 잔여 금액(당기말 장부가액)은 <b class="num">34,582,098원</b>입니다.
+  </div>
+
+  <div class="dgrid cols-3 depr-table">
+    <div class="drow dhead"><div class="dcell">자산유형</div><div class="dcell num">회사계상상각비 (당기 비용)</div><div class="dcell num">당기말 장부가액 (남은 비용처리 가능금액)</div></div>
+    <div class="drow"><div class="dcell dlabel">기계장치 (의료·진단장비)</div><div class="dcell num"><span class="dk">회사계상상각비 (당기 비용)</span><span class="dv num">5,043,420</span></div><div class="dcell num"><span class="dk">당기말 장부가액 (남은 비용처리 가능금액)</span><span class="dv num">6,139,331</span></div></div>
+    <div class="drow"><div class="dcell dlabel">차량운반구</div><div class="dcell num"><span class="dk">회사계상상각비 (당기 비용)</span><span class="dv num">12,980,000</span></div><div class="dcell num"><span class="dk">당기말 장부가액 (남은 비용처리 가능금액)</span><span class="dv num">18,388,334</span></div></div>
+    <div class="drow"><div class="dcell dlabel">비품</div><div class="dcell num"><span class="dk">회사계상상각비 (당기 비용)</span><span class="dv num">916,048</span></div><div class="dcell num"><span class="dk">당기말 장부가액 (남은 비용처리 가능금액)</span><span class="dv num">1,115,104</span></div></div>
+    <div class="drow"><div class="dcell dlabel">시설장치</div><div class="dcell num"><span class="dk">회사계상상각비 (당기 비용)</span><span class="dv num">7,343,600</span></div><div class="dcell num"><span class="dk">당기말 장부가액 (남은 비용처리 가능금액)</span><span class="dv num">8,939,329</span></div></div>
+    <div class="drow depr-total"><div class="dcell dlabel">총계</div><div class="dcell num"><span class="dk">회사계상상각비 (당기 비용)</span><span class="dv num">26,283,068</span></div><div class="dcell num"><span class="dk">당기말 장부가액 (남은 비용처리 가능금액)</span><span class="dv num">34,582,098</span></div></div>
+  </div>
+  <div class="section-sub" style="padding-left:2px">※ 회사계상상각비 총계 26,283,068원 = 손익계산서 감가상각비 26,283,068원 (검증 일치)</div>
+
+  <div class="comment">당기 감가상각비 26,283,068원이 비용으로 반영되었으며, 당기말 장부가액 합계 34,582,098원이 향후 감가상각을 통해 순차적으로 비용 처리될 예정입니다. 업무용승용차(EQA250)의 감가상각비 중 세법상 한도(연 800만원)를 초과한 4,980,000원은 당기 필요경비에서 제외(유보)되었으며, 향후 한도 범위 내에서 추인됩니다. 휘온세무회계가 유보 잔액과 추인 일정을 책임지고 점검하겠습니다.</div>
+
+  <!-- ⑧ 공제·감면 -->
+  <h2 class="section-title">소득공제·세액공제 상세</h2>
+  <div class="section-sub">적용된 공제 항목별 적용내용·근거 법조문·세금효과를 정리합니다.</div>
+
+  <div class="credit-group">
+    <div class="credit-group-label">
+      <span class="cg-tag cg-income">소득공제</span>
+      <span class="cg-desc">과세표준을 줄이는 공제</span>
+      <span class="cg-subtotal num">소계 10,253,600 원</span>
+    </div>
+    <div class="credit-card">
+      <div class="credit-head"><span class="credit-name">인적공제 (본인 기본공제)</span><span class="credit-amount num">1,500,000 원</span></div>
+      <div class="credit-body">
+        <div class="credit-row"><span class="credit-k">적용 내용</span><span>거주자 본인에 대한 기본공제 1인</span></div>
+        <div class="credit-row"><span class="credit-k">근거 법조문</span><span>소득세법 §50 (기본공제)</span></div>
+        <div class="credit-row"><span class="credit-k">세금 효과</span><span>과세표준 1,500,000원 감소</span></div>
+      </div>
+    </div>
+    <div class="credit-card">
+      <div class="credit-head"><span class="credit-name">국민연금보험료공제</span><span class="credit-amount num">6,753,600 원</span></div>
+      <div class="credit-body">
+        <div class="credit-row"><span class="credit-k">적용 내용</span><span>당해 납부한 국민연금보험료 전액 공제</span></div>
+        <div class="credit-row"><span class="credit-k">근거 법조문</span><span>소득세법 §51의3 (연금보험료공제)</span></div>
+        <div class="credit-row"><span class="credit-k">세금 효과</span><span>과세표준 6,753,600원 감소</span></div>
+      </div>
+    </div>
+    <div class="credit-card">
+      <div class="credit-head"><span class="credit-name">노란우산공제 (소기업·소상공인 공제부금)</span><span class="credit-amount num">2,000,000 원</span></div>
+      <div class="credit-body">
+        <div class="credit-row"><span class="credit-k">적용 내용</span><span>사업소득금액 1억원 초과 구간 한도(200만원) 적용</span></div>
+        <div class="credit-row"><span class="credit-k">근거 법조문</span><span>조특법 §86의3 (소득금액 구간별 한도)</span></div>
+        <div class="credit-row"><span class="credit-k">세금 효과</span><span>과세표준 2,000,000원 감소</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="credit-group">
+    <div class="credit-group-label">
+      <span class="cg-tag cg-tax">세액공제</span>
+      <span class="cg-desc">산출세액을 직접 차감</span>
+      <span class="cg-subtotal num">소계 8,585,000 원</span>
+    </div>
+    <div class="credit-card">
+      <div class="credit-head"><span class="credit-name">통합고용세액공제 <span class="badge badge-yellow">최저한세 적용대상</span></span><span class="credit-amount num">6,235,000 원</span></div>
+      <div class="credit-body">
+        <div class="credit-row"><span class="credit-k">적용 내용</span><span>고용 증대에 따른 통합고용세액공제 당기분 6,235,000원 (전액 당기 공제, 이월 0원)</span></div>
+        <div class="credit-row"><span class="credit-k">근거 법조문</span><span>조세특례제한법 §29의8 (통합고용세액공제)</span></div>
+        <div class="credit-row"><span class="credit-k">세금 효과</span><span>산출세액에서 6,235,000원 직접 차감 · 농어촌특별세 1,247,000원(20%) 부과</span></div>
+      </div>
+    </div>
+    <div class="credit-card">
+      <div class="credit-head"><span class="credit-name">연금계좌 세액공제</span><span class="credit-amount num">1,080,000 원</span></div>
+      <div class="credit-body">
+        <div class="credit-row"><span class="credit-k">적용 내용</span><span>퇴직연금 3,000,000원 + 연금저축 6,000,000원 (공제대상 9,000,000원) × 12%</span></div>
+        <div class="credit-row"><span class="credit-k">근거 법조문</span><span>소득세법 §59의3 (연금저축 600만 + IRP 합산 900만 한도)</span></div>
+        <div class="credit-row"><span class="credit-k">세금 효과</span><span>산출세액에서 1,080,000원 직접 차감</span></div>
+      </div>
+    </div>
+    <div class="credit-card">
+      <div class="credit-head"><span class="credit-name">성실신고확인비용 세액공제</span><span class="credit-amount num">1,200,000 원</span></div>
+      <div class="credit-body">
+        <div class="credit-row"><span class="credit-k">적용 내용</span><span>성실신고확인비용 2,000,000원 × 60% = 1,200,000원 (한도 120만원 내)</span></div>
+        <div class="credit-row"><span class="credit-k">근거 법조문</span><span>조세특례제한법 §122의3 (성실신고확인비용 세액공제)</span></div>
+        <div class="credit-row"><span class="credit-k">세금 효과</span><span>산출세액에서 1,200,000원 직접 차감</span></div>
+      </div>
+    </div>
+    <div class="credit-card">
+      <div class="credit-head"><span class="credit-name">표준세액공제</span><span class="credit-amount num">70,000 원</span></div>
+      <div class="credit-body">
+        <div class="credit-row"><span class="credit-k">적용 내용</span><span>특별세액공제 미적용 시 표준세액공제 적용</span></div>
+        <div class="credit-row"><span class="credit-k">근거 법조문</span><span>소득세법 §59의4 ⑨ (표준세액공제 7만원)</span></div>
+        <div class="credit-row"><span class="credit-k">세금 효과</span><span>산출세액에서 70,000원 직접 차감</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="comment">소득공제 10,253,600원과 세액공제 8,585,000원이 적용되었습니다. 통합고용세액공제 6,235,000원이 산출세액에서 직접 차감되어 세부담 경감에 기여하였으며, 이 공제에 대해서는 농어촌특별세 1,247,000원(공제액의 20%)이 함께 부과됩니다. 성실신고확인비용 세액공제 1,200,000원과 연금계좌 세액공제 1,080,000원도 반영되었습니다. 휘온세무회계가 적용 가능한 공제·감면을 빠짐없이 검토하여 반영하였습니다.</div>
+
+  <!-- ⑨ 건강보험료 -->
+  <h2 class="section-title">대표자 건강보험료 검토</h2>
+  <div class="section-sub">2025년 귀속 4대보험 자료 기준 직장가입자 건강보험료 정산 내역입니다.</div>
+
+  <div class="health-card report-page">
+    <div class="health-type">직장가입자 (소득기준 산정 + 정산)</div>
+    <div class="health-grid">
+      <div><div class="health-stat-label">산출 총보험료 (소득기준 8.134766%)</div><div class="health-stat-val num">15,934,346 원</div></div>
+      <div><div class="health-stat-label">기납부 건보료 (직장, 당해)</div><div class="health-stat-val num">33,558,860 원</div></div>
+      <div><div class="health-stat-label">정산대상 건보료</div><div class="health-stat-val highlight num">0 원</div></div>
+    </div>
+    <div class="health-note">
+      • 사업장소득금액(195,879,590원)에 합산요율 8.134766%를 적용한 산출 총보험료는 15,934,346원입니다.<br>
+      • 기납부 직장 건보료(본인+회사부담 전액)는 사업자건강보험료(직장) 16,779,430원 × 2 = 33,558,860원입니다.<br>
+      • 기납부액이 소득기준 산출보험료 이상이므로 정산대상 추가 건보료는 0원입니다.<br>
+      • 직장가입자는 종소세 신고 후 정산이 진행되며, 갱신 시점은 성실신고확인대상자 기준 <b>매년 7월</b>입니다.<br>
+      • 당해 보수외소득월액 보험료(사업자건강보험료(소득)) 부과내역은 확인되지 않았습니다.
+    </div>
+  </div>
+
+  <div class="dgrid cols-3" style="margin-top:6px">
+    <div class="drow dhead"><div class="dcell">4대보험 항목</div><div class="dcell num">연간 납부금액 (원)</div><div class="dcell">비고</div></div>
+    <div class="drow"><div class="dcell dlabel">국민건강보험료 합계</div><div class="dcell num"><span class="dk">연간 납부금액 (원)</span><span class="dv num">35,794,560</span></div><div class="dcell"><span class="dk">비고</span><span class="dv">직장 + 사용자부담 합계</span></div></div>
+    <div class="drow"><div class="dcell dlabel">· 사업자건강보험료(직장)</div><div class="dcell num"><span class="dk">연간 납부금액 (원)</span><span class="dv num">16,779,430</span></div><div class="dcell"><span class="dk">비고</span><span class="dv">대표자 본인부담분(50%)</span></div></div>
+    <div class="drow"><div class="dcell dlabel">· 사업장사용자부담건강보험료</div><div class="dcell num"><span class="dk">연간 납부금액 (원)</span><span class="dv num">19,015,130</span></div><div class="dcell"><span class="dk">비고</span><span class="dv">대표자 회사부담 + 직원 회사부담</span></div></div>
+    <div class="drow"><div class="dcell dlabel">국민연금보험료</div><div class="dcell num"><span class="dk">연간 납부금액 (원)</span><span class="dv num">2,206,230</span></div><div class="dcell"><span class="dk">비고</span><span class="dv">-</span></div></div>
+    <div class="drow"><div class="dcell dlabel">고용보험료</div><div class="dcell num"><span class="dk">연간 납부금액 (원)</span><span class="dv num">593,470</span></div><div class="dcell"><span class="dk">비고</span><span class="dv">-</span></div></div>
+    <div class="drow"><div class="dcell dlabel">산재보험료</div><div class="dcell num"><span class="dk">연간 납부금액 (원)</span><span class="dv num">434,040</span></div><div class="dcell"><span class="dk">비고</span><span class="dv">-</span></div></div>
+  </div>
+  <div class="section-sub" style="padding-left:2px">※ 사업장사용자부담건강보험료 및 4대보험 사용자부담분은 「소득세법 시행령」 §55에 따라 사업소득의 필요경비로 산입됩니다.</div>
+
+  <div class="comment">서상일 원장님은 닥터서동물심장병원 직장가입자로 확인되어, 종합소득세 신고 이후 소득기준에 따른 건강보험료 정산이 진행됩니다. 직장가입자의 보험료는 성실신고확인대상자 기준 매년 7월에 갱신됩니다. 기납부한 직장 건강보험료가 소득기준 산출보험료 이상으로 확인되어 추가 정산 부담은 발생하지 않을 것으로 검토되며, 휘온세무회계가 7월 정산 일정과 내역을 안내해 드리겠습니다.</div>
+
+  <!-- ⑩ 세무조정 + 재무분석 -->
+  <h2 class="section-title">세무조정사항 및 재무제표 분석</h2>
+  <div class="section-sub">과목별 소득금액조정명세서 기준 당기 세무조정 사항입니다.</div>
+
+  <div class="dgrid cols-4 adj-table">
+    <div class="drow dhead"><div class="dcell">과목</div><div class="dcell num">금액 (원)</div><div class="dcell">처분</div><div class="dcell">조정 내용</div></div>
+    <div class="drow"><div class="dcell dlabel">업무용차량 감가상각비 한도초과</div><div class="dcell num"><span class="dk">금액 (원)</span><span class="dv num">4,980,000</span></div><div class="dcell"><span class="dk">처분</span><span class="dv"><span class="badge" style="background:#eaf2fa;color:var(--ocean-deep)">유보</span></span></div><div class="dcell"><span class="dk">조정 내용</span><span class="dv">업무용승용차 감가상각비한도초과액 필요경비불산입 유보로 처분함</span></div></div>
+  </div>
+  <div class="section-sub" style="padding-left:2px">※ 업무용승용차(EQA250) 감가상각비 한도초과액 유보 잔액(기말) 17,161,333원.</div>
+
+  <div class="analysis-box">
+    <h4>재무제표 분석 (단년도 구성 특이사항)</h4>
+    <ul>
+      <li>매출 구성: 진료매출 551,358,197원(99.5%) 중심, 상품매출 2,688,638원으로 진료수입이 사업의 핵심입니다.</li>
+      <li>경비 구성: 의약품매출원가(55,404,683), 지급임차료(48,000,000), 보험료(38,753,648), 감가상각비(26,283,068)가 주요 항목입니다.</li>
+      <li>당기말 재무상태: 자산총계 119,436,070원, 부채총계 9,138,327원, 자본총계 110,297,743원.</li>
+      <li>차입 관련 이자비용 6,254,358원이 영업외비용으로 반영되었습니다.</li>
+    </ul>
+  </div>
+
+  <div class="comment">당기 세무조정 사항은 업무용승용차 감가상각비 한도초과액 4,980,000원(유보 처분) 1건입니다. 해당 금액은 세법상 업무용승용차 감가상각 한도(연 800만원) 규정에 따라 당기 필요경비에서 제외되었으며, 유보 잔액은 향후 한도 범위 내에서 추인됩니다. 닥터서동물심장병원 서상일 원장님의 2025년 귀속 종합소득세 신고가 성실신고확인 절차에 따라 적정하게 마무리되었음을 확인하며, 휘온세무회계가 유보 관리와 차기 신고 일정을 책임지고 점검하겠습니다.</div>
+
+  </div><!-- /body-pad -->
+
+  <div class="report-footer">
+    <div class="footer-firm">휘온세무회계 (WHION TAX &amp; REALTY)</div>
+    <div class="footer-slogan">"고객 권익 증진을 위해 최선을 다하겠습니다."</div>
+    <div class="footer-sign">— 권유진 대표세무사 드림</div>
+    <div class="footer-contact">
+      담당세무사: 권유진 대표세무사 &nbsp;|&nbsp; TEL: 02-6959-0169 &nbsp;|&nbsp; FAX: 0507-804-8790<br>
+      서울 강남 테헤란로13길 8-5 (블루-b) 901호
+    </div>
+  </div>
+
+</div><!-- /main -->
+</div><!-- /reportBody -->
+
+<script>
+// ── 휘온 관리자 인프라: PW 게이트 + 코멘트 편집 + GitHub 자동 저장 (단일 IIFE) ──
+(function () {
+  const params   = new URLSearchParams(location.search);
+  const isAdmin  = params.get('admin') === 'whion2025';
+  const PASS_KEY = 'whion_pw_passed';
+  const TOKEN_KEY = 'whion_gh_token';
+  const GH = { owner: 'whiontax', repo: 'tax-reports', branch: 'main' };
+  const gate = document.getElementById('pwGate');
+  const body = document.getElementById('reportBody');
+
+  function showReport() {
+    if (gate) gate.style.display = 'none';
+    if (body) body.style.display = '';
+    if (typeof initCharts === 'function') initCharts();
+  }
+  if (isAdmin || sessionStorage.getItem(PASS_KEY) === '1') {
+    showReport();
+    if (isAdmin) enableAdmin();
+  } else { setupGate(); }
+
+  function setupGate() {
+    const clientName = document.querySelector('meta[name="client-name"]')?.content || '';
+    const nameEl = document.getElementById('pwClientName');
+    if (clientName && nameEl) nameEl.textContent = clientName;
+    if (gate) gate.style.display = 'flex';
+    const correctPw  = document.querySelector('meta[name="client-birth"]')?.content || '';
+    const input = document.getElementById('pwInput');
+    const errorBox = document.getElementById('pwError');
+    const submitBtn = document.getElementById('pwSubmit');
+    function tryUnlock() {
+      const val = (input.value || '').trim();
+      if (val.length !== 6) { errorBox.textContent = '6자리 숫자를 입력해주세요'; return; }
+      if (val === correctPw) { sessionStorage.setItem(PASS_KEY, '1'); showReport(); }
+      else { errorBox.textContent = '입력 정보가 일치하지 않습니다'; input.value = ''; input.focus(); }
+    }
+    submitBtn.addEventListener('click', tryUnlock);
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') tryUnlock(); });
+    input.addEventListener('input', e => { e.target.value = e.target.value.replace(/[^0-9]/g, ''); errorBox.textContent = ''; });
+    input.focus();
+  }
+
+  function enableAdmin() {
+    const comments = document.querySelectorAll('.comment');
+    comments.forEach(c => { c.setAttribute('contenteditable', 'true'); c.classList.add('admin-editing'); });
+    buildToolbar(comments.length);
+  }
+  function buildToolbar(count) {
+    if (document.getElementById('adminBar')) return;
+    const bar = document.createElement('div');
+    bar.id = 'adminBar'; bar.className = 'admin-bar';
+    bar.innerHTML =
+      '<span class="admin-bar-label">관리자 편집 모드 · 코멘트 ' + count + '개 편집 가능</span>' +
+      '<button id="adminSaveBtn" class="admin-bar-btn" type="button">저장하기 (GitHub 반영)</button>' +
+      '<span id="adminSaveStatus" class="admin-bar-status"></span>';
+    document.body.appendChild(bar);
+    document.getElementById('adminSaveBtn').addEventListener('click', saveToGitHub);
+  }
+  function setStatus(msg, type) {
+    const s = document.getElementById('adminSaveStatus');
+    if (s) { s.textContent = msg; s.className = 'admin-bar-status' + (type ? ' is-' + type : ''); }
+  }
+  function resolvePath() {
+    const metaPath = document.querySelector('meta[name="gh-path"]')?.content;
+    if (metaPath) return metaPath.replace(/^\/+/, '');
+    let p = decodeURIComponent(location.pathname);
+    p = p.replace(new RegExp('^/' + GH.repo + '/'), '').replace(/^\/+/, '');
+    return p;
+  }
+  function utf8ToB64(str) { return btoa(unescape(encodeURIComponent(str))); }
+  function buildCleanHtml() {
+    const clone = document.documentElement.cloneNode(true);
+    clone.querySelectorAll('[contenteditable]').forEach(el => { el.removeAttribute('contenteditable'); el.classList.remove('admin-editing'); });
+    const bar = clone.querySelector('#adminBar'); if (bar) bar.remove();
+    const rb  = clone.querySelector('#reportBody'); if (rb) rb.setAttribute('style', 'display:none;');
+    const gt  = clone.querySelector('#pwGate'); if (gt) gt.removeAttribute('style');
+    let attrs = '';
+    for (const a of clone.attributes) attrs += ' ' + a.name + '="' + a.value + '"';
+    return '<!DOCTYPE html>\n<html' + attrs + '>' + clone.innerHTML + '</html>';
+  }
+  async function saveToGitHub() {
+    const btn = document.getElementById('adminSaveBtn');
+    let token = localStorage.getItem(TOKEN_KEY);
+    if (!token) {
+      token = (prompt('GitHub 액세스 토큰을 입력하세요 (이 브라우저에 1회 저장됩니다)') || '').trim();
+      if (!token) { setStatus('저장 취소됨 (토큰 없음)', 'err'); return; }
+      localStorage.setItem(TOKEN_KEY, token);
+    }
+    const path = resolvePath();
+    const apiBase = 'https://api.github.com/repos/' + GH.owner + '/' + GH.repo + '/contents/' +
+                    path.split('/').map(encodeURIComponent).join('/');
+    const head = { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github+json' };
+    if (btn) btn.disabled = true;
+    setStatus('저장 중…', 'wait');
+    try {
+      let sha;
+      const getRes = await fetch(apiBase + '?ref=' + GH.branch + '&_=' + Date.now(), { headers: head });
+      if (getRes.ok) { sha = (await getRes.json()).sha; }
+      else if (getRes.status === 401) { localStorage.removeItem(TOKEN_KEY); setStatus('토큰이 유효하지 않습니다. 새로고침 후 재입력', 'err'); if (btn) btn.disabled = false; return; }
+      const clientName = document.querySelector('meta[name="client-name"]')?.content || '';
+      const putRes = await fetch(apiBase, {
+        method: 'PUT', headers: head,
+        body: JSON.stringify({
+          message: '[관리자] ' + clientName + ' 보고서 코멘트 수정',
+          content: utf8ToB64(buildCleanHtml()), sha: sha, branch: GH.branch
+        })
+      });
+      if (putRes.ok) setStatus('저장 완료 · GitHub 반영됨 (1~2분 후 사이트 갱신)', 'ok');
+      else { const e = await putRes.json().catch(() => ({})); setStatus('저장 실패: ' + (e.message || putRes.status), 'err'); }
+    } catch (err) { setStatus('저장 실패: 네트워크 오류', 'err'); }
+    finally { if (btn) btn.disabled = false; }
+  }
+})();
+</script>
+</body>
+</html>
